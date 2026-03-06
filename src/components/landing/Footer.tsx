@@ -1,4 +1,5 @@
 import { footerLinks } from "@/data/siteData";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
@@ -6,9 +7,21 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <p className="font-display text-xl font-bold tracking-tight mb-3">
-              Fuerte<span className="text-muted-foreground"> Developers</span>
-            </p>
+            <a href="#" className="flex items-center gap-2 group">
+  <motion.img
+    src="/favicon.ico"
+    alt="Fuerte Logo"
+    className="w-8 h-8 rounded-md object-contain"
+    initial={{ rotate: 0 }}
+    whileHover={{ rotate: 8, scale: 1.1 }}
+    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+  />
+
+  <span className="font-display text-xl font-bold tracking-tight">
+    Fuerte<span className="text-muted-foreground"> Developers</span>
+  </span>
+</a>
+            <br></br>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               Empowering Businesses with Innovative Digital Solutions
             </p>
@@ -16,7 +29,7 @@ const Footer = () => {
               {/* <p>Email: contact@fuertedevelopers.com</p>
               <p>Phone: +91 79039 55297</p> */}
               <p><span className="font-semibold">Email:</span> contact@fuertedevelopers.com</p>
-<p><span className="font-semibold">Phone:</span> +91 79039 55297</p>
+              <p><span className="font-semibold">Phone:</span> +91 79039 55297</p>
               <p>The Spire, 405, 150 Feet Ring Rd, Sheetal Park,
                   Manharpura 1, Madhapar, Rajkot, Gujarat 360007</p>
             </div>
