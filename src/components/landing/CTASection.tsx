@@ -32,31 +32,17 @@ const CTASection = () => {
               >
                 Get a Free Consultation
               </a>
-              {/* Maps Start */}
-{/* <div className="mt-10 space-y-4">
-  <iframe
-    src="https://www.google.com/maps?q=rajkot&output=embed"
-    className="w-full h-40 rounded-lg border"
-    loading="lazy"
-  ></iframe>
 
-  <iframe
-    src="https://www.google.com/maps?q=ahmedabad&output=embed"
-    className="w-full h-40 rounded-lg border"
-    loading="lazy"
-  ></iframe>
-</div> */}
-{/* Maps End */}
 
 {/* Maps Start */}
-<div className="mt-10 space-y-6">
+<div className="mt-10 grid md:grid-cols-2 gap-6">
   {/* Delhi Office */}
   <div>
     <h4 className="font-semibold mb-3 text-foreground">Delhi Office</h4>
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.12!2d77.04088!3d28.41974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23e7a452e89b%3A0x3fd39361c1f7c21d!2sFuerte%20Developers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
       width="100%"
-      height="250"
+      height="180"
       className="w-full h-64 rounded-lg border-0 shadow-xl"
       allowFullScreen={true}
       loading="lazy"
@@ -70,7 +56,7 @@ const CTASection = () => {
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.98!2d70.76715!3d22.31888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c9909e845a83%3A0x4863465519cad832!2sFuerte%20Developers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
       width="100%"
-      height="250"
+      height="180"
       className="w-full h-64 rounded-lg border-0 shadow-xl"
       allowFullScreen={true}
       loading="lazy"
