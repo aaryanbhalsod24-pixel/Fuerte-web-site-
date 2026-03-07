@@ -1,6 +1,6 @@
 import { footerLinks } from "@/data/siteData";
 import { motion } from "framer-motion";
-
+import { Mail, Phone, MapPin } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="section-padding-sm border-t border-border">
@@ -28,10 +28,35 @@ const Footer = () => {
             <div className="text-sm text-muted-foreground space-y-1">
               {/* <p>Email: contact@fuertedevelopers.com</p>
               <p>Phone: +91 79039 55297</p> */}
-              <p><span className="font-semibold">Email:</span> contact@fuertedevelopers.com</p>
+              {/* <p><span className="font-semibold">Email:</span> contact@fuertedevelopers.com</p>
               <p><span className="font-semibold">Phone:</span> +91 79904 86477</p>
               <p>The Spire, 405, 150 Feet Ring Rd, Sheetal Park,
-                  Manharpura 1, Madhapar, Rajkot, Gujarat 360007</p>
+                  Manharpura 1, Madhapar, Rajkot, Gujarat 360007</p> */}
+              <div className="text-sm text-muted-foreground space-y-3">
+
+  <a
+    href="mailto:contact@fuertedevelopers.com"
+    className="flex items-center gap-2 hover:text-foreground transition-colors"
+  >
+    <Mail size={16} />
+    contact@fuertedevelopers.com
+  </a>
+
+  <a
+    href="tel:+917990486477"
+    className="flex items-center gap-2 hover:text-foreground transition-colors"
+  >
+    <Phone size={16} />
+    +91 79904 86477
+  </a>
+
+  <div className="flex items-start gap-2">
+    <MapPin size={16} className="mt-1 flex-shrink-0" />
+    The Spire, 405, 150 Feet Ring Rd, Sheetal Park,
+    Manharpura 1, Madhapar, Rajkot, Gujarat 360007
+  </div>
+
+</div>
             </div>
           </div>
           <div>
