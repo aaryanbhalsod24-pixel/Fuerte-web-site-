@@ -29,7 +29,7 @@ const Footer = () => {
               {/* <p>Email: contact@fuertedevelopers.com</p>
               <p>Phone: +91 79039 55297</p> */}
               <p><span className="font-semibold">Email:</span> contact@fuertedevelopers.com</p>
-              <p><span className="font-semibold">Phone:</span> +91 79039 55297</p>
+              <p><span className="font-semibold">Phone:</span> +91 79904 86477</p>
               <p>The Spire, 405, 150 Feet Ring Rd, Sheetal Park,
                   Manharpura 1, Madhapar, Rajkot, Gujarat 360007</p>
             </div>
@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
         <div className="mt-16 pt-8 border-t border-border text-center">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Fuerte Developers Pvt Ltd. All rights reserved.
+            © {new Date().getFullYear()} Fuerte Developers  | All rights reserved.
           </p>
         </div>
       </div>

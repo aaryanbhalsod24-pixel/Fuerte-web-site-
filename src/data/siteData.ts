@@ -30,7 +30,7 @@ export const products = [
     icon: Car,
   },
   {
-    name: "CRM System",
+    name: "Customized CRM System",
     description: "Manage leads, customers, sales pipelines, and relationships through one centralized intelligent business platform.",
     icon: Users,
   },
@@ -68,12 +68,12 @@ export const services = [
     icon: Smartphone,
   },
   {
-    name: "SEO",
+    name: "On Page SEO",
     description: "Improve your website's ranking with comprehensive on-page, off-page, and technical optimization strategies.",
     icon: Search,
   },
   {
-    name: "Local SEO",
+    name: "Off Page SEO",
     description: "Attract nearby customers by optimizing your business for local searches, maps visibility, and location-based traffic.",
     icon: MapPin,
   },
@@ -98,7 +98,7 @@ export const stats = [
 export const teamMembers = [
   {
     name: "Aditya Prakash",
-    role: "CEO & Founder",
+    role: " Founder & CEO",
     quote: "Innovation is at the heart of everything we build. We turn ideas into digital success.",
     image: "team-ceo",
   },
