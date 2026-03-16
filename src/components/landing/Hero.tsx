@@ -6,7 +6,11 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img src={heroImage} alt="Digital workspace" className="w-full h-full object-cover" />
+        <img
+          src={heroImage}
+          alt="Digital workspace"
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-foreground/70" />
       </div>
       <div className="max-w-7xl mx-auto w-full relative z-10">
@@ -22,7 +26,8 @@ const Hero = () => {
         </FadeIn>
         <FadeIn delay={0.2}>
           <p className="mt-8 text-lg md:text-xl text-primary-foreground/70 max-w-2xl leading-relaxed">
-            From Branding to Web Development, App Creation, SEO, and Marketing — We Turn Ideas into Results
+            From Branding to Web Development, App Creation, SEO, and Marketing
+            We Turn Ideas into Results
           </p>
         </FadeIn>
         <FadeIn delay={0.3}>
@@ -54,7 +59,9 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
       >
-        <span className="text-xs uppercase tracking-widest text-primary-foreground/50">Scroll</span>
+        <span className="text-xs uppercase tracking-widest text-primary-foreground/50">
+          Scroll
+        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

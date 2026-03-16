@@ -1,4 +1,4 @@
-import { services } from "@/data/siteData";
+import { services } from "@/data/services";
 import FadeIn from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
 
