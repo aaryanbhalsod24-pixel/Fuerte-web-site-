@@ -56,23 +56,26 @@ const ProductDetail = () => {
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Key Features</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    "User-friendly Interface",
-                    "Real-time Analytics",
-                    "Secure Data Management",
-                    "Customizable Settings",
-                    "Cloud Synchronization",
-                    "24/7 Technical Support"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-muted-foreground text-sm">
-                      <CheckCircle2 size={18} className="text-primary flex-shrink-0" />
-                      {feature}
-                    </li>
+                <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Included Solutions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {(product.subItems || [
+                    { name: "User-friendly Interface", description: "Intuitive and easy-to-use design." },
+                    { name: "Real-time Analytics", description: "Live data tracking and reporting." },
+                    { name: "Secure Data Management", description: "Enterprise-grade security protocols." },
+                    { name: "Cloud Synchronization", description: "Access your data from anywhere." },
+                  ]).map((item, i) => (
+                    <div key={i} className="flex flex-col gap-1 p-4 rounded-xl bg-muted/30 border border-border/50">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 size={16} className="text-primary flex-shrink-0" />
+                        <span className="font-bold text-sm">{item.name}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground ml-6 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
               <div className="pt-6">

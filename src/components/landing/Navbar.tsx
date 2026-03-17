@@ -237,78 +237,107 @@ const Navbar = () => {
                           }}
                         >
                           {link.dropdown.map((sub) => (
-                            <Link
-                              key={sub.label}
-                              to={sub.href}
-                              onClick={() => setIsOpen(false)}
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: 10,
-                                padding: "10px 12px",
-                                borderRadius: 10,
-                                background: "hsl(var(--muted)/0.4)",
-                                textDecoration: "none",
-                                transition: "background .2s",
-                              }}
-                              onMouseEnter={(e) =>
-                                (e.currentTarget.style.background =
-                                  "hsl(var(--primary)/0.08)")
-                              }
-                              onMouseLeave={(e) =>
-                                (e.currentTarget.style.background =
-                                  "hsl(var(--muted)/0.4)")
-                              }
-                            >
-                              {sub.icon && (
-                                <div
-                                  style={{
-                                    width: 30,
-                                    height: 30,
-                                    flexShrink: 0,
-                                    borderRadius: 7,
-                                    background: "hsl(var(--background))",
-                                    border: "1px solid hsl(var(--border))",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    color: "hsl(var(--primary))",
-                                  }}
-                                >
-                                  <sub.icon size={15} />
-                                </div>
-                              )}
-                              <div style={{ minWidth: 0 }}>
-                                <div
-                                  style={{
-                                    fontSize: 13,
-                                    fontWeight: 700,
-                                    color: "hsl(var(--foreground))",
-                                    whiteSpace: "nowrap",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                  }}
-                                >
-                                  {sub.label}
-                                </div>
-                                {sub.description && (
+                            <div key={sub.label} style={{ display: "flex", flexDirection: "column" }}>
+                              {link.label === "Products" && sub.subItems ? (
+                                <>
                                   <div
                                     style={{
-                                      fontSize: 11,
-                                      color: "hsl(var(--muted-foreground))",
-                                      marginTop: 1,
-                                      lineHeight: 1.4,
-                                      overflow: "hidden",
-                                      display: "-webkit-box",
-                                      WebkitLineClamp: 1,
-                                      WebkitBoxOrient: "vertical",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 10,
+                                      padding: "10px 12px",
+                                      borderRadius: 10,
+                                      background: "hsl(var(--muted)/0.4)",
                                     }}
                                   >
-                                    {sub.description}
+                                    {sub.icon && (
+                                      <div
+                                        style={{
+                                          width: 30,
+                                          height: 30,
+                                          flexShrink: 0,
+                                          borderRadius: 7,
+                                          background: "hsl(var(--background))",
+                                          border: "1px solid hsl(var(--border))",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          color: "hsl(var(--primary))",
+                                        }}
+                                      >
+                                        <sub.icon size={15} />
+                                      </div>
+                                    )}
+                                    <div style={{ fontSize: 13, fontWeight: 700, color: "hsl(var(--foreground))" }}>
+                                      {sub.label}
+                                    </div>
                                   </div>
-                                )}
-                              </div>
-                            </Link>
+                                  <div style={{ paddingLeft: 40, display: "flex", flexDirection: "column", gap: 2, marginBlock: "4px 8px" }}>
+                                    {sub.subItems.map((item) => (
+                                      <a
+                                        key={item.label}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => setIsOpen(false)}
+                                        style={{
+                                          fontSize: 12,
+                                          padding: "6px 8px",
+                                          color: "hsl(var(--muted-foreground))",
+                                          textDecoration: "none",
+                                          borderLeft: "1px solid hsl(var(--border))",
+                                        }}
+                                      >
+                                        {item.label}
+                                      </a>
+                                    ))}
+                                  </div>
+                                </>
+                              ) : (
+                                <Link
+                                  to={sub.href}
+                                  onClick={() => setIsOpen(false)}
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 10,
+                                    padding: "10px 12px",
+                                    borderRadius: 10,
+                                    background: "hsl(var(--muted)/0.4)",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  {sub.icon && (
+                                    <div
+                                      style={{
+                                        width: 30,
+                                        height: 30,
+                                        flexShrink: 0,
+                                        borderRadius: 7,
+                                        background: "hsl(var(--background))",
+                                        border: "1px solid hsl(var(--border))",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        color: "hsl(var(--primary))",
+                                      }}
+                                    >
+                                      <sub.icon size={15} />
+                                    </div>
+                                  )}
+                                  <div style={{ minWidth: 0 }}>
+                                    <div style={{ fontSize: 13, fontWeight: 700, color: "hsl(var(--foreground))" }}>
+                                      {sub.label}
+                                    </div>
+                                    {sub.description && (
+                                      <div style={{ fontSize: 11, color: "hsl(var(--muted-foreground))", marginTop: 1, WebkitLineClamp: 1, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                                        {sub.description}
+                                      </div>
+                                    )}
+                                  </div>
+                                </Link>
+                              )}
+                            </div>
                           ))}
                         </div>
                       </motion.div>
@@ -650,25 +679,24 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
                 top: "calc(100% + 10px)",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: link.label === "Products" ? 560 : 280,
+                width: link.label === "Products" ? 220 : 280,
                 background: "hsl(var(--background)/0.98)",
                 border: "1px solid hsl(var(--border))",
                 borderRadius: 16,
-                padding: 12,
+                padding: 10,
                 zIndex: 100,
                 boxShadow: "0 16px 48px rgba(0,0,0,0.12)",
               }}
             >
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns:
-                    link.label === "Products" ? "1fr 1fr" : "1fr",
-                  gap: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
                 }}
               >
                 {link.dropdown.map((sub) => (
-                  <DropdownItem key={sub.label} sub={sub} />
+                  <DropdownItem key={sub.label} sub={sub} parentLabel={link.label} />
                 ))}
               </div>
             </motion.div>
@@ -680,152 +708,174 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
 }
 
 // ─── Dropdown Item ────────────────────────────────────────────────────────────
-function DropdownItem({ sub }) {
+function DropdownItem({ sub, parentLabel }) {
   const [hov, setHov] = useState(false);
-  return (
-    sub.href.startsWith("http") ? (
-      <a
-        href={sub.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: 12,
-          padding: "10px 12px",
-          borderRadius: 10,
-          background: hov ? "hsl(var(--primary)/0.06)" : "transparent",
-          textDecoration: "none",
-          transition: "background .18s",
-        }}
-      >
-        {sub.icon && (
-          <div
-            style={{
-              width: 34,
-              height: 34,
-              flexShrink: 0,
-              borderRadius: 9,
-              background: hov ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
-              transition: "all .18s",
-            }}
-          >
-            <sub.icon size={17} />
-          </div>
-        )}
-        <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              fontSize: 13,
-              fontWeight: 700,
-              color: hov ? "hsl(var(--primary))" : "hsl(var(--foreground))",
-              transition: "color .18s",
-            }}
-          >
-            {sub.label}
+  const [showSub, setShowSub] = useState(false);
+  const isExternal = sub.href && sub.href.startsWith("http");
+  const isProducts = parentLabel === "Products";
+
+  const content = (
+    <>
+      {sub.icon && (
+        <div
+          style={{
+            width: isProducts ? 32 : 34,
+            height: isProducts ? 32 : 34,
+            flexShrink: 0,
+            borderRadius: isProducts ? 8 : 9,
+            background: (hov || showSub) ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: (hov || showSub) ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+            transition: "all .18s",
+          }}
+        >
+          <sub.icon size={isProducts ? 16 : 17} />
+        </div>
+      )}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 4,
+            fontSize: 13,
+            fontWeight: 700,
+            color: (hov || showSub) ? "hsl(var(--primary))" : "hsl(var(--foreground))",
+            transition: "color .18s",
+          }}
+        >
+          {sub.label}
+          {(sub.subItems || isExternal) && (
             <ArrowRight
               size={11}
               style={{
-                opacity: hov ? 1 : 0,
-                transform: hov ? "translateX(0)" : "translateX(-4px)",
+                opacity: (hov || showSub) ? 1 : (isProducts ? 0.4 : 0),
+                transform: (hov || showSub) ? "translateX(0)" : "translateX(-4px)",
                 transition: "all .18s",
               }}
             />
-          </div>
-          {sub.description && (
-            <p
-              style={{
-                fontSize: 11,
-                color: "hsl(var(--muted-foreground))",
-                margin: "3px 0 0",
-                lineHeight: 1.5,
-              }}
-            >
-              {sub.description}
-            </p>
           )}
         </div>
-      </a>
-    ) : (
-      <Link
-        to={sub.href}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: 12,
-          padding: "10px 12px",
-          borderRadius: 10,
-          background: hov ? "hsl(var(--primary)/0.06)" : "transparent",
-          textDecoration: "none",
-          transition: "background .18s",
-        }}
-      >
-        {sub.icon && (
-          <div
+        {!isProducts && sub.description && (
+          <p
             style={{
-              width: 34,
-              height: 34,
-              flexShrink: 0,
-              borderRadius: 9,
-              background: hov ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
-              transition: "all .18s",
+              fontSize: 11,
+              color: "hsl(var(--muted-foreground))",
+              margin: "3px 0 0",
+              lineHeight: 1.5,
+              overflow: "hidden",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
             }}
           >
-            <sub.icon size={17} />
-          </div>
+            {sub.description}
+          </p>
         )}
-        <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              fontSize: 13,
-              fontWeight: 700,
-              color: hov ? "hsl(var(--primary))" : "hsl(var(--foreground))",
-              transition: "color .18s",
-            }}
-          >
-            {sub.label}
-            <ArrowRight
-              size={11}
+      </div>
+
+      {/* --- Second Level Dropdown (Desktop) --- */}
+      {isProducts && sub.subItems && (
+        <AnimatePresence>
+          {showSub && (
+            <motion.div
+              initial={{ opacity: 0, x: 10, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 10, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
               style={{
-                opacity: hov ? 1 : 0,
-                transform: hov ? "translateX(0)" : "translateX(-4px)",
-                transition: "all .18s",
-              }}
-            />
-          </div>
-          {sub.description && (
-            <p
-              style={{
-                fontSize: 11,
-                color: "hsl(var(--muted-foreground))",
-                margin: "3px 0 0",
-                lineHeight: 1.5,
+                position: "absolute",
+                top: -6,
+                left: "100%",
+                paddingLeft: 12,
+                zIndex: 110,
               }}
             >
-              {sub.description}
-            </p>
+              <div
+                style={{
+                  width: 200,
+                  background: "hsl(var(--background))",
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: 12,
+                  padding: 8,
+                  boxShadow: "10px 10px 30px rgba(0,0,0,0.08)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                }}
+              >
+                {sub.subItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "block",
+                      padding: "8px 12px",
+                      borderRadius: 8,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: "hsl(var(--muted-foreground))",
+                      textDecoration: "none",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "hsl(var(--primary)/0.05)";
+                      e.currentTarget.style.color = "hsl(var(--primary))";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.color = "hsl(var(--muted-foreground))";
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           )}
-        </div>
-      </Link>
-    )
+        </AnimatePresence>
+      )}
+    </>
+  );
+
+  const style: any = {
+    display: "flex",
+    alignItems: isProducts ? "center" : "flex-start",
+    gap: 12,
+    padding: "10px 12px",
+    borderRadius: 10,
+    background: (hov || showSub) ? "hsl(var(--primary)/0.06)" : "transparent",
+    textDecoration: "none",
+    transition: "background .18s",
+    position: "relative",
+    cursor: "pointer",
+  };
+
+  return isExternal ? (
+    <a
+      href={sub.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => { setHov(true); if (isProducts && sub.subItems) setShowSub(true); }}
+      onMouseLeave={() => { setHov(false); if (isProducts && sub.subItems) setShowSub(false); }}
+      style={style}
+    >
+      {content}
+    </a>
+  ) : (
+    <Link
+      to={sub.href}
+      onMouseEnter={() => { setHov(true); if (isProducts && sub.subItems) setShowSub(true); }}
+      onMouseLeave={() => { setHov(false); if (isProducts && sub.subItems) setShowSub(false); }}
+      style={style}
+    >
+      {content}
+    </Link>
   );
 }
 

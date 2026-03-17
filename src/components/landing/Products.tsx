@@ -5,41 +5,23 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   const hoverClasses = {
-    "BillingSphere POS": "hover:bg-[#0C6B0F]",
-    "Be On Time (BOT)": "hover:bg-[#820274]",
-    "Smart Parking App": "hover:bg-[#FFC107]",
-    "Customized CRM System": "hover:bg-[#b9adad]",
-    "Hospital Appointment & Listing System": "hover:bg-[#0284c7]",
-    "Spa Management System": "hover:bg-[#0F1D41]",
-    "Laboratory Management System": "hover:bg-[#48549c]",
-    "Delivery Management App": "hover:bg-[#3D0000]",
+    "Inventory & Billing": "hover:bg-[#0C6B0F]",
+    "HRMS": "hover:bg-[#820274]",
+    "Smart Parking": "hover:bg-[#FFC107]",
+    "Customize CRM": "hover:bg-[#0F1D41]",
+    "Aapka Care": "hover:bg-[#0284c7]",
   };
-
-
-  const ExternalURL = [
-    "https://billingsphere.com/",
-    "https://beontimeofficial.com/",
-    "https://appka-parking-new.netlify.app/",
-    "https://crmautogrowth.netlify.app/",
-    "https://aapka-care-new.netlify.app/",
-    "https://spamanager.netlify.app/",
-    "https://micasacare.com/",
-    "https://fdsupermartdelivery.netlify.app/",
-  ];
-
 
   // White text on hover cards
   const whiteTextCards = [
-    "BillingSphere POS",
-    "Be On Time (BOT)",
-    "Hospital Appointment & Listing System",
-    "Spa Management System",
-    "Laboratory Management System",
-    "Delivery Management App",
+    "Inventory & Billing",
+    "HRMS",
+    "Aapka Care",
+    "Customize CRM",
   ];
 
-  // Black text on hover cards (baaki wale)
-  const blackTextCards = ["Smart Parking App", "Customized CRM System"];
+  // Black text on hover cards
+  const blackTextCards = ["Smart Parking"];
 
   return (
     <section id="products" className="section-padding border-t border-border">
@@ -60,84 +42,112 @@ const Products = () => {
           </p>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {products.map((product, i) => {
-            const Icon = product.icon;
+        <div className="grid md:grid-cols-2 gap-8">
+          {products.map((group, i) => {
+            const Icon = group.icon;
             const productHoverClass =
-              hoverClasses[product.name] || "hover:bg-primary";
+              hoverClasses[group.name] || "hover:bg-primary";
 
-            // Check which group this card belongs to
-            const isWhiteTextHover = whiteTextCards.includes(product.name);
-            const isBlackTextHover = blackTextCards.includes(product.name);
+            const isWhiteTextHover = whiteTextCards.includes(group.name);
+            const isBlackTextHover = blackTextCards.includes(group.name);
 
-            const url = ExternalURL[i];
-            const cardContent = (
+            const CardContent = (
               <div
                 className={`
-                group border border-border rounded-lg p-8 transition-all duration-500 ease-in-out
-                flex justify-between items-start h-full cursor-pointer bg-white/80 hover:shadow-2xl
-                ${productHoverClass}
-              `}
+                  border border-border rounded-xl p-8 transition-all duration-500 ease-in-out
+                  flex flex-col h-full cursor-pointer bg-white/80 hover:shadow-2xl hover:-translate-y-1
+                  ${productHoverClass}
+                `}
               >
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-white/30">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-white/30">
                     <Icon
-                      size={20}
-                      className={`transition-all duration-300 text-foreground ${isWhiteTextHover
-                        ? "group-hover:text-white"
-                        : isBlackTextHover
+                      size={24}
+                      className={`transition-all duration-300 text-foreground ${
+                        isWhiteTextHover
+                          ? "group-hover:text-white"
+                          : isBlackTextHover
                           ? "group-hover:text-black"
                           : ""
-                        }`}
+                      }`}
                     />
                   </div>
-                  <div>
-                    <h3
-                      className={`font-display text-lg font-semibold mb-2 text-foreground transition-all duration-300 hover:font-bold ${isWhiteTextHover
+                  <ArrowUpRight
+                    size={20}
+                    className={`text-muted-foreground transition-all duration-300 group-hover:scale-110 ${
+                      isWhiteTextHover
                         ? "group-hover:text-white"
                         : isBlackTextHover
-                          ? "group-hover:text-black"
-                          : ""
-                        }`}
-                    >
-                      {product.name}
-                    </h3>
-                    <p
-                      className={`text-muted-foreground text-sm leading-relaxed max-w-sm transition-all duration-300 hover:font-semibold ${isWhiteTextHover
+                        ? "group-hover:text-black"
+                        : ""
+                    }`}
+                  />
+                </div>
+
+                <div className="space-y-6">
+                  <h3
+                    className={`font-display text-2xl font-bold text-foreground transition-all duration-300 ${
+                      isWhiteTextHover
                         ? "group-hover:text-white"
                         : isBlackTextHover
-                          ? "group-hover:text-black"
-                          : ""
-                        }`}
-                    >
-                      {product.description}
-                    </p>
+                        ? "group-hover:text-black"
+                        : ""
+                    }`}
+                  >
+                    {group.name}
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    {group.subItems.map((item, index) => (
+                      <div key={item.name} className="space-y-1">
+                        {index !== 0 && (
+                          <div className={`h-[1px] w-full mb-4 opacity-10 ${
+                            isWhiteTextHover ? "bg-white" : "bg-foreground"
+                          }`} />
+                        )}
+                        <div className="flex items-start gap-2">
+                          <div className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                            isWhiteTextHover ? "bg-white/60" : "bg-primary"
+                          } transition-colors group-hover:bg-current`} />
+                          <div>
+                            <h4 className={`text-sm font-bold leading-none ${
+                              isWhiteTextHover ? "group-hover:text-white" : "group-hover:text-black"
+                            } transition-colors mb-1`}>
+                              {item.name}
+                            </h4>
+                            <p className={`text-xs ${
+                              isWhiteTextHover ? "text-muted-foreground group-hover:text-white/80" : "text-muted-foreground group-hover:text-black/70"
+                            } transition-colors leading-relaxed`}>
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <ArrowUpRight
-                  size={18}
-                  className={`text-muted-foreground transition-all duration-300 flex-shrink-0 mt-1 group-hover:scale-110 ${isWhiteTextHover
-                    ? "group-hover:text-white"
-                    : isBlackTextHover
-                      ? "group-hover:text-black"
-                      : ""
-                    }`}
-                />
               </div>
             );
 
             return (
-              <FadeIn key={product.name} delay={i * 0.08} className="h-full">
-                <div className="h-full">
+              <FadeIn key={group.name} delay={i * 0.08} className="h-full">
+                {group.externalUrl ? (
                   <a
-                    href={url}
+                    href={group.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block h-full"
+                    className="block h-full group"
                   >
-                    {cardContent}
+                    {CardContent}
                   </a>
-                </div>
+                ) : (
+                  <Link
+                    to={`/product/${group.slug}`}
+                    className="block h-full group"
+                  >
+                    {CardContent}
+                  </Link>
+                )}
               </FadeIn>
             );
           })}

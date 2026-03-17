@@ -2,52 +2,93 @@ import { CreditCard, Clock, Car, Users, Hospital, Sparkles, FlaskConical, Truck 
 
 export const products = [
   {
-    slug: "billingsphere",
-    name: "BillingSphere POS",
-    description: "Complete POS and e-commerce solution managing sales, inventory, billing, and online store operations seamlessly.",
+    slug: "inventory-billing",
+    name: "Inventory & Billing",
+    description: "Comprehensive solutions for managing stock, invoicing, and logistics.",
     icon: CreditCard,
+    externalUrl: "https://billingsphere.com/",
+    subItems: [
+      {
+        name: "Billing Sphere",
+        description: "Complete billing and invoicing solution for businesses.",
+        url: "https://billingsphere.com/",
+      },
+      {
+        name: "Billing Sphere POS",
+        description: "POS system to manage sales, inventory, and transactions.",
+        url: "https://billingsphere.com/",
+      },
+      {
+        name: "Delivery App",
+        description: "Manage and track deliveries with real-time updates.",
+        url: "https://fdsupermartdelivery.netlify.app/",
+      },
+    ],
   },
   {
-    slug: "beontime",
-    name: "Be On Time (BOT)",
-    description: "Smart attendance system tracking employee time, productivity, shifts, and automated workforce performance reports.",
+    slug: "aapka-care",
+    name: "Aapka Care",
+    description: "Healthcare management tools for clinics, labs, and hospitals.",
+    icon: Hospital,
+    externalUrl: "https://aapka-care-new.netlify.app/",
+    subItems: [
+      {
+        name: "Laboratory",
+        description: "Manage lab operations, reports, and patient data.",
+        url: "https://micasacare.com/",
+      },
+      {
+        name: "Appointment Booking",
+        description: "Easy scheduling system for patients and doctors.",
+        url: "https://aapka-care-new.netlify.app/",
+      },
+      {
+        name: "Hospital Management",
+        description: "Complete hospital workflow and records management.",
+        url: "https://aapka-care-new.netlify.app/",
+      },
+    ],
+  },
+  {
+    slug: "customize-crm",
+    name: "Customize CRM",
+    description: "Bespoke relationship management for niche service industries.",
+    icon: Users,
+    externalUrl: "https://crmautogrowth.netlify.app/",
+    subItems: [
+      {
+        name: "Spa Management",
+        description: "Manage customers, bookings, and spa services efficiently.",
+        url: "https://spamanager.netlify.app/",
+      },
+    ],
+  },
+  {
+    slug: "hrms",
+    name: "HRMS",
+    description: "Workforce management and productivity tracking systems.",
     icon: Clock,
     externalUrl: "https://beontimeofficial.com/",
+    subItems: [
+      {
+        name: "Be On Time",
+        description: "Track employee attendance, shifts, and productivity.",
+        url: "https://beontimeofficial.com/",
+      },
+    ],
   },
   {
     slug: "smart-parking",
-    name: "Smart Parking App",
-    description: "Find, reserve, and pay parking spaces easily using mobile apps on Android and iOS.",
+    name: "Smart Parking",
+    description: "Intuitive parking management and reservation solutions.",
     icon: Car,
-  },
-  {
-    slug: "crm",
-    name: "Customized CRM System",
-    description: "Manage leads, customers, sales pipelines, and relationships through one centralized intelligent business platform.",
-    icon: Users,
-  },
-  {
-    slug: "hospital-appointment",
-    name: "Hospital Appointment & Listing System",
-    description: "Manage patient bookings, doctor schedules, medical records, and hospital listings efficiently in one platform.",
-    icon: Hospital,
-  },
-  {
-    slug: "spa-management",
-    name: "Spa Management System",
-    description: "Streamline spa appointments, staff scheduling, services, and customer management with an all-in-one solution.",
-    icon: Sparkles,
-  },
-  {
-    slug: "laboratory-system",
-    name: "Laboratory Management System",
-    description: "Digitize lab operations including patient registration, test processing, reports generation, and secure data management.",
-    icon: FlaskConical,
-  },
-  {
-    slug: "delivery-app",
-    name: "Delivery Management App",
-    description: "Track orders, optimize delivery routes, and provide real-time updates integrated with Google Maps.",
-    icon: Truck,
+    externalUrl: "https://appka-parking-new.netlify.app/",
+    subItems: [
+      {
+        name: "Aapka Parking",
+        description: "Smart parking system for booking and managing spaces.",
+        url: "https://appka-parking-new.netlify.app/",
+      },
+    ],
   },
 ];
