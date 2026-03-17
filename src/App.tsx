@@ -8,6 +8,8 @@ import Team from "./components/landing/Team";
 import Testimonials from "./components/landing/Testimonials";
 import CTASection from "./components/landing/CTASection";
 import Footer from "./components/landing/Footer";
+import ServiceDetail from "./pages/ServiceDetail";
+import ServicesPage from "./pages/ServicesPage";
 
 
 
@@ -32,6 +34,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
 
       </Routes>
     </BrowserRouter>

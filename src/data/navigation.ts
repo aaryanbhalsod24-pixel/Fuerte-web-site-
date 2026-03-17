@@ -74,7 +74,7 @@ export const navLinks = [
       {
         label: "Customized CRM System",
         description: "Centralized intelligent business platform.",
-        href: "https://appka-parking-new.netlify.app/",
+        href: "https://crmautogrowth.netlify.app/",
         icon: Users,
       },
       {
@@ -86,7 +86,7 @@ export const navLinks = [
       {
         label: "Spa Management",
         description: "Streamline spa services and bookings.",
-        href: "https://micasacare.com/",
+        href: "https://spamanager.netlify.app/",
         icon: Sparkles,
       },
       {
@@ -98,7 +98,7 @@ export const navLinks = [
       {
         label: "Delivery App",
         description: "Real-time tracking and route optimization.",
-        href: "https://micasacare.com/",
+        href: "https://fdsupermartdelivery.netlify.app/",
         icon: Truck,
       },
     ],
@@ -106,24 +106,24 @@ export const navLinks = [
 
   {
     label: "Services",
-    href: "/#services",
+    href: "/services",
     dropdown: [
       {
         label: "Shopify Development",
         description: "High-converting online stores.",
-        href: "/services/shopify-development",
+        href: "/services/shopify-store-development",
         icon: ShoppingCart,
       },
       {
         label: "App Development",
         description: "Customized mobile and web applications.",
-        href: "/services/app-development",
+        href: "/services/customize-app-development",
         icon: Smartphone,
       },
       {
         label: "On/Off Page SEO",
         description: "Technical optimization for better ranking.",
-        href: "/services/seo",
+        href: "/services/on-off-page-seo",
         icon: Search,
       },
       {
@@ -135,7 +135,7 @@ export const navLinks = [
       {
         label: "Social Media",
         description: "Engagement through strategic campaigns.",
-        href: "/services/social-media",
+        href: "/services/social-media-marketing",
         icon: Share2,
       },
       {
@@ -158,7 +158,7 @@ export const footerLinks = {
   quickLinks: [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/#vision" },
-    { label: "Services", href: "/#services" },
+    { label: "Services", href: "/services" },
     { label: "Contact", href: "/#contact" },
   ],
 

@@ -1,8 +1,11 @@
 import { services } from "@/data/services";
 import FadeIn from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="services" className="section-padding border-t border-border">
       <div className="max-w-7xl mx-auto">
@@ -21,7 +24,10 @@ const Services = () => {
             const Icon = service.icon;
             return (
               <FadeIn key={service.name} delay={i * 0.08}>
-                <div className="group border border-border rounded-lg p-8 hover:bg-secondary transition-colors duration-300 h-full cursor-pointer">
+                <div 
+                  onClick={() => navigate(`/services/${service.slug}`)}
+                  className="group border border-border rounded-lg p-8 hover:bg-secondary transition-colors duration-300 h-full cursor-pointer"
+                >
                   <div className="flex justify-between items-start mb-4">
                     <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-background transition-colors">
                       <Icon size={22} className="text-foreground" />

@@ -157,19 +157,37 @@ const Navbar = () => {
                       padding: "13px 6px",
                     }}
                   >
-                    <a
-                      href={link.href}
-                      onClick={() => !link.dropdown && setIsOpen(false)}
-                      style={{
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: "hsl(var(--foreground))",
-                        textDecoration: "none",
-                        flex: 1,
-                      }}
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith("http") ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setIsOpen(false)}
+                        style={{
+                          fontSize: 15,
+                          fontWeight: 700,
+                          color: "hsl(var(--foreground))",
+                          textDecoration: "none",
+                          flex: 1,
+                        }}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        onClick={() => !link.dropdown && setIsOpen(false)}
+                        style={{
+                          fontSize: 15,
+                          fontWeight: 700,
+                          color: "hsl(var(--foreground))",
+                          textDecoration: "none",
+                          flex: 1,
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                     {link.dropdown && (
                       <button
                         onClick={() => toggleMobileDropdown(link.label)}
@@ -537,44 +555,87 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
       onMouseEnter={() => link.dropdown && onEnter(link.label)}
       onMouseLeave={onLeave}
     >
-      <a
-        href={link.href}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 4,
-          padding: "5px 11px",
-          borderRadius: 20,
-          fontSize: 13,
-          fontWeight: 600,
-          textDecoration: "none",
-          transition: "all .2s",
-          background: active ? "hsl(var(--primary)/0.08)" : "transparent",
-          color: active
-            ? "hsl(var(--primary))"
-            : "hsl(var(--muted-foreground))",
-          whiteSpace: "nowrap",
-        }}
-        onMouseEnter={(e) => {
-          if (!active) e.currentTarget.style.color = "hsl(var(--foreground))";
-        }}
-        onMouseLeave={(e) => {
-          if (!active)
-            e.currentTarget.style.color = "hsl(var(--muted-foreground))";
-        }}
-      >
-        {link.label}
-        {link.dropdown && (
-          <ChevronDown
-            size={13}
-            style={{
-              transform: active ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform .25s",
-              opacity: 0.7,
-            }}
-          />
-        )}
-      </a>
+      {link.href.startsWith("http") ? (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+            padding: "5px 11px",
+            borderRadius: 20,
+            fontSize: 13,
+            fontWeight: 600,
+            textDecoration: "none",
+            transition: "all .2s",
+            background: active ? "hsl(var(--primary)/0.08)" : "transparent",
+            color: active
+              ? "hsl(var(--primary))"
+              : "hsl(var(--muted-foreground))",
+            whiteSpace: "nowrap",
+          }}
+          onMouseEnter={(e) => {
+            if (!active) e.currentTarget.style.color = "hsl(var(--foreground))";
+          }}
+          onMouseLeave={(e) => {
+            if (!active)
+              e.currentTarget.style.color = "hsl(var(--muted-foreground))";
+          }}
+        >
+          {link.label}
+          {link.dropdown && (
+            <ChevronDown
+              size={13}
+              style={{
+                transform: active ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform .25s",
+                opacity: 0.7,
+              }}
+            />
+          )}
+        </a>
+      ) : (
+        <Link
+          to={link.href}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+            padding: "5px 11px",
+            borderRadius: 20,
+            fontSize: 13,
+            fontWeight: 600,
+            textDecoration: "none",
+            transition: "all .2s",
+            background: active ? "hsl(var(--primary)/0.08)" : "transparent",
+            color: active
+              ? "hsl(var(--primary))"
+              : "hsl(var(--muted-foreground))",
+            whiteSpace: "nowrap",
+          }}
+          onMouseEnter={(e) => {
+            if (!active) e.currentTarget.style.color = "hsl(var(--foreground))";
+          }}
+          onMouseLeave={(e) => {
+            if (!active)
+              e.currentTarget.style.color = "hsl(var(--muted-foreground))";
+          }}
+        >
+          {link.label}
+          {link.dropdown && (
+            <ChevronDown
+              size={13}
+              style={{
+                transform: active ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform .25s",
+                opacity: 0.7,
+              }}
+            />
+          )}
+        </Link>
+      )}
 
       {link.dropdown && (
         <AnimatePresence>
@@ -622,75 +683,149 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
 function DropdownItem({ sub }) {
   const [hov, setHov] = useState(false);
   return (
-    <Link
-      to={sub.href}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 12,
-        padding: "10px 12px",
-        borderRadius: 10,
-        background: hov ? "hsl(var(--primary)/0.06)" : "transparent",
-        textDecoration: "none",
-        transition: "background .18s",
-      }}
-    >
-      {sub.icon && (
-        <div
-          style={{
-            width: 34,
-            height: 34,
-            flexShrink: 0,
-            borderRadius: 9,
-            background: hov ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
-            transition: "all .18s",
-          }}
-        >
-          <sub.icon size={17} />
-        </div>
-      )}
-      <div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-            fontSize: 13,
-            fontWeight: 700,
-            color: hov ? "hsl(var(--primary))" : "hsl(var(--foreground))",
-            transition: "color .18s",
-          }}
-        >
-          {sub.label}
-          <ArrowRight
-            size={11}
+    sub.href.startsWith("http") ? (
+      <a
+        href={sub.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 12,
+          padding: "10px 12px",
+          borderRadius: 10,
+          background: hov ? "hsl(var(--primary)/0.06)" : "transparent",
+          textDecoration: "none",
+          transition: "background .18s",
+        }}
+      >
+        {sub.icon && (
+          <div
             style={{
-              opacity: hov ? 1 : 0,
-              transform: hov ? "translateX(0)" : "translateX(-4px)",
+              width: 34,
+              height: 34,
+              flexShrink: 0,
+              borderRadius: 9,
+              background: hov ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
               transition: "all .18s",
             }}
-          />
-        </div>
-        {sub.description && (
-          <p
+          >
+            <sub.icon size={17} />
+          </div>
+        )}
+        <div>
+          <div
             style={{
-              fontSize: 11,
-              color: "hsl(var(--muted-foreground))",
-              margin: "3px 0 0",
-              lineHeight: 1.5,
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              fontSize: 13,
+              fontWeight: 700,
+              color: hov ? "hsl(var(--primary))" : "hsl(var(--foreground))",
+              transition: "color .18s",
             }}
           >
-            {sub.description}
-          </p>
+            {sub.label}
+            <ArrowRight
+              size={11}
+              style={{
+                opacity: hov ? 1 : 0,
+                transform: hov ? "translateX(0)" : "translateX(-4px)",
+                transition: "all .18s",
+              }}
+            />
+          </div>
+          {sub.description && (
+            <p
+              style={{
+                fontSize: 11,
+                color: "hsl(var(--muted-foreground))",
+                margin: "3px 0 0",
+                lineHeight: 1.5,
+              }}
+            >
+              {sub.description}
+            </p>
+          )}
+        </div>
+      </a>
+    ) : (
+      <Link
+        to={sub.href}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 12,
+          padding: "10px 12px",
+          borderRadius: 10,
+          background: hov ? "hsl(var(--primary)/0.06)" : "transparent",
+          textDecoration: "none",
+          transition: "background .18s",
+        }}
+      >
+        {sub.icon && (
+          <div
+            style={{
+              width: 34,
+              height: 34,
+              flexShrink: 0,
+              borderRadius: 9,
+              background: hov ? "hsl(var(--primary)/0.12)" : "hsl(var(--muted))",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+              transition: "all .18s",
+            }}
+          >
+            <sub.icon size={17} />
+          </div>
         )}
-      </div>
-    </Link>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              fontSize: 13,
+              fontWeight: 700,
+              color: hov ? "hsl(var(--primary))" : "hsl(var(--foreground))",
+              transition: "color .18s",
+            }}
+          >
+            {sub.label}
+            <ArrowRight
+              size={11}
+              style={{
+                opacity: hov ? 1 : 0,
+                transform: hov ? "translateX(0)" : "translateX(-4px)",
+                transition: "all .18s",
+              }}
+            />
+          </div>
+          {sub.description && (
+            <p
+              style={{
+                fontSize: 11,
+                color: "hsl(var(--muted-foreground))",
+                margin: "3px 0 0",
+                lineHeight: 1.5,
+              }}
+            >
+              {sub.description}
+            </p>
+          )}
+        </div>
+      </Link>
+    )
   );
 }
 

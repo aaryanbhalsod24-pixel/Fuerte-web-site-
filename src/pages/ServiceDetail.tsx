@@ -36,52 +36,62 @@ const ServiceDetail = () => {
             Back to Services
           </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="space-y-8"
+              className="space-y-10"
             >
-              <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-primary/10 text-primary">
-                <Icon size={40} />
-              </div>
-              
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                  {service.name}
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+              <div className="space-y-6">
+                <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-primary/10 text-primary">
+                  <Icon size={40} />
+                </div>
+                
+                <div className="space-y-6">
+                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+                    {service.name}
+                  </h1>
+                  <div className="space-y-4">
+                    {service.fullDescription?.map((para, i) => (
+                      <p key={i} className="text-lg text-muted-foreground leading-relaxed">
+                        {para}
+                      </p>
+                    )) || (
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">What's Included</h3>
-                <ul className="space-y-4">
-                  {[
-                    "Custom Strategy Development",
-                    "Expert Implementation",
-                    "Performance Monitoring",
-                    "Dedicated Account Manager",
-                    "Monthly Reporting",
-                    "Scale-ready Infrastructure"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-muted-foreground">
-                      <CheckCircle2 size={18} className="text-primary flex-shrink-0" />
-                      <span className="text-sm font-medium">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div className="space-y-6 pt-4">
+                  <h3 className="text-2xl font-bold">Key Features</h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {service.features?.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3 text-muted-foreground">
+                        <CheckCircle2 size={18} className="text-primary flex-shrink-0" />
+                        <span className="text-sm font-medium">{feature}</span>
+                      </li>
+                    )) || (
+                      ["Custom Strategy Development", "Expert Implementation", "Performance Monitoring"].map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-muted-foreground">
+                          <CheckCircle2 size={18} className="text-primary flex-shrink-0" />
+                          <span className="text-sm font-medium">{feat}</span>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
 
-              <div className="pt-6">
-                <a 
-                  href="/#contact" 
-                  className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all"
-                >
-                  Get Started
-                </a>
+                <div className="pt-6">
+                  <a 
+                    href="/#contact" 
+                    className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all w-full md:w-auto text-center"
+                  >
+                    Get Started
+                  </a>
+                </div>
               </div>
             </motion.div>
 
@@ -89,14 +99,14 @@ const ServiceDetail = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative rounded-3xl overflow-hidden border border-border bg-muted/30 aspect-[4/3]"
+              className="relative lg:sticky lg:top-32 rounded-3xl overflow-hidden border border-border bg-muted/30 aspect-[4/3] shadow-2xl"
             >
               <img 
-                src={`https://picsum.photos/seed/${service.slug}/1000/750`} 
+                src={service.image || `https://picsum.photos/seed/${service.slug}/1000/750`} 
                 alt={service.name}
-                className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
             </motion.div>
           </div>
         </div>
