@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 const FadeIn = ({
   children,
   delay = 0,

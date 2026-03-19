@@ -89,26 +89,19 @@ const Navbar = () => {
                 flexShrink: 0,
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <img
-                  src="/favicon.ico"
-                  alt="Fuerte"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 7,
-                    border: "1px solid hsl(var(--border))",
-                    objectFit: "contain",
-                    padding: 2,
-                  }}
-                />
-                <span style={{ fontWeight: 900, fontSize: 15, lineHeight: 1 }}>
-                  Fuerte{" "}
-                  <span style={{ color: "hsl(var(--primary))" }}>
-                    Developers
-                  </span>
-                </span>
-              </div>
+              <video
+                src="/Logo_animation_fuerte_developers_6836436ffe.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  height: 32,
+                  width: "auto",
+                  objectFit: "contain",
+                }}
+              />
+
               <button
                 onClick={() => setIsOpen(false)}
                 style={{
@@ -380,8 +373,9 @@ const Navbar = () => {
             </div>
           </motion.div>
         </>
-      )}
-    </AnimatePresence>,
+      )
+      }
+    </AnimatePresence >,
     document.body,
   );
 
@@ -427,51 +421,23 @@ const Navbar = () => {
               gap: 8,
               textDecoration: "none",
               flexShrink: 0,
+              height: "100%",
             }}
           >
-            <div style={{ position: "relative" }}>
-              <motion.div
-                style={{
-                  position: "absolute",
-                  inset: -3,
-                  background:
-                    "linear-gradient(135deg, hsl(var(--primary)), #6366f1)",
-                  borderRadius: 10,
-                  filter: "blur(6px)",
-                  opacity: 0.25,
-                }}
-                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                transition={{ repeat: Infinity, duration: 3 }}
-              />
-              <img
-                src="/favicon.ico"
-                alt="Fuerte"
-                style={{
-                  position: "relative",
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  border: "1.5px solid hsl(var(--border))",
-                  background: "hsl(var(--background))",
-                  objectFit: "contain",
-                  padding: 3,
-                  display: "block",
-                }}
-              />
-            </div>
-            <span
+            <video
+              src="/Logo_animation_fuerte_developers_6836436ffe.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
               style={{
-                fontWeight: 900,
-                letterSpacing: "-0.02em",
-                fontSize: 15,
-                color: "hsl(var(--foreground))",
-                whiteSpace: "nowrap",
-                lineHeight: 1,
+                height: "100%",
+                width: "auto",
+                objectFit: "contain",
+                display: "block",
               }}
-            >
-              Fuerte{" "}
-              <span style={{ color: "hsl(var(--primary))" }}>Developers</span>
-            </span>
+            />
+
           </Link>
 
           {/* Desktop Links */}
