@@ -10,6 +10,7 @@ import CTASection from "./components/landing/CTASection";
 import Footer from "./components/landing/Footer";
 import ServiceDetail from "./pages/ServiceDetail";
 import ServicesPage from "./pages/ServicesPage";
+import TeamPage from "./pages/TeamPage";
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/team" element={<TeamPage />} />
 
       </Routes>
     </BrowserRouter>

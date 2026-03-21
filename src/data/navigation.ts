@@ -43,7 +43,7 @@ export const navLinks = [
       {
         label: "Our Team",
         description: "Meet the experts behind Fuerte Developers.",
-        href: "/#team",
+        href: "/team",
         icon: Users,
       },
     ],
