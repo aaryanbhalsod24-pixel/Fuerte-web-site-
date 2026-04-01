@@ -17,7 +17,9 @@ import {
   Instagram,
   Linkedin,
   Twitter,
+  Youtube,
 } from "lucide-react";
+import { SiX } from "react-icons/si";
 
 export const navLinks = [
   { label: "Home", href: "/" },
@@ -30,14 +32,14 @@ export const navLinks = [
         label: "Company Overview",
         description:
           "Learn about our vision, mission, and how we empower businesses.",
-        href: "/#vision",
+        href: "/company-overview",
         icon: Users,
       },
       {
         label: "Customer Stories",
         description:
           "Real-world success stories from our satisfied global clients.",
-        href: "/#testimonials",
+        href: "/customer-stories",
         icon: Sparkles,
       },
       {
@@ -159,9 +161,9 @@ export const footerLinks = {
   ],
 
   socialLinks: [
-    { label: "Facebook", href: "#", icon: Facebook },
-    { label: "Instagram", href: "#", icon: Instagram },
-    { label: "LinkedIn", href: "#", icon: Linkedin },
-    { label: "Twitter", href: "#", icon: Twitter },
+    { label: "Facebook", href: "https://www.facebook.com/fuertedevelopers/", icon: Facebook },
+    { label: "Instagram", href: "https://www.instagram.com/fuerte_developers?igshid=ky7ulp42smfv", icon: Instagram },
+    { label: "LinkedIn", href: "https://in.linkedin.com/company/fuertedevelopers", icon: Linkedin },
+    { label: "X", href: "https://x.com/FuerteDeveloper",  icon: SiX, },
   ],
 };

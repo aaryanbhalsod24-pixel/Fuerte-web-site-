@@ -1,29 +1,45 @@
 import { footerLinks } from "@/data/navigation";
 import { Mail, Phone, MapPin, Instagram } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 // ─── Instagram posts (@fuerte_developers) ────────────────────────────────────
 const INSTA_POSTS = [
+  {
+    url: "https://www.instagram.com/p/DWgkr73jYGy/",
+    thumb:
+      "https://wsrv.nl/?url=instagram.com/p/DWgkr73jYGy/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+  },
+  {
+    url: "https://www.instagram.com/p/DWTqel3jZzp/",
+    thumb:
+      "https://wsrv.nl/?url=instagram.com/p/DWTqel3jZzp/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+  },
+  {
+    url: "https://www.instagram.com/p/DWRHHWYjz_J/",
+    thumb:
+      "https://wsrv.nl/?url=instagram.com/p/DWRHHWYjz_J/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+  },
+  {
+    url: "https://www.instagram.com/p/DVyPNGzAN-i/",
+    thumb:
+      "https://wsrv.nl/?url=instagram.com/p/DVyPNGzAN-i/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+  },
+  {
+    url: "https://www.instagram.com/p/DVs7putDHL3/",
+    thumb:
+      "https://wsrv.nl/?url=instagram.com/p/DVs7putDHL3/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+  },
   {
     url: "https://www.instagram.com/p/DVqD5rxDsV7/",
     thumb:
       "https://wsrv.nl/?url=instagram.com/p/DVqD5rxDsV7/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
-  {
-    url: "https://www.instagram.com/p/DVgMqw7gOhu/",
-    thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DVgMqw7gOhu/media/?size=m&w=400&h=400&fit=cover&output=jpg",
-  },
-  {
-    url: "https://www.instagram.com/p/DVciETQDNiZ/",
-    thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DVciETQDNiZ/media/?size=m&w=400&h=400&fit=cover&output=jpg",
-  },
 ];
 
-const INSTA_PROFILE = "https://www.instagram.com/fuerte_developers/";
-const INSTA_FOLLOWERS = "3.06K";
-const INSTA_POSTS_CT = "1,647+";
+const INSTA_PROFILE = "https://www.instagram.com/fuerte_developers?igshid=ky7ulp42smfv";
+const INSTA_FOLLOWERS = "3.16K";
+const INSTA_POSTS_CT = "1,660+";
 
 // ─── Instagram photo tile ─────────────────────────────────────────────────────
 function InstaPost({ url, thumb }: { url: string; thumb: string }) {
@@ -101,13 +117,14 @@ function InstaPost({ url, thumb }: { url: string; thumb: string }) {
 const SLabel = ({ children }: { children: React.ReactNode }) => (
   <p
     style={{
-      fontSize: 10,
-      fontWeight: 800,
+      fontSize: 11,
+      fontWeight: 900,
       textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      color: "hsl(var(--muted-foreground))",
-      marginBottom: 20,
+      letterSpacing: "0.2em",
+      color: "hsl(var(--foreground))",
+      marginBottom: 24,
       marginTop: 0,
+      opacity: 0.9,
     }}
   >
     {children}
@@ -142,8 +159,9 @@ const FLink = ({
           width: 5,
           height: 5,
           borderRadius: "50%",
-          background: "hsl(var(--primary))",
+          background: hov ? "hsl(var(--primary))" : "hsl(var(--primary)/0.3)",
           flexShrink: 0,
+          transition: "background .2s",
         }}
       />
       {children}
@@ -197,6 +215,68 @@ const CItem = ({
   );
 };
 
+const CItemLink = ({ href, text }: { href: string; text: React.ReactNode }) => {
+  const [hov, setHov] = useState(false);
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        fontSize: 13,
+        lineHeight: 1.6,
+        textDecoration: "none",
+        color: hov ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+        transition: "color .2s",
+        display: "block",
+      }}
+    >
+      {text}
+    </a>
+  );
+};
+
+const CMultiItem = ({
+  Icon,
+  items,
+}: {
+  Icon: React.ElementType;
+  items: { href: string; text: React.ReactNode }[];
+}) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 12,
+      }}
+    >
+      <span
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 8,
+          flexShrink: 0,
+          marginTop: 1,
+          background: "hsl(var(--primary)/0.1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Icon size={13} style={{ color: "hsl(var(--primary))" }} />
+      </span>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {items.map((item, idx) => (
+          <CItemLink key={idx} href={item.href} text={item.text} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const SocBtn = ({
   href,
   label,
@@ -233,8 +313,29 @@ const SocBtn = ({
   );
 };
 
+// ─── Policy Link ─────────────────────────────────────────────────────────────
+function PolicyLink({ label }: { label: string }) {
+  const [h, setH] = useState(false);
+  return (
+    <a
+      href="#"
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        fontSize: 12,
+        textDecoration: "none",
+        transition: "color .2s",
+        color: h ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+      }}
+    >
+      {label}
+    </a>
+  );
+}
+
 // ─── MAIN FOOTER ─────────────────────────────────────────────────────────────
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <>
       {/* Responsive styles injected via <style> tag */}
@@ -387,8 +488,7 @@ export default function Footer() {
                   maxWidth: 360,
                 }}
               >
-                Building high-performance web & mobile solutions tailored for
-                modern business growth — design, dev & beyond.
+                {t.footerDesc}
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -405,7 +505,7 @@ export default function Footer() {
 
             {/* 2. Quick Links */}
             <div className="footer-col-links">
-              <SLabel>Quick Links</SLabel>
+              <SLabel>{t.quickLinks}</SLabel>
               <ul
                 style={{
                   listStyle: "none",
@@ -426,7 +526,7 @@ export default function Footer() {
 
             {/* 3. Contact */}
             <div className="footer-col-contact">
-              <SLabel>Contact Us</SLabel>
+              <SLabel>{t.contactUs}</SLabel>
               <div
                 style={{ display: "flex", flexDirection: "column", gap: 16 }}
               >
@@ -435,15 +535,67 @@ export default function Footer() {
                   href="mailto:contact@fuertedevelopers.com"
                   text="contact@fuertedevelopers.com"
                 />
-                <CItem
+                <CMultiItem
                   Icon={Phone}
-                  href="tel:+917990486477"
-                  text="+91 79904 86477"
+                  items={[
+                    { href: "tel:+919724000697", text: "+91 97240 00697" },
+                    { href: "tel:+917990486477", text: "+91 79904 86477" },
+                  ]}
                 />
-                <CItem
+                <CMultiItem
                   Icon={MapPin}
-                  href="https://maps.google.com/?q=Rajkot+360007"
-                  text="The Spire 405, 150 Feet Ring Rd, Rajkot 360007"
+                  items={[
+                    {
+                      href: "https://maps.app.goo.gl/3KByJ3zYynQ7yZsM8",
+                      text: (
+                        <>
+                          <span
+                            style={{
+                              fontWeight: 800,
+                              color: "hsl(var(--foreground))",
+                            }}
+                          >
+                            Head Office:
+                          </span>{" "}
+                          405 - The Spire, Nr. Sheetal Park, 150 Ft. Ring Road,
+                          Rajkot-360005
+                        </>
+                      ),
+                    },
+                    {
+                      href: "https://maps.app.goo.gl/GR7ZDNAdsnHziB5R6",
+                      text: (
+                        <>
+                          <span
+                            style={{
+                              fontWeight: 800,
+                              color: "hsl(var(--foreground))",
+                            }}
+                          >
+                            Branch Office:
+                          </span>{" "}
+                          806 - The Platinum Tower, Sector 47, Gurugram,
+                          Haryana-122018
+                        </>
+                      ),
+                    },
+                    {
+                      href: "https://maps.app.goo.gl/BMYy65wdPPNAtEup6",
+                      text: (
+                        <>
+                          <span
+                            style={{
+                              fontWeight: 800,
+                              color: "hsl(var(--foreground))",
+                            }}
+                          >
+                            Dubai Office:
+                          </span>{" "}
+                          FZ Meydan Grandstand, Dubai UAE
+                        </>
+                      ),
+                    },
+                  ]}
                 />
               </div>
             </div>
@@ -458,9 +610,10 @@ export default function Footer() {
                   gap: 12,
                   padding: "12px 14px",
                   borderRadius: 12,
-                  marginBottom: 12,
-                  background: "hsl(var(--muted)/0.5)",
-                  border: "1px solid hsl(var(--border))",
+                  marginBottom: 16,
+                  background: "hsl(var(--muted)/0.3)",
+                  backdropFilter: "blur(8px)",
+                  border: "1px solid hsl(var(--border)/0.5)",
                 }}
               >
                 {/* IG gradient ring */}
@@ -519,7 +672,7 @@ export default function Footer() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  Follow
+                  {t.followUs}
                 </a>
               </div>
 
@@ -528,10 +681,10 @@ export default function Footer() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 7,
+                  gap: 12,
                 }}
               >
-                {INSTA_POSTS.slice(0, 3).map((p, i) => (
+                {INSTA_POSTS.slice(0, 6).map((p, i) => (
                   <InstaPost key={i} url={p.url} thumb={p.thumb} />
                 ))}
               </div>
@@ -553,32 +706,16 @@ export default function Footer() {
               <span style={{ color: "hsl(var(--primary))", fontWeight: 800 }}>
                 FUERTE DEVELOPERS
               </span>{" "}
-              — All Rights Reserved.
+              | {t.allRightsReserved}.
             </p>
             <div className="footer-policy-links">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
-                (t) => {
-                  const [h, setH] = useState(false);
-                  return (
-                    <a
-                      key={t}
-                      href="#"
-                      onMouseEnter={() => setH(true)}
-                      onMouseLeave={() => setH(false)}
-                      style={{
-                        fontSize: 12,
-                        textDecoration: "none",
-                        transition: "color .2s",
-                        color: h
-                          ? "hsl(var(--primary))"
-                          : "hsl(var(--muted-foreground))",
-                      }}
-                    >
-                      {t}
-                    </a>
-                  );
-                },
-              )}
+              {[
+                { key: "privacy", label: t.privacyPolicy },
+                { key: "terms", label: t.termsOfService },
+                { key: "cookie", label: t.cookiePolicy },
+              ].map((item) => (
+                <PolicyLink key={item.key} label={item.label} />
+              ))}
             </div>
           </div>
         </div>

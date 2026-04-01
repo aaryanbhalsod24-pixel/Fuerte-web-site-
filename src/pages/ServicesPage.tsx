@@ -7,7 +7,7 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
@@ -20,15 +20,14 @@ const ServicesPage = () => {
               Our Expertise & Services
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We provide comprehensive digital solutions to help your business thrive in the modern landscape.
+              We provide comprehensive digital solutions to help your business
+              thrive in the modern landscape.
             </p>
           </motion.div>
 
           <Services />
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

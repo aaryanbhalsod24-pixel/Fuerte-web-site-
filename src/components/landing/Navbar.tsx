@@ -1,16 +1,40 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navLinks } from "@/data/navigation";
+import { useTranslation } from "@/contexts/LanguageContext";
+import { Language } from "@/data/translations";
 
 const Navbar = () => {
+  const { language, setLanguage, direction, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileDropdown, setMobileDropdown] = useState(null);
+  const [showLangMenu, setShowLangMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const timeoutRef = useRef(null);
+  const langMenuRef = useRef(null);
+
+  const languages: { code: Language; label: string; flag: string }[] = [
+    { code: "en", label: "English", flag: "🇺🇸" },
+    { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
+    { code: "gu", label: "ગુજરાતી", flag: "🇮🇳" },
+    { code: "nl", label: "Dutch", flag: "🇳🇱" },
+    { code: "fr", label: "French", flag: "🇫🇷" },
+    { code: "ar", label: "العربية", flag: "🇦🇪" },
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setShowLangMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -35,13 +59,10 @@ const Navbar = () => {
   const toggleMobileDropdown = (label) =>
     setMobileDropdown(mobileDropdown === label ? null : label);
 
-  // ── Mobile Drawer rendered via Portal directly into document.body ────────────
-  // This ESCAPES any parent stacking context (overflow, transform, z-index)
   const mobileDrawer = createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,445 +78,160 @@ const Navbar = () => {
             }}
           />
 
-          {/* Drawer panel */}
           <motion.div
-            initial={{ x: "100%" }}
+            initial={{ x: direction === "rtl" ? "-100%" : "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            exit={{ x: direction === "rtl" ? "-100%" : "100%" }}
             transition={{ type: "spring", damping: 28, stiffness: 220 }}
             style={{
               position: "fixed",
               top: 0,
-              right: 0,
+              right: direction === "rtl" ? "auto" : 0,
+              left: direction === "rtl" ? 0 : "auto",
               bottom: 0,
               width: "min(300px, 85vw)",
               zIndex: 99999,
               background: "hsl(var(--background))",
-              borderLeft: "1px solid hsl(var(--border))",
+              borderLeft: direction === "rtl" ? "none" : "1px solid hsl(var(--border))",
+              borderRight: direction === "rtl" ? "1px solid hsl(var(--border))" : "none",
               display: "flex",
               flexDirection: "column",
               overflow: "hidden",
-              boxShadow: "-8px 0 48px rgba(0,0,0,0.22)",
+              boxShadow: direction === "rtl" ? "8px 0 48px rgba(0,0,0,0.22)" : "-8px 0 48px rgba(0,0,0,0.22)",
             }}
           >
-            {/* Drawer header */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "14px 18px",
-                borderBottom: "1px solid hsl(var(--border))",
-                flexShrink: 0,
-              }}
-            >
-              <video
-                src="/Logo_animation_fuerte_developers_6836436ffe.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  height: 32,
-                  width: "auto",
-                  objectFit: "contain",
-                }}
-              />
-
-              <button
-                onClick={() => setIsOpen(false)}
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  border: "1px solid hsl(var(--border))",
-                  background: "transparent",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "hsl(var(--foreground))",
-                  flexShrink: 0,
-                }}
-              >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 18px", borderBottom: "1px solid hsl(var(--border))", flexShrink: 0 }}>
+              <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline style={{ height: 32, width: "auto", objectFit: "contain" }} />
+              <button onClick={() => setIsOpen(false)} style={{ width: 32, height: 32, borderRadius: 8, border: "1px solid hsl(var(--border))", background: "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "hsl(var(--foreground))", flexShrink: 0 }}>
                 <X size={16} />
               </button>
             </div>
 
-            {/* Drawer links — scrollable */}
-            <div
-              style={{
-                flex: 1,
-                overflowY: "auto",
-                overflowX: "hidden",
-                padding: "8px 12px",
-                WebkitOverflowScrolling: "touch",
-              }}
-            >
+            <div style={{ flex: 1, overflowY: "auto", padding: "8px 12px" }}>
               {navLinks.map((link, i) => (
-                <div
-                  key={link.label}
-                  style={{
-                    borderBottom:
-                      i < navLinks.length - 1
-                        ? "1px solid hsl(var(--border)/0.5)"
-                        : "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "13px 6px",
-                    }}
-                  >
+                <div key={link.label} style={{ borderBottom: i < navLinks.length - 1 ? "1px solid hsl(var(--border)/0.5)" : "none" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 6px" }}>
                     {link.href.startsWith("http") ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setIsOpen(false)}
-                        style={{
-                          fontSize: 15,
-                          fontWeight: 700,
-                          color: "hsl(var(--foreground))",
-                          textDecoration: "none",
-                          flex: 1,
-                        }}
-                      >
-                        {link.label}
-                      </a>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{link.label}</a>
                     ) : (
-                      <Link
-                        to={link.href}
-                        onClick={() => !link.dropdown && setIsOpen(false)}
-                        style={{
-                          fontSize: 15,
-                          fontWeight: 700,
-                          color: "hsl(var(--foreground))",
-                          textDecoration: "none",
-                          flex: 1,
-                        }}
-                      >
-                        {link.label}
-                      </Link>
+                      <Link to={link.href} onClick={() => !link.dropdown && setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{link.label}</Link>
                     )}
                     {link.dropdown && (
-                      <button
-                        onClick={() => toggleMobileDropdown(link.label)}
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 8,
-                          border: "1px solid hsl(var(--border))",
-                          background:
-                            mobileDropdown === link.label
-                              ? "hsl(var(--primary)/0.1)"
-                              : "transparent",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color:
-                            mobileDropdown === link.label
-                              ? "hsl(var(--primary))"
-                              : "hsl(var(--muted-foreground))",
-                          transform:
-                            mobileDropdown === link.label
-                              ? "rotate(180deg)"
-                              : "rotate(0deg)",
-                          transition: "all .2s",
-                        }}
-                      >
-                        <ChevronDown size={15} />
-                      </button>
+                      <button onClick={() => toggleMobileDropdown(link.label)} style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid hsl(var(--border))", background: mobileDropdown === link.label ? "hsl(var(--primary)/0.1)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transform: mobileDropdown === link.label ? "rotate(180deg)" : "rotate(0deg)", transition: "all .2s" }}><ChevronDown size={15} /></button>
                     )}
                   </div>
-
-                  <AnimatePresence>
-                    {link.dropdown && mobileDropdown === link.label && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.22 }}
-                        style={{ overflow: "hidden", paddingBottom: 10 }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 4,
-                          }}
-                        >
-                          {link.dropdown.map((sub) => (
-                            <div key={sub.label} style={{ display: "flex", flexDirection: "column" }}>
-                              {link.label === "Products" && sub.subItems ? (
-                                <>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                      gap: 10,
-                                      padding: "10px 12px",
-                                      borderRadius: 10,
-                                      background: "hsl(var(--muted)/0.4)",
-                                    }}
-                                  >
-                                    {sub.icon && (
-                                      <div
-                                        style={{
-                                          width: 30,
-                                          height: 30,
-                                          flexShrink: 0,
-                                          borderRadius: 7,
-                                          background: "hsl(var(--background))",
-                                          border: "1px solid hsl(var(--border))",
-                                          display: "flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          color: "hsl(var(--primary))",
-                                        }}
-                                      >
-                                        <sub.icon size={15} />
-                                      </div>
-                                    )}
-                                    <div style={{ fontSize: 13, fontWeight: 700, color: "hsl(var(--foreground))" }}>
-                                      {sub.label}
-                                    </div>
-                                  </div>
-                                  <div style={{ paddingLeft: 40, display: "flex", flexDirection: "column", gap: 2, marginBlock: "4px 8px" }}>
-                                    {sub.subItems.map((item) => (
-                                      <a
-                                        key={item.label}
-                                        href={item.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={() => setIsOpen(false)}
-                                        style={{
-                                          fontSize: 12,
-                                          padding: "6px 8px",
-                                          color: "hsl(var(--muted-foreground))",
-                                          textDecoration: "none",
-                                          borderLeft: "1px solid hsl(var(--border))",
-                                        }}
-                                      >
-                                        {item.label}
-                                      </a>
-                                    ))}
-                                  </div>
-                                </>
-                              ) : (
-                                <Link
-                                  to={sub.href}
-                                  onClick={() => setIsOpen(false)}
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 10,
-                                    padding: "10px 12px",
-                                    borderRadius: 10,
-                                    background: "hsl(var(--muted)/0.4)",
-                                    textDecoration: "none",
-                                  }}
-                                >
-                                  {sub.icon && (
-                                    <div
-                                      style={{
-                                        width: 30,
-                                        height: 30,
-                                        flexShrink: 0,
-                                        borderRadius: 7,
-                                        background: "hsl(var(--background))",
-                                        border: "1px solid hsl(var(--border))",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        color: "hsl(var(--primary))",
-                                      }}
-                                    >
-                                      <sub.icon size={15} />
-                                    </div>
-                                  )}
-                                  <div style={{ minWidth: 0 }}>
-                                    <div style={{ fontSize: 13, fontWeight: 700, color: "hsl(var(--foreground))" }}>
-                                      {sub.label}
-                                    </div>
-                                    {sub.description && (
-                                      <div style={{ fontSize: 11, color: "hsl(var(--muted-foreground))", marginTop: 1, WebkitLineClamp: 1, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-                                        {sub.description}
-                                      </div>
-                                    )}
-                                  </div>
-                                </Link>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               ))}
+
+              <div style={{ marginTop: 20, padding: "12px 6px", borderTop: "1px solid hsl(var(--border))" }}>
+                <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>Select Language</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => { setLanguage(lang.code); setIsOpen(false); }}
+                      style={{
+                        padding: "10px",
+                        borderRadius: 10,
+                        border: "1px solid hsl(var(--border))",
+                        background: language === lang.code ? "hsl(var(--primary)/0.1)" : "transparent",
+                        color: language === lang.code ? "hsl(var(--primary))" : "hsl(var(--foreground))",
+                        fontSize: 13,
+                        fontWeight: 700,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        cursor: "pointer"
+                      }}
+                    >
+                      <span>{lang.flag}</span>
+                      {lang.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Drawer footer CTA */}
-            <div
-              style={{
-                padding: "16px 18px",
-                borderTop: "1px solid hsl(var(--border))",
-                flexShrink: 0,
-              }}
-            >
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  width: "100%",
-                  padding: "13px 0",
-                  borderRadius: 12,
-                  background: "hsl(var(--primary))",
-                  color: "hsl(var(--primary-foreground))",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  textDecoration: "none",
-                  boxShadow: "0 4px 16px hsl(var(--primary)/0.3)",
-                }}
-              >
-                Start a Project
+            <div style={{ padding: "16px 18px", borderTop: "1px solid hsl(var(--border))" }}>
+              <a href="#contact" onClick={() => setIsOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", padding: "13px 0", borderRadius: 12, background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", fontSize: 13, fontWeight: 800, textDecoration: "none" }}>
+                {t.startProject}
                 <ArrowRight size={15} />
               </a>
             </div>
           </motion.div>
         </>
-      )
-      }
-    </AnimatePresence >,
-    document.body,
+      )}
+    </AnimatePresence>,
+    document.body
   );
 
   return (
     <>
       <nav
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          transition: "all .3s ease",
-          background: scrolled
-            ? "hsl(var(--background)/0.97)"
-            : "hsl(var(--background)/0.85)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: scrolled
-            ? "1px solid hsl(var(--border))"
-            : "1px solid transparent",
-          boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, transition: "all .3s ease",
+          background: scrolled ? "hsl(var(--background)/0.97)" : "hsl(var(--background)/0.85)",
+          backdropFilter: "blur(20px)", borderBottom: scrolled ? "1px solid hsl(var(--border))" : "1px solid transparent",
+          padding: "0 20px"
         }}
       >
-        <div
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            height: 56,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            padding: "0 20px",
-          }}
-        >
-          {/* Logo */}
-          <Link
-            to="/"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              textDecoration: "none",
-              flexShrink: 0,
-              height: "100%",
-            }}
-          >
-            <video
-              src="/Logo_animation_fuerte_developers_6836436ffe.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                height: "100%",
-                width: "auto",
-                objectFit: "contain",
-                display: "block",
-              }}
-            />
-
+        <div style={{ maxWidth: 1280, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+          <Link to="/" style={{ height: "100%", display: "flex", alignItems: "center" }}>
+            <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline style={{ height: 40, width: "auto" }} />
           </Link>
 
-          {/* Desktop Links */}
-          <div
-            className="nav-desktop-links"
-            style={{
-              alignItems: "center",
-              gap: 2,
-              flex: 1,
-              justifyContent: "center",
-            }}
-          >
+          <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, justifyContent: "center" }}>
             {navLinks.map((link) => (
-              <DesktopNavItem
-                key={link.label}
-                link={link}
-                active={activeDropdown === link.label}
-                onEnter={handleMouseEnter}
-                onLeave={handleMouseLeave}
-              />
+              <DesktopNavItem key={link.label} link={link} active={activeDropdown === link.label} onEnter={handleMouseEnter} onLeave={handleMouseLeave} />
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div
-            className="nav-desktop-cta"
-            style={{ alignItems: "center", gap: 10, flexShrink: 0 }}
-          >
-            <a
-              href="#contact"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 5,
-                padding: "7px 16px",
-                background: "hsl(var(--primary))",
-                color: "hsl(var(--primary-foreground))",
-                borderRadius: 20,
-                fontSize: 12,
-                fontWeight: 800,
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                boxShadow: "0 3px 12px hsl(var(--primary)/0.35)",
-                transition: "transform .2s, box-shadow .2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-1px)";
-                e.currentTarget.style.boxShadow =
-                  "0 6px 20px hsl(var(--primary)/0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "";
-                e.currentTarget.style.boxShadow =
-                  "0 3px 12px hsl(var(--primary)/0.35)";
-              }}
-            >
-              Download
-              <ArrowRight size={12} />
+          <div className="nav-desktop-cta" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ position: "relative" }} ref={langMenuRef}>
+              <button
+                onClick={() => setShowLangMenu(!showLangMenu)}
+                style={{
+                  display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 100, border: "1px solid hsl(var(--border))",
+                  background: "transparent", cursor: "pointer", fontSize: 13, fontWeight: 700, color: "hsl(var(--foreground))", transition: "all 0.2s"
+                }}
+              >
+                <Globe size={14} className="text-primary" />
+                {languages.find(l => l.code === language)?.label}
+                <ChevronDown size={12} style={{ transform: showLangMenu ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+              </button>
+
+              <AnimatePresence>
+                {showLangMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    style={{
+                      position: "absolute", top: "calc(100% + 8px)", right: direction === "rtl" ? "auto" : 0, left: direction === "rtl" ? 0 : "auto",
+                      width: 160, background: "hsl(var(--background))", border: "1px solid hsl(var(--border))", borderRadius: 16, padding: 8,
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.1)", zIndex: 1100
+                    }}
+                  >
+                    <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code} onClick={() => { setLanguage(lang.code); setShowLangMenu(false); }}
+                          style={{
+                            display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", borderRadius: 10, background: language === lang.code ? "hsl(var(--primary)/0.08)" : "transparent",
+                            color: language === lang.code ? "hsl(var(--primary))" : "hsl(var(--foreground))", fontSize: 13, fontWeight: 600, border: "none", cursor: "pointer", transition: "all 0.2s", textAlign: direction === "rtl" ? "right" : "left"
+                          }}
+                        >
+                          <span style={{ fontSize: 16 }}>{lang.flag}</span>
+                          <span style={{ flex: 1 }}>{lang.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <a href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 20px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", borderRadius: 100, fontSize: 13, fontWeight: 800, textDecoration: "none", boxShadow: "0 4px 12px hsl(var(--primary)/0.3)" }}>
+              {t.startProject}
+              <ArrowRight size={14} />
             </a>
           </div>
 
