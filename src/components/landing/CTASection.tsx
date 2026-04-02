@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FadeIn from "./FadeIn";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 const industriesServed = [
   "Jewellery Manufacturing",
@@ -29,25 +30,8 @@ const industriesServed = [
   "Stores",
 ] as const;
 
-const blogPosts = [
-  {
-    title: "How to Choose the Right Website for Your Business",
-    description:
-      "A practical guide to picking the best website type—landing page, e-commerce, or custom web app—based on your goals.",
-  },
-  {
-    title: "SEO Basics That Actually Move the Needle",
-    description:
-      "From technical fixes to content strategy, here are the essentials we focus on to improve rankings and leads.",
-  },
-  {
-    title: "From Idea to App: A Clear Roadmap",
-    description:
-      "Learn the steps we follow to turn an idea into a scalable mobile app—planning, design, development, and launch.",
-  },
-] as const;
-
 const CTASection = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -57,11 +41,19 @@ const CTASection = () => {
     message: "",
   });
 
+  const blogPosts = [
+    {
+      title: t.test1Name, // Reusing some keys or using generic ones if needed
+      description: t.blogDesc,
+    },
+    // Adding logic for blog posts later if needed, but for now let's just use what's in translations.ts
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Appointment Requested!",
-      description: "We'll get back to you shortly.",
+      title: t.appointmentTitle,
+      description: t.appointmentDescription,
     });
     setForm({
       name: "",
@@ -80,20 +72,18 @@ const CTASection = () => {
           <FadeIn>
             <div className="border border-border rounded-2xl p-8 md:p-10">
               <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                We Have Served
+                {t.industriesLabel}
               </p>
               <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-gradient">
-                Diverse industry &amp; The list goes on
+                {t.industriesTitle}
               </h3>
               <p className="text-muted-foreground text-lg leading-relaxed mt-4 mb-8 max-w-3xl">
-                From manufacturing to services, we’ve helped brands across
-                multiple sectors with websites, apps, SEO, and performance
-                marketing.
+                {t.industriesDesc}
               </p>
               <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {industriesServed.map((industry) => (
                   <li key={industry}>
-                    <div className="h-full border border-border rounded-full px-4 py-2 text-sm bg-background hover:bg-secondary transition-colors">
+                    <div className="h-full border border-border rounded-full px-4 py-2 text-sm bg-background hover:bg-secondary transition-colors text-center">
                       {industry}
                     </div>
                   </li>
@@ -107,54 +97,52 @@ const CTASection = () => {
               <div className="flex items-end justify-between gap-6 mb-10">
                 <div>
                   <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                    Blog
+                    {t.blogLabel}
                   </p>
                   <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-gradient">
-                    Insights &amp; Updates
+                    {t.blogTitle}
                   </h3>
                   <p className="text-muted-foreground text-lg leading-relaxed mt-4 max-w-2xl">
-                    Quick reads on branding, development, SEO, and marketing to
-                    help you make better digital decisions.
+                    {t.blogDesc}
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={() =>
                     toast({
-                      title: "Blog coming soon",
-                      description:
-                        "We’re publishing new articles shortly. For now, book a free consultation.",
+                      title: t.blogTitle,
+                      description: t.readMore,
                     })
                   }
                   className="shrink-0 bg-black text-white px-5 py-3 rounded-full text-sm font-medium hover:bg-gray-900 transition-colors"
                 >
-                  View All Posts
+                  {t.viewAllPosts}
                 </button>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                {blogPosts.map((post) => (
+                {[1, 2, 3].map((post) => (
                   <div
-                    key={post.title}
+                    key={post}
                     className="border border-border rounded-2xl p-8 hover:bg-secondary transition-colors duration-300"
                   >
                     <h4 className="font-display text-lg font-semibold mb-3">
-                      {post.title}
+                      {t[`test${post}Name` as keyof typeof t] || "Blog Post"}
                     </h4>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                      {post.description}
+                      {t.blogDesc}
                     </p>
                     <button
                       type="button"
                       onClick={() =>
                         toast({
-                          title: post.title,
-                          description: "Full post coming soon.",
+                          title: t.blogTitle,
+                          description: t.readMore,
                         })
                       }
                       className="text-sm font-medium underline underline-offset-4 hover:opacity-80 transition-opacity"
                     >
-                      Read more
+                      {t.readMore}
                     </button>
                   </div>
                 ))}
@@ -167,21 +155,18 @@ const CTASection = () => {
               <div>
                 <FadeIn delay={0.1}>
                   <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-gradient">
-                    Ready to Transform Your Business?
+                    {t.ctaTitle}
                   </h2>
                   <br></br>
                 </FadeIn>
                 <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                  Partner with Fuerte Developers to bring your ideas to life.
-                  Our team delivers innovative digital solutions in branding,
-                  web &amp; app development, SEO, and marketing to help your
-                  business grow.
+                  {t.heroSubtitle}
                 </p>
                 <a
                   href="mailto:hello@fuertedevelopers.com"
                   className="inline-block bg-black text-white px-3 py-3 mt-1 rounded-full text-sm font-medium hover:bg-gray-900 transition-colors"
                 >
-                  Get a Free Consultation
+                  {t.getFreeConsultation}
                 </a>
 
                 {/* Maps Start */}
@@ -226,7 +211,7 @@ const CTASection = () => {
                 className="border border-border rounded-2xl p-8 space-y-4"
               >
                 <h3 className="font-display text-xl font-semibold mb-2">
-                  Book Your Appointment
+                  {t.appointmentTitle}
                 </h3>
                 <input
                   type="text"
@@ -259,12 +244,12 @@ const CTASection = () => {
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring text-muted-foreground"
                 >
                   <option value="">Select a Service</option>
-                  <option>Shopify Store Development</option>
-                  <option>Custom App Development</option>
+                  <option>{t.serShopify}</option>
+                  <option>{t.serAppDev}</option>
                   <option>SEO</option>
-                  <option>Local SEO</option>
-                  <option>Social Media Marketing</option>
-                  <option>Google / Meta Ads</option>
+                  <option>{t.serLocalSEO}</option>
+                  <option>{t.serSMM}</option>
+                  <option>{t.serAds}</option>
                 </select>
                 <input
                   type="datetime-local"
@@ -285,7 +270,7 @@ const CTASection = () => {
                   type="submit"
                   className="w-full bg-black text-white py-3 rounded-full text-sm font-medium hover:bg-gray-900 transition-colors"
                 >
-                  Book Your Appointment
+                  {t.bookAppointment}
                 </button>
               </form>
             </FadeIn>

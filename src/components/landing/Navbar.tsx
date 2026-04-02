@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Globe, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navLinks } from "@/data/navigation";
 import { useTranslation } from "@/contexts/LanguageContext";
@@ -17,7 +17,50 @@ const Navbar = () => {
   const timeoutRef = useRef(null);
   const langMenuRef = useRef(null);
 
-  const languages: { code: Language; label: string; flag: string }[] = [
+  // Helper to get translated nav data
+  const getNavTranslations = (label: string) => {
+    switch (label) {
+      case "Home": return t.navHome;
+      case "About": return t.navAbout;
+      case "Services": return t.navServices;
+      case "Products": return t.navProducts;
+      case "Press & Media": return t.navPress;
+      case "Blog": return t.navBlog;
+      case "Contact": return t.navContact;
+      default: return label;
+    }
+  };
+
+  const getDropdownTranslations = (label: string) => {
+    switch (label) {
+      case "Company Overview": return { label: t.navAboutCompany, desc: t.navAboutCompanyDesc };
+      case "Customer Stories": return { label: t.navAboutStories, desc: t.navAboutStoriesDesc };
+      case "Our Team": return { label: t.navAboutTeam, desc: t.navAboutTeamDesc };
+      case "Shopify Development": return { label: t.serShopify, desc: t.serShopifyDesc };
+      case "App Development": return { label: t.serAppDev, desc: t.serAppDevDesc };
+      case "On/Off Page SEO": return { label: t.serSEO, desc: t.serSEODesc };
+      case "Local SEO": return { label: t.serLocalSEO, desc: t.serLocalSEODesc };
+      case "Social Media": return { label: t.serSMM, desc: t.serSMMDesc };
+      case "Google / Meta Ads": return { label: t.serAds, desc: t.serAdsDesc };
+      // Products
+      case "Inventory & Billing": return { label: t.prodInventory, desc: t.prodInventoryDesc };
+      case "Aapka Care": return { label: t.prodHealthcare, desc: t.prodHealthcareDesc };
+      case "Customize CRM": return { label: t.prodCRM, desc: t.prodCRMDesc };
+      case "HRMS": return { label: t.prodHRMS, desc: t.prodHRMSDesc };
+      case "Smart Parking": return { label: t.prodParking, desc: t.prodParkingDesc };
+      // Sub-items
+      case "Billing Sphere": return { label: t.subBillingSphere };
+      case "Billing Sphere POS": return { label: t.subPOS };
+      case "Delivery App": return { label: t.subDelivery };
+      case "Laboratory": return { label: t.subLab };
+      case "Appointment Booking": return { label: t.subAppointment };
+      case "Hospital Management": return { label: t.subHospital };
+      case "Spa Management": return { label: t.subSpa };
+      case "Be On Time": return { label: t.subBeOnTime };
+      case "Aapka Parking": return { label: t.subParking };
+      default: return { label };
+    }
+  };  const languages: { code: Language; label: string; flag: string }[] = [
     { code: "en", label: "English", flag: "🇺🇸" },
     { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
     { code: "gu", label: "ગુજરાતી", flag: "🇮🇳" },
@@ -26,6 +69,11 @@ const Navbar = () => {
     { code: "ar", label: "العربية", flag: "🇦🇪" },
   ];
 
+  const handleLanguageChange = (langCode: Language) => {
+    setLanguage(langCode);
+    setShowLangMenu(false);
+    setIsOpen(false);
+  };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
@@ -101,35 +149,38 @@ const Navbar = () => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 18px", borderBottom: "1px solid hsl(var(--border))", flexShrink: 0 }}>
-              <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline style={{ height: 32, width: "auto", objectFit: "contain" }} />
+              <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 32, width: "auto", objectFit: "contain" }} />
               <button onClick={() => setIsOpen(false)} style={{ width: 32, height: 32, borderRadius: 8, border: "1px solid hsl(var(--border))", background: "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "hsl(var(--foreground))", flexShrink: 0 }}>
                 <X size={16} />
               </button>
             </div>
 
             <div style={{ flex: 1, overflowY: "auto", padding: "8px 12px" }}>
-              {navLinks.map((link, i) => (
-                <div key={link.label} style={{ borderBottom: i < navLinks.length - 1 ? "1px solid hsl(var(--border)/0.5)" : "none" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 6px" }}>
-                    {link.href.startsWith("http") ? (
-                      <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{link.label}</a>
-                    ) : (
-                      <Link to={link.href} onClick={() => !link.dropdown && setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{link.label}</Link>
-                    )}
-                    {link.dropdown && (
-                      <button onClick={() => toggleMobileDropdown(link.label)} style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid hsl(var(--border))", background: mobileDropdown === link.label ? "hsl(var(--primary)/0.1)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transform: mobileDropdown === link.label ? "rotate(180deg)" : "rotate(0deg)", transition: "all .2s" }}><ChevronDown size={15} /></button>
-                    )}
+              {navLinks.map((link, i) => {
+                const translatedLabel = getNavTranslations(link.label);
+                return (
+                  <div key={link.label} style={{ borderBottom: i < navLinks.length - 1 ? "1px solid hsl(var(--border)/0.5)" : "none" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 6px" }}>
+                      {link.href.startsWith("http") ? (
+                        <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{translatedLabel}</a>
+                      ) : (
+                        <Link to={link.href} onClick={() => !link.dropdown && setIsOpen(false)} style={{ fontSize: 15, fontWeight: 700, color: "hsl(var(--foreground))", textDecoration: "none", flex: 1 }}>{translatedLabel}</Link>
+                      )}
+                      {link.dropdown && (
+                        <button onClick={() => toggleMobileDropdown(link.label)} style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid hsl(var(--border))", background: mobileDropdown === link.label ? "hsl(var(--primary)/0.1)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transform: mobileDropdown === link.label ? "rotate(180deg)" : "rotate(0deg)", transition: "all .2s" }}><ChevronDown size={15} /></button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               <div style={{ marginTop: 20, padding: "12px 6px", borderTop: "1px solid hsl(var(--border))" }}>
-                <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>Select Language</p>
+                <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>{t.selectLanguage}</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => { setLanguage(lang.code); setIsOpen(false); }}
+                      onClick={() => handleLanguageChange(lang.code)}
                       style={{
                         padding: "10px",
                         borderRadius: 10,
@@ -177,12 +228,20 @@ const Navbar = () => {
       >
         <div style={{ maxWidth: 1280, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           <Link to="/" style={{ height: "100%", display: "flex", alignItems: "center" }}>
-            <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline style={{ height: 40, width: "auto" }} />
+            <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 40, width: "auto" }} />
           </Link>
 
           <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, justifyContent: "center" }}>
             {navLinks.map((link) => (
-              <DesktopNavItem key={link.label} link={link} active={activeDropdown === link.label} onEnter={handleMouseEnter} onLeave={handleMouseLeave} />
+              <DesktopNavItem 
+                key={link.label} 
+                link={link} 
+                label={getNavTranslations(link.label)}
+                active={activeDropdown === link.label} 
+                onEnter={() => handleMouseEnter(link.label)} 
+                onLeave={handleMouseLeave}
+                getDropdownTranslations={getDropdownTranslations}
+              />
             ))}
           </div>
 
@@ -213,21 +272,25 @@ const Navbar = () => {
                     <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
                       {languages.map((lang) => (
                         <button
-                          key={lang.code} onClick={() => { setLanguage(lang.code); setShowLangMenu(false); }}
+                          key={lang.code} onClick={() => handleLanguageChange(lang.code)}
                           style={{
-                            display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", borderRadius: 10, background: language === lang.code ? "hsl(var(--primary)/0.08)" : "transparent",
-                            color: language === lang.code ? "hsl(var(--primary))" : "hsl(var(--foreground))", fontSize: 13, fontWeight: 600, border: "none", cursor: "pointer", transition: "all 0.2s", textAlign: direction === "rtl" ? "right" : "left"
+                            display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 12, background: language === lang.code ? "hsl(var(--primary)/0.08)" : "transparent",
+                            color: language === lang.code ? "hsl(var(--primary))" : "hsl(var(--foreground))", fontSize: 13, fontWeight: 700, border: "1px solid", borderColor: language === lang.code ? "hsl(var(--primary)/0.2)" : "transparent", cursor: "pointer", transition: "all 0.2s", textAlign: direction === "rtl" ? "right" : "left"
                           }}
                         >
-                          <span style={{ fontSize: 16 }}>{lang.flag}</span>
+                          <span style={{ fontSize: 18 }}>{lang.flag}</span>
                           <span style={{ flex: 1 }}>{lang.label}</span>
+                          {language === lang.code && <Check size={12} strokeWidth={3} />}
                         </button>
+
                       ))}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
+            {/* Hidden Google Translate Element to serve as the 'backend' */}
+            <div id="google_translate_element"></div>
 
             <a href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 20px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", borderRadius: 100, fontSize: 13, fontWeight: 800, textDecoration: "none", boxShadow: "0 4px 12px hsl(var(--primary)/0.3)" }}>
               {t.startProject}
@@ -279,11 +342,11 @@ const Navbar = () => {
 };
 
 // ─── Desktop Nav Item ─────────────────────────────────────────────────────────
-function DesktopNavItem({ link, active, onEnter, onLeave }) {
+function DesktopNavItem({ link, label, active, onEnter, onLeave, getDropdownTranslations }) {
   return (
     <div
       style={{ position: "relative" }}
-      onMouseEnter={() => link.dropdown && onEnter(link.label)}
+      onMouseEnter={() => link.dropdown && onEnter()}
       onMouseLeave={onLeave}
     >
       {link.href.startsWith("http") ? (
@@ -315,7 +378,7 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
               e.currentTarget.style.color = "hsl(var(--muted-foreground))";
           }}
         >
-          {link.label}
+          {label}
           {link.dropdown && (
             <ChevronDown
               size={13}
@@ -354,7 +417,7 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
               e.currentTarget.style.color = "hsl(var(--muted-foreground))";
           }}
         >
-          {link.label}
+          {label}
           {link.dropdown && (
             <ChevronDown
               size={13}
@@ -397,9 +460,22 @@ function DesktopNavItem({ link, active, onEnter, onLeave }) {
                   gap: 2,
                 }}
               >
-                {link.dropdown.map((sub) => (
-                  <DropdownItem key={sub.label} sub={sub} parentLabel={link.label} />
-                ))}
+                {link.dropdown.map((sub) => {
+                  const translated = getDropdownTranslations(sub.label);
+                  const subItems = sub.subItems ? sub.subItems.map(si => ({
+                    ...si,
+                    label: getDropdownTranslations(si.label).label
+                  })) : undefined;
+
+                  return (
+                    <DropdownItem 
+                      key={sub.label} 
+                      sub={{ ...sub, label: translated.label, description: translated.desc, subItems }} 
+                      parentLabel={link.label} 
+                    />
+                  );
+
+                })}
               </div>
             </motion.div>
           )}
@@ -524,7 +600,9 @@ function DropdownItem({ sub, parentLabel }) {
                       color: "hsl(var(--muted-foreground))",
                       textDecoration: "none",
                       transition: "all 0.2s",
+                      textAlign: (typeof document !== 'undefined' && document.documentElement.dir === 'rtl') ? 'right' : 'left'
                     }}
+
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = "hsl(var(--primary)/0.05)";
                       e.currentTarget.style.color = "hsl(var(--primary))";

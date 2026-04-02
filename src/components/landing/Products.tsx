@@ -2,11 +2,14 @@ import { products } from "@/data/products";
 import FadeIn from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 const Products = () => {
-  const hoverClasses = {
+  const { t } = useTranslation();
+
+  const hoverClasses: Record<string, string> = {
     "Inventory & Billing": "hover:bg-[#0C6B0F]",
-    "HRMS": "hover:bg-[#820274]",
+    HRMS: "hover:bg-[#820274]",
     "Smart Parking": "hover:bg-[#FFC107]",
     "Customize CRM": "hover:bg-[#0F1D41]",
     "Aapka Care": "hover:bg-[#0284c7]",
@@ -23,22 +26,39 @@ const Products = () => {
   // Black text on hover cards
   const blackTextCards = ["Smart Parking"];
 
+  // Helper to get translated name and description
+  const getProductTranslations = (name: string) => {
+    switch (name) {
+      case "Inventory & Billing":
+        return { name: t.prodInventory, desc: t.prodInventoryDesc };
+      case "Aapka Care":
+        return { name: t.prodHealthcare, desc: t.prodHealthcareDesc };
+      case "Customize CRM":
+        return { name: t.prodCRM, desc: t.prodCRMDesc };
+      case "HRMS":
+        return { name: t.prodHRMS, desc: t.prodHRMSDesc };
+      case "Smart Parking":
+        return { name: t.prodParking, desc: t.prodParkingDesc };
+      default:
+        return { name, desc: "" };
+    }
+  };
+
   return (
     <section id="products" className="section-padding border-t border-border">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
-            Our Products
+            {t.productsLabel}
           </p>
           <FadeIn delay={0.1}>
             <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-gradient">
-              Digital Products That Drive Performance
+              {t.productsTitle}
             </h2>
             <br />
           </FadeIn>
           <p className="text-muted-foreground text-lg max-w-2xl mb-16">
-            Powerful Digital Products Built to Automate, Manage, and Grow Your
-            Business
+            {t.productsDesc}
           </p>
         </FadeIn>
 
@@ -50,6 +70,8 @@ const Products = () => {
 
             const isWhiteTextHover = whiteTextCards.includes(group.name);
             const isBlackTextHover = blackTextCards.includes(group.name);
+
+            const { name: translatedName } = getProductTranslations(group.name);
 
             const CardContent = (
               <div
@@ -94,30 +116,42 @@ const Products = () => {
                         : ""
                     }`}
                   >
-                    {group.name}
+                    {translatedName}
                   </h3>
-                  
+
                   <div className="space-y-4">
                     {group.subItems.map((item, index) => (
                       <div key={item.name} className="space-y-1">
                         {index !== 0 && (
-                          <div className={`h-[1px] w-full mb-4 opacity-10 ${
-                            isWhiteTextHover ? "bg-white" : "bg-foreground"
-                          }`} />
+                          <div
+                            className={`h-[1px] w-full mb-4 opacity-10 ${
+                              isWhiteTextHover ? "bg-white" : "bg-foreground"
+                            }`}
+                          />
                         )}
                         <div className="flex items-start gap-2">
-                          <div className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                            isWhiteTextHover ? "bg-white/60" : "bg-primary"
-                          } transition-colors group-hover:bg-current`} />
+                          <div
+                            className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                              isWhiteTextHover ? "bg-white/60" : "bg-primary"
+                            } transition-colors group-hover:bg-current`}
+                          />
                           <div>
-                            <h4 className={`text-sm font-bold leading-none ${
-                              isWhiteTextHover ? "group-hover:text-white" : "group-hover:text-black"
-                            } transition-colors mb-1`}>
+                            <h4
+                              className={`text-sm font-bold leading-none ${
+                                isWhiteTextHover
+                                  ? "group-hover:text-white"
+                                  : "group-hover:text-black"
+                              } transition-colors mb-1`}
+                            >
                               {item.name}
                             </h4>
-                            <p className={`text-xs ${
-                              isWhiteTextHover ? "text-muted-foreground group-hover:text-white/80" : "text-muted-foreground group-hover:text-black/70"
-                            } transition-colors leading-relaxed`}>
+                            <p
+                              className={`text-xs ${
+                                isWhiteTextHover
+                                  ? "text-muted-foreground group-hover:text-white/80"
+                                  : "text-muted-foreground group-hover:text-black/70"
+                              } transition-colors leading-relaxed`}
+                            >
                               {item.description}
                             </p>
                           </div>

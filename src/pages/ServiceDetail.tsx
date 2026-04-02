@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { services } from "@/data/services";
-import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -26,8 +25,6 @@ const ServiceDetail = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-
       <main className="pt-24">
         {/* --- Hero Section --- */}
         <section className="pt-12 pb-10 md:pt-20 md:pb-16 border-b border-border/40 overflow-hidden">

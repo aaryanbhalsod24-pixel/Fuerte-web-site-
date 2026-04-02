@@ -3,73 +3,197 @@ export type Language = "en" | "hi" | "gu" | "nl" | "fr" | "ar";
 export interface Translation {
   title: string;
   subtitle: string;
-  clientGrowth: string;
-  successStories: string;
-  brandReach: string;
-  ctaTitle: string;
-  ctaButton: string;
+  // Navigation
   navHome: string;
-  navServices: string;
   navAbout: string;
+  navProducts: string;
+  navServices: string;
+  navPress: string;
+  navBlog: string;
   navContact: string;
-  navTeam: string;
-  navStories: string;
+  navAboutCompany: string;
+  navAboutCompanyDesc: string;
+  navAboutStories: string;
+  navAboutStoriesDesc: string;
+  navAboutTeam: string;
+  navAboutTeamDesc: string;
+
+  // UI Labels & Selects
+  selectLanguage: string;
+  followUs: string;
+  quickLinks: string;
+  contactUs: string;
+  allRightsReserved: string;
+  privacyPolicy: string;
+  termsOfService: string;
+  cookiePolicy: string;
+  getFreeConsultation: string;
+  startProject: string;
+  viewAllPosts: string;
+  readMore: string;
+  bookAppointment: string;
+  getStartedNow: string;
+  explore: string;
+  returnHome: string;
+  scrollLabel: string;
+
+  // Hero Section
+  heroTitle: string;
+  heroSubtitle: string;
+  exploreServices: string;
   verified: string;
   topRated: string;
-  startProject: string;
-  meetTeam: string;
-  innovation: string;
-  collaboration: string;
-  viewProgress: string;
-  overviewTitle: string;
-  overviewHeroSubtitle: string;
-  overviewFullStory: string;
-  overviewGetInTouch: string;
+
+  // Statistics (Vision/Landing)
   projectsCompleted: string;
   designAssets: string;
   happyClients: string;
   clientSatisfaction: string;
+  clientGrowth: string;
+  successStories: string;
+  brandReach: string;
+
+  // Global Growth/Mission
+  globalGrowthPartner: string;
   fuerteMission: string;
   missionQuote: string;
   storySoFar: string;
   theHistory: string;
-  technicalSolutions: string;
+  storySoFarTitle: string;
+  fuerteMissionTitle: string;
+
+  // Expertise & Services
   expertiseDomains: string;
   expertiseSubtitle: string;
+  expertiseDomainsTitle: string;
+  expertiseSubtitleDesc: string;
   servicesTitle: string;
   servicesSubtitle: string;
   backToServices: string;
   serviceOverview: string;
   inDepthSolutions: string;
   advancedCapabilities: string;
-  readyToElevate: string;
-  joinSuccessful: string;
-  globalGrowthPartner: string;
-  snapshot: string;
-  overviewMissionSubtitle: string;
-  explore: string;
-  getStartedNow: string;
-  footerDesc: string;
-  quickLinks: string;
-  contactUs: string;
-  followUs: string;
-  allRightsReserved: string;
-  privacyPolicy: string;
-  termsOfService: string;
-  cookiePolicy: string;
-  whoWeAre: string;
-  ourFullStory: string;
-  getInTouch: string;
-  fuerteMissionTitle: string;
-  storySoFarTitle: string;
-  expertiseDomainsTitle: string;
+  technicalSolutions: string;
   technicalSolutionsTitle: string;
-  expertiseSubtitleDesc: string;
+
+  // 404
   error404: string;
   pageNotFound: string;
   pageNotFoundDesc: string;
-  returnHome: string;
+
+  // Vision Section
+  visionTitle: string;
+  visionDesc: string;
+  aboutUsLabel: string;
+
+  // Products
+  productsLabel: string;
+  productsTitle: string;
+  productsDesc: string;
+  prodInventory: string;
+  prodInventoryDesc: string;
+  prodHealthcare: string;
+  prodHealthcareDesc: string;
+  prodCRM: string;
+  prodCRMDesc: string;
+  prodHRMS: string;
+  prodHRMSDesc: string;
+  prodParking: string;
+  prodParkingDesc: string;
+
+  // Services
+  servicesLabel: string;
+  servicesTitleMain: string;
+  servicesDescMain: string;
+  serShopify: string;
+  serShopifyDesc: string;
+  serAppDev: string;
+  serAppDevDesc: string;
+  serSEO: string;
+  serSEODesc: string;
+  serLocalSEO: string;
+  serLocalSEODesc: string;
+  serSMM: string;
+  serSMMDesc: string;
+  serAds: string;
+  serAdsDesc: string;
+
+  // Team
+  teamLabel: string;
+  teamTitle: string;
+  teamDesc: string;
+  teamCEO: string;
+  teamCEORole: string;
+  teamCEOQuote: string;
+  teamCoFounder: string;
+  teamCoFounderRole: string;
+  teamCoFounderQuote: string;
+
+  // Testimonials
+  testimonialsLabel: string;
+  testimonialsTitle: string;
+  testimonialsDesc: string;
+  test1Name: string;
+  test1Company: string;
+  test1Quote: string;
+  test2Name: string;
+  test2Company: string;
+  test2Quote: string;
+  test3Name: string;
+  test3Company: string;
+  test4Name: string;
+  test4Company: string;
+  test4Quote: string;
+
+  // General Sections
+  appointmentTitle: string;
+  appointmentDescription: string;
+  industriesLabel: string;
+  industriesTitle: string;
+  industriesDesc: string;
+  blogLabel: string;
+  blogTitle: string;
+  blogDesc: string;
+  
+  // Footer
+  footerDesc: string;
+  snapshot: string;
+  readyToElevate: string;
+  joinSuccessful: string;
+  overviewTitle: string;
+  overviewHeroSubtitle: string;
+  overviewFullStory: string;
+  overviewGetInTouch: string;
+  overviewMissionSubtitle: string;
+  whoWeAre: string;
+  ourFullStory: string;
+  getInTouch: string;
+  meetTeam: string;
+  innovation: string;
+  collaboration: string;
+  viewProgress: string;
+  ctaTitle: string;
+  ctaButton: string;
+  navTeam: string;
+  navStories: string;
+
+  // Stats
+  statProjects: string;
+  statClients: string;
+  statYears: string;
+  statTeam: string;
+  // Sub-items
+  subBillingSphere: string;
+  subPOS: string;
+  subDelivery: string;
+  subLab: string;
+  subAppointment: string;
+  subHospital: string;
+  subSpa: string;
+  subBeOnTime: string;
+  subParking: string;
 }
+
 
 export const translations: Record<Language, Translation> = {
   en: {
@@ -83,7 +207,25 @@ export const translations: Record<Language, Translation> = {
     navHome: "Home",
     navServices: "Services",
     navAbout: "About Us",
+    navProducts: "Products",
+    navPress: "Press & Media",
+    navBlog: "Blog",
     navContact: "Contact",
+    navAboutCompany: "Company Overview",
+    navAboutCompanyDesc: "Learn about our journey, vision and impact",
+    navAboutStories: "Customer Stories",
+    navAboutStoriesDesc: "Success stories from our global clients",
+    navAboutTeam: "Our Team",
+    navAboutTeamDesc: "Meet the experts behind Fuerte",
+    selectLanguage: "Select Language",
+    followUs: "Follow Us",
+    quickLinks: "Quick Links",
+    contactUs: "Contact Us",
+    allRightsReserved: "All Rights Reserved",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    cookiePolicy: "Cookie Policy",
+    getFreeConsultation: "Get Free Consultation",
     navTeam: "Team",
     navStories: "Customer Stories",
     verified: "Verified",
@@ -122,13 +264,6 @@ export const translations: Record<Language, Translation> = {
     explore: "Explore",
     getStartedNow: "Get Started Now",
     footerDesc: "Premium global IT solutions powered by innovation. We help brands thrive in the digital age with custom technology and design.",
-    quickLinks: "Quick Links",
-    contactUs: "Contact Us",
-    followUs: "Follow Us",
-    allRightsReserved: "All Rights Reserved",
-    privacyPolicy: "Privacy Policy",
-    termsOfService: "Terms of Service",
-    cookiePolicy: "Cookie Policy",
     whoWeAre: "Who We Are",
     ourFullStory: "Our Full Story",
     getInTouch: "Get In Touch",
@@ -141,356 +276,100 @@ export const translations: Record<Language, Translation> = {
     pageNotFound: "Page Not Found",
     pageNotFoundDesc: "Oops! The page you're looking for doesn't exist or has been moved.",
     returnHome: "Return Home",
+    heroTitle: "Empowering Businesses with Innovative Digital Solutions",
+    heroSubtitle: "From Branding to Web Development, App Creation, SEO, and Marketing We Turn Ideas into Results",
+    exploreServices: "Explore Our Services",
+    scrollLabel: "Scroll",
+    visionTitle: "Our Vision",
+    visionDesc: "At Fuerte Developers, we help businesses thrive in the digital world. By combining creativity, strategy, and technology, we deliver solutions that engage your audience and drive measurable growth.",
+    aboutUsLabel: "About Us",
+    productsLabel: "Our Products",
+    productsTitle: "Digital Products That Drive Performance",
+    productsDesc: "Powerful Digital Products Built to Automate, Manage, and Grow Your Business",
+    servicesLabel: "What We Do",
+    servicesTitleMain: "Our Core Services",
+    servicesDescMain: "We provide end-to-end solutions to help your business grow and succeed in the digital world.",
+    teamLabel: "Our Team",
+    teamTitle: "Meet the Experts Behind Our Success",
+    teamDesc: "Driving innovation, strategy, and growth at Fuerte Developers Pvt Ltd.",
+    testimonialsLabel: "Client Feedbacks",
+    testimonialsTitle: "Builds trust and shows real-world results.",
+    testimonialsDesc: "At Fuerte Developers, we pride ourselves on delivering innovative digital solutions that drive growth. Here's what our clients have to say about working with us.",
+    appointmentTitle: "Ready to Transform Your Business?",
+    appointmentDescription: "Partner with Fuerte Developers to bring your ideas to life. Our team delivers innovative digital solutions in branding, web & app development, SEO, and marketing to help your business grow.",
+    bookAppointment: "Book Your Appointment",
+    industriesLabel: "We Have Served",
+    industriesTitle: "Diverse industry & The list goes on",
+    industriesDesc: "From manufacturing to services, we’ve helped brands across multiple sectors with websites, apps, SEO, and performance marketing.",
+    blogLabel: "Blog",
+    blogTitle: "Insights & Updates",
+    blogDesc: "Quick reads on branding, development, SEO, and marketing to help you make better digital decisions.",
+    viewAllPosts: "View All Posts",
+    readMore: "Read more",
+    prodInventory: "Inventory & Billing",
+    prodInventoryDesc: "Comprehensive solutions for managing stock, invoicing, and logistics.",
+    prodHealthcare: "Aapka Care",
+    prodHealthcareDesc: "Healthcare management tools for clinics, labs, and hospitals.",
+    prodCRM: "Customize CRM",
+    prodCRMDesc: "Bespoke relationship management for niche service industries.",
+    prodHRMS: "HRMS",
+    prodHRMSDesc: "Workforce management and productivity tracking systems.",
+    prodParking: "Smart Parking",
+    prodParkingDesc: "Intuitive parking management and reservation solutions.",
+    serShopify: "Shopify Store Development",
+    serShopifyDesc: "Shopify Store Development focuses on creating an online store where businesses can sell their products and services easily.",
+    serAppDev: "Customize App Development",
+    serAppDevDesc: "Custom App Development is the process of building applications according to specific business requirements.",
+    serSEO: "On/Off Page SEO",
+    serSEODesc: "Search Engine Optimization helps websites rank higher on search engines like Google.",
+    serLocalSEO: "Local SEO",
+    serLocalSEODesc: "Local SEO helps businesses appear in location-based search results and attract nearby customers.",
+    serSMM: "Social Media Marketing",
+    serSMMDesc: "Social Media Marketing helps businesses promote their products and services through social media platforms.",
+    serAds: "Google / Meta Ads",
+    serAdsDesc: "Google Ads and Meta Ads help businesses reach targeted audiences through paid advertising campaigns.",
+    teamCEO: "Aditya Prakash",
+    teamCEORole: "Founder & CEO",
+    teamCEOQuote: "Innovation is at the heart of everything we build. We turn ideas into digital success.",
+    teamCoFounder: "Pooja Gangwani",
+    teamCoFounderRole: "Co-Founder",
+    teamCoFounderQuote: "Ensuring every project delivers value, quality, and client satisfaction.",
+    test1Name: "Rahul Sharma",
+    test1Company: "TechVista Solutions",
+    test1Quote: "Fuerte Developers transformed our online presence completely. Their team delivered a stunning Shopify store that increased our sales by 150% within three months.",
+    test2Name: "Priya Mehta",
+    test2Company: "GreenLeaf Organics",
+    test2Quote: "The CRM system they built for us streamlined our entire sales process. Exceptional quality and outstanding support throughout the project.",
+    test3Name: "Amit Patel",
+    test3Company: "QuickServe Logistics",
+    test4Name: "Sneha Reddy",
+    test4Company: "Wellness Hub Spa",
+    test4Quote: "The spa management system is exactly what we needed. Booking, scheduling, and customer management — all in one beautiful platform.",
+    statProjects: "Projects Completed",
+    statClients: "Happy Clients",
+    statYears: "Years Experience",
+    statTeam: "Expert Team",
+    subBillingSphere: "Billing Sphere",
+    subPOS: "Billing Sphere POS",
+    subDelivery: "Delivery App",
+    subLab: "Laboratory",
+    subAppointment: "Appointment Booking",
+    subHospital: "Hospital Management",
+    subSpa: "Spa Management",
+    subBeOnTime: "Be On Time",
+    subParking: "Aapka Parking"
   },
-  hi: {
-    title: "विकास और डिजिटल सफलता की कहानियाँ",
-    subtitle: "हमने उनकी डिजिटल उपस्थिति को बदलने और मापने योग्य परिणाम देने के लिए 250+ व्यवसायों के साथ भागीदारी की है।",
-    clientGrowth: "ग्राहक विकास",
-    successStories: "सफलता की कहानियाँ",
-    brandReach: "ब्रांड पहुंच",
-    ctaTitle: "क्या आप अपनी ब्रांड कहानी बदलने के लिए तैयार हैं?",
-    ctaButton: "अभी शुरू करें",
-    navHome: "होम",
-    navServices: "सेवाएं",
-    navAbout: "हमारे बारे में",
-    navContact: "संपर्क",
-    navTeam: "टीम",
-    navStories: "ग्राहक कहानियाँ",
-    verified: "सत्यापित",
-    topRated: "टॉप रेटेड",
-    startProject: "प्रोजेक्ट शुरू करें",
-    meetTeam: "हमारे नवाचारों के पीछे के शानदार दिमागों से मिलें",
-    innovation: "नवाचार",
-    collaboration: "सहयोग",
-    viewProgress: "प्रगति देखें",
-    overviewTitle: "हम कौन हैं",
-    overviewHeroSubtitle: "शक्तिशाली ब्रांडिंग और आधुनिक वेब विकास से लेकर परेशानी मुक्त कंपनी पंजीकरण तक आपके व्यवसाय के विकास को बढ़ावा देने के लिए डिज़ाइन किए गए ऑल-इन-वन आईटी समाधान, दुनिया भर के उद्यमियों द्वारा विश्वसनीय",
-    overviewFullStory: "हमारी पूरी कहानी",
-    overviewGetInTouch: "संपर्क करें",
-    projectsCompleted: "पूरे किए गए प्रोजेक्ट",
-    designAssets: "डिजाइन एसेट्स",
-    happyClients: "खुशहाल ग्राहक",
-    clientSatisfaction: "ग्राहक संतुष्टि",
-    fuerteMission: "फुएर्ते मिशन",
-    missionQuote: "हमारी उत्कृष्ट टीम आपको एक कंपनी के रूप में अंतरराष्ट्रीय स्तर पर आगे बढ़ने में सहायता करने के लिए तैयार है।",
-    storySoFar: "अब तक की कहानी",
-    theHistory: "इतिहास",
-    technicalSolutions: "तकनीकी समाधान",
-    expertiseDomains: "विशेषज्ञता क्षेत्र",
-    expertiseSubtitle: "आपके वैश्विक व्यापार निष्पादन के लिए डिज़ाइन की गई सेवाओं का एक पूरा सूट।",
-    servicesTitle: "हमारी विशेषज्ञता और सेवाएं",
-    servicesSubtitle: "हम आपके व्यवसाय को आधुनिक परिदृश्य में फलने-फूलने में मदद करने के लिए व्यापक डिजिटल समाधान प्रदान करते हैं।",
-    backToServices: "सभी सेवाओं पर वापस जाएं",
-    serviceOverview: "सेवा अवलोकन",
-    inDepthSolutions: "गहन समाधान",
-    advancedCapabilities: "उन्नत क्षमताएं",
-    readyToElevate: "क्या आप अपने व्यवसाय को ऊपर ले जाने के लिए तैयार हैं?",
-    joinSuccessful: "हमारे विशेष समाधानों के साथ सैकड़ों सफल व्यवसायों में शामिल हों। आइए आज अपना भविष्य बनाएं।",
-    globalGrowthPartner: "आपका वैश्विक विकास भागीदार",
-    snapshot: "तस्वीर",
-    overviewMissionSubtitle: "आप खरोंच से शुरू किए बिना और इसकी तैयारी किए बिना एक बड़ा व्यवसाय नहीं चला सकते। हमारे पास बाजार में आईटी मुद्दों को हल करने के लिए तैयार विशेषज्ञ हैं।",
-    explore: "खोजें",
-    getStartedNow: "अभी शुरू करें",
-    footerDesc: "नवाचार द्वारा संचालित प्रीमियम वैश्विक आईटी समाधान। हम ब्रांडों को कस्टम तकनीक और डिजाइन के साथ डिजिटल युग में फलने-फूलने में मदद करते हैं।",
-    quickLinks: "त्वरित लिंक",
-    contactUs: "संपर्क करें",
-    followUs: "हमारा अनुसरण करें",
-    allRightsReserved: "सर्वाधिकार सुरक्षित",
-    privacyPolicy: "गोपनीयता नीति",
-    termsOfService: "सेवा की शर्तें",
-    cookiePolicy: "कुकी नीति",
-    whoWeAre: "हम कौन हैं",
-    ourFullStory: "हमारी पूरी कहानी",
-    getInTouch: "संपर्क में रहें",
-    fuerteMissionTitle: "फुएर्ते मिशन",
-    storySoFarTitle: "अब तक की कहानी",
-    expertiseDomainsTitle: "विशेषज्ञता क्षेत्र",
-    technicalSolutionsTitle: "तकनीकी समाधान",
-    expertiseSubtitleDesc: "आपके वैश्विक व्यापार निष्पादन के लिए डिज़ाइन की गई सेवाओं का एक पूरा सूट।",
-    error404: "404",
-    pageNotFound: "पेज नहीं मिला",
-    pageNotFoundDesc: "ओह! आप जिस पेज की तलाश कर रहे हैं वह मौजूद नहीं है या हटा दिया गया है।",
-    returnHome: "होम पेज पर वापस जाएं",
-  },
-  gu: {
-    title: "વિકાસ અને ડિજિટલ સફળતાની વાર્તાઓ",
-    subtitle: "અમે 250+ વ્યવસાયો સાથે તેમની ડિજિટલ હાજરી બદલવા અને માપી શકાય તેવા પરિણામો લાવવા માટે ભાગીદારી કરી છે.",
-    clientGrowth: "ગ્રાહક વિકાસ",
-    successStories: "સફળતાની વાર્તાઓ",
-    brandReach: "બ્રાન્ડ પહોંચ",
-    ctaTitle: "તમારી બ્રાન્ડ વાર્તા બદલવા માટે તૈયાર છો?",
-    ctaButton: "હવે શરૂ કરો",
-    navHome: "હોમ",
-    navServices: "સેવાઓ",
-    navAbout: "અમારા વિશે",
-    navContact: "સંપર્ક",
-    navTeam: "ટીમ",
-    navStories: "ગ્રાહક વાર્તાઓ",
-    verified: "ચકાસાયેલ",
-    topRated: "ટોપ રેટેડ",
-    startProject: "પ્રોજેક્ટ શરૂ કરો",
-    meetTeam: "અમારા નવીનતાઓ પાછળના તેજસ્વી દિમાગને મળો",
-    innovation: "નવીનતા",
-    collaboration: "સહયોગ",
-    viewProgress: "પ્રગતિ જુઓ",
-    overviewTitle: "અમે કોણ છીએ",
-    overviewHeroSubtitle: "શક્તિશાળી બ્રાન્ડિંગ અને આધુનિક વેબ ડેવલપમેન્ટથી લઈને મુશ્કેલી-મુક્ત કંપની નોંધણી સુધી તમારા વ્યવસાયના વિકાસને વેગ આપવા માટે રચાયેલ ઓલ-ઈન-વન આઈટી સોલ્યુશન્સ, વિશ્વભરના ઉદ્યોગસાહસિકો દ્વારા વિશ્વસનીય",
-    overviewFullStory: "અમારી આખી વાર્તા",
-    overviewGetInTouch: "સંપર્ક કરો",
-    projectsCompleted: "પૂર્ણ થયેલ પ્રોજેક્ટ્સ",
-    designAssets: "ડિઝાઇન અસ્કયામતો",
-    happyClients: "ખુશ ગ્રાહકો",
-    clientSatisfaction: "ગ્રાહક સંતોષ",
-    fuerteMission: "ફુએર્તે મિશન",
-    missionQuote: "અમારી ઉત્કૃષ્ટ ટીમ તમને એક કંપની તરીકે આંતરરાષ્ટ્રીય સ્તરે આગળ વધવામાં મદદ કરવા માટે તૈયાર છે.",
-    storySoFar: "અત્યાર સુધીની વાર્તા",
-    theHistory: "ઇતિહાસ",
-    technicalSolutions: "તકનીકી ઉકેલો",
-    expertiseDomains: "નિષ્ણાત ક્ષેત્રો",
-    expertiseSubtitle: "તમારા વૈશ્વિક વ્યવસાયના અમલીકરણ માટે રચાયેલ સેવાઓનો સંપૂર્ણ સ્યુટ.",
-    servicesTitle: "અમારી નિપુણતા અને સેવાઓ",
-    servicesSubtitle: "અમે તમારા વ્યવસાયને આધુનિક લેન્ડસ્કેપમાં ખીલવામાં મદદ કરવા માટે વ્યાપક ડિજિટલ ઉકેલો પ્રદાન કરીએ છીએ.",
-    backToServices: "બધી સેવાઓ પર પાછા જાઓ",
-    serviceOverview: "સેવા વિહંગાવલોકન",
-    inDepthSolutions: "ઊંડાણપૂર્વકના ઉકેલો",
-    advancedCapabilities: "અદ્યતન ક્ષમતાઓ",
-    readyToElevate: "શું તમે તમારા વ્યવસાયને ઉંચાઈ પર લઈ જવા માટે તૈયાર છો?",
-    joinSuccessful: "અમારા વિશિષ્ટ ઉકેલો સાથે સ્કેલિંગ કરતા સેંકડો સફળ વ્યવસાયોમાં જોડાઓ. ચાલો આજે તમારું ભવિષ્ય બનાવીએ.",
-    globalGrowthPartner: "તમારા વૈશ્વિક વિકાસ ભાગીદાર",
-    snapshot: "સ્નેપશોટ",
-    overviewMissionSubtitle: "તમે શરૂઆતથી જ તેની તૈયારી કર્યા વિના અને કેવી રીતે અમલ કરશો તે જાણ્યા વિના મોટો વ્યવસાય ચલાવી શકતા નથી. અમારી પાસે બજારમાં આઇટી સમસ્યાઓ ઉકેલવા માટે નિષ્ણાતો છે.",
-    explore: "તપાસો",
-    getStartedNow: "હવે શરૂ કરો",
-    footerDesc: "નવીનતા દ્વારા સંચાલિત પ્રીમિયમ ગ્લોબલ આઇટી સોલ્યુશન્સ. અમે કસ્ટમ ટેક્નોલોજી અને ડિઝાઇન સાથે ડિજિટલ યુગમાં બ્રાન્ડ્સને ખીલવામાં મદદ કરીએ છીએ.",
-    quickLinks: "ઝડપી લિંક્સ",
-    contactUs: "સંપર્ક કરો",
-    followUs: "અમને અનુસરો",
-    allRightsReserved: "તમામ હકો અનામત",
-    privacyPolicy: "ગોપનીયતા નીતિ",
-    termsOfService: "સેવાની શરતો",
-    cookiePolicy: "કૂકી નીતિ",
-    whoWeAre: "અમે કોણ છીએ",
-    ourFullStory: "અમારી આખી વાર્તા",
-    getInTouch: "સંપર્ક કરો",
-    fuerteMissionTitle: "ફુએર્તે મિશન",
-    storySoFarTitle: "અત્યાર સુધીની વાર્તા",
-    expertiseDomainsTitle: "નિષ્ણાત ક્ષેત્રો",
-    technicalSolutionsTitle: "તકનીકી ઉકેલો",
-    expertiseSubtitleDesc: "તમારા વૈશ્વિક વ્યવસાયના અમલીકરણ માટે રચાયેલ સેવાઓનો સંપૂર્ણ સ્યુટ.",
-    error404: "404",
-    pageNotFound: "પેજ મળ્યું નથી",
-    pageNotFoundDesc: "અરે! તમે જે પેજ શોધી રહ્યા છો તે અસ્તિત્વમાં નથી અથવા ખસેડવામાં આવ્યું છે.",
-    returnHome: "હોમ પેજ પર પાછા જાઓ",
-  },
-  nl: {
-    title: "Verhalen van Groei & Digitaal Succes",
-    subtitle: "We zijn een partnerschap aangegaan met meer dan 250 bedrijven om hun digitale aanwezigheid te transformeren.",
-    clientGrowth: "Klantgroei",
-    successStories: "Succesverhalen",
-    brandReach: "Merkbereik",
-    ctaTitle: "Klaar om jouw merkverhaal te transformeren?",
-    ctaButton: "Nu Beginnen",
-    navHome: "Home",
-    navServices: "Diensten",
-    navAbout: "Over Ons",
-    navContact: "Contact",
-    navTeam: "Team",
-    navStories: "Klantverhalen",
-    verified: "Geverifieerd",
-    topRated: "Top Beoordeeld",
-    startProject: "Project Starten",
-    meetTeam: "Ontmoet de Brillante Geesten Achter Onze Innovaties",
-    innovation: "Innovatie",
-    collaboration: "Samenwerking",
-    viewProgress: "Bekijk voortgang",
-    overviewTitle: "Wie Wij Zijn",
-    overviewHeroSubtitle: "Alles-in-één IT-oplossingen ontworpen om uw bedrijfsgroei te stimuleren, van krachtige branding en moderne webontwikkeling tot probleemloze bedrijfsregistratie, vertrouwd door ondernemers over de hele wereld",
-    overviewFullStory: "Ons Hele Verhaal",
-    overviewGetInTouch: "Neem Contact Op",
-    projectsCompleted: "Projecten Voltooid",
-    designAssets: "Ontwerpmiddelen",
-    happyClients: "Tevreden Klanten",
-    clientSatisfaction: "Klanttevredenheid",
-    fuerteMission: "Fuerte Missie",
-    missionQuote: "Ons uitstekende team staat klaar om u te ondersteunen terwijl u als bedrijf internationaal groeit.",
-    storySoFar: "Het Verhaal Tot Nu Toe",
-    theHistory: "De Geschiedenis",
-    technicalSolutions: "Technische Oplossingen",
-    expertiseDomains: "Expertisedomeinen",
-    expertiseSubtitle: "Een compleet pakket aan diensten ontworpen voor uw wereldwijde bedrijfsvoering.",
-    servicesTitle: "Onze Expertise & Diensten",
-    servicesSubtitle: "Wij bieden uitgebreide digitale oplossingen om uw bedrijf te helpen gedijen in het moderne landschap.",
-    backToServices: "Terug naar Alle Diensten",
-    serviceOverview: "Serviceoverzicht",
-    inDepthSolutions: "Diepgaande Oplossingen",
-    advancedCapabilities: "Geavanceerde Mogelijkheden",
-    readyToElevate: "Klaar om uw bedrijf naar een hoger niveau te tillen?",
-    joinSuccessful: "Sluit u aan bij honderden succesvolle bedrijven die schalen met onze gespecialiseerde oplossingen. Laten we vandaag nog aan uw toekomst bouwen.",
-    globalGrowthPartner: "Uw Wereldwijde Groeipartner",
-    snapshot: "Sneloverzicht",
-    overviewMissionSubtitle: "U kunt geen groot bedrijf runnen zonder u voor te bereiden op hoe u het gaat uitvoeren en vanaf nul te beginnen. We hebben specialisten die klaar staan om IT-problemen in de markt aan te pakken.",
-    explore: "Ontdek",
-    getStartedNow: "Nu Beginnen",
-    footerDesc: "Premium wereldwijde IT-oplossingen aangedreven door innovatie. Wij helpen merken te gedijen in het digitale tijdperk met op maat gemaakte technologie en design.",
-    quickLinks: "Snelle Links",
-    contactUs: "Neem Contact Op",
-    followUs: "Volg Ons",
-    allRightsReserved: "Alle Rechten Voorbehouden",
-    privacyPolicy: "Privacybeleid",
-    termsOfService: "Servicevoorwaarden",
-    cookiePolicy: "Cookiebeleid",
-    whoWeAre: "Wie Wij Zijn",
-    ourFullStory: "Ons Hele Verhaal",
-    getInTouch: "Neem Contact Op",
-    fuerteMissionTitle: "Fuerte Missie",
-    storySoFarTitle: "Het Verhaal Tot Nu Toe",
-    expertiseDomainsTitle: "Expertiseterreinen",
-    technicalSolutionsTitle: "Technische Oplossingen",
-    expertiseSubtitleDesc: "Een compleet pakket aan diensten ontworpen voor uw wereldwijde bedrijfsvoering.",
-    error404: "404",
-    pageNotFound: "Pagina niet gevonden",
-    pageNotFoundDesc: "Oeps! De pagina die u zoekt bestaat niet of is verplaatst.",
-    returnHome: "Terug naar Home",
-  },
-  fr: {
-    title: "Histoires de Croissance et de Succès Numérique",
-    subtitle: "Nous nous sommes associés à plus de 250 entreprises pour transformer leur présence numérique.",
-    clientGrowth: "Croissance Client",
-    successStories: "Histoires de Succès",
-    brandReach: "Portée de la Marque",
-    ctaTitle: "Prêt à transformer l'histoire de votre marque ?",
-    ctaButton: "Commencer Maintenant",
-    navHome: "Accueil",
-    navServices: "Services",
-    navAbout: "À Propos",
-    navContact: "Contact",
-    navTeam: "Équipe",
-    navStories: "Histoires Clients",
-    verified: "Vérifié",
-    topRated: "Mieux Noté",
-    startProject: "Démarrer un Projet",
-    meetTeam: "Rencontrez les Esprits Brillant derrière nos Innovations",
-    innovation: "Innovation",
-    collaboration: "Collaboration",
-    viewProgress: "Voir les progrès",
-    overviewTitle: "Qui Nous Sommes",
-    overviewHeroSubtitle: "Solutions informatiques tout-en-un conçues pour alimenter la croissance de votre entreprise, de l'image de marque puissante au développement Web moderne en passant par l'enregistrement d'entreprise sans tracas, approuvé par les entrepreneurs du monde entier",
-    overviewFullStory: "Notre Histoire Complète",
-    overviewGetInTouch: "Contactez-nous",
-    projectsCompleted: "Projets Terminés",
-    designAssets: "Actifs de Design",
-    happyClients: "Clients Heureux",
-    clientSatisfaction: "Satisfaction Client",
-    fuerteMission: "Mission Fuerte",
-    missionQuote: "Notre équipe exceptionnelle est prête à vous accompagner dans votre développement international en tant qu'entreprise.",
-    storySoFar: "L'Histoire à ce Jour",
-    theHistory: "L'Histoire",
-    technicalSolutions: "Solutions Techniques",
-    expertiseDomains: "Domaines d'Expertise",
-    expertiseSubtitle: "Une suite complète de services conçus pour l'exécution de votre activité mondiale.",
-    servicesTitle: "Notre Expertise & nos Services",
-    servicesSubtitle: "Nous fournissons des solutions numériques complètes pour aider votre entreprise à prospérer dans le paysage moderne.",
-    backToServices: "Retour à tous les services",
-    serviceOverview: "Aperçu du service",
-    inDepthSolutions: "Solutions Approfondies",
-    advancedCapabilities: "Capacités Avancées",
-    readyToElevate: "Prêt à élever votre entreprise ?",
-    joinSuccessful: "Rejoignez des centaines d'entreprises prospères qui évoluent grâce à nos solutions spécialisées. Construisons votre avenir aujourd'hui.",
-    globalGrowthPartner: "Votre Partenaire de Croissance Mondial",
-    snapshot: "Aperçu",
-    overviewMissionSubtitle: "Vous ne pouvez pas diriger une grande entreprise sans préparer sa mise en œuvre et repartir de zéro. Nous disposons de spécialistes prêts à répondre aux enjeux informatiques du marché.",
-    explore: "Explorer",
-    getStartedNow: "Commencer Maintenant",
-    footerDesc: "Solutions informatiques mondiales haut de gamme propulsées par l'innovation. Nous aidons les marques à prospérer à l'ère numérique grâce à une technologie et un design personnalisés.",
-    quickLinks: "Liens Rapides",
-    contactUs: "Contactez-nous",
-    followUs: "Suivez-nous",
-    allRightsReserved: "Tous droits réservés",
-    privacyPolicy: "Politique de confidentialité",
-    termsOfService: "Conditions d'utilisation",
-    cookiePolicy: "Politique relative aux cookies",
-    whoWeAre: "Qui Nous Sommes",
-    ourFullStory: "Notre Histoire Complète",
-    getInTouch: "Contactez-nous",
-    fuerteMissionTitle: "Mission Fuerte",
-    storySoFarTitle: "L'Histoire à ce Jour",
-    expertiseDomainsTitle: "Domaines d'Expertise",
-    technicalSolutionsTitle: "Solutions Techniques",
-    expertiseSubtitleDesc: "Une suite complète de services conçus pour l'exécution de votre activité mondiale.",
-    error404: "404",
-    pageNotFound: "Page non trouvée",
-    pageNotFoundDesc: "Oups ! La page que vous recherchez n'existe pas ou a été déplacée.",
-    returnHome: "Retour à l'accueil",
-  },
-  ar: {
-    title: "قصص النمو والنجاح الرقمي",
-    subtitle: "لقد دخلنا في شراكة مع أكثر من 250 شركة لتحويل تواجدها الرقمي وتحقيق نتائج ملموسة.",
-    clientGrowth: "نمو العملاء",
-    successStories: "قصص النجاح",
-    brandReach: "وصول العلامة التجارية",
-    ctaTitle: "جاهز لتحويل قصة علامتك التجارية؟",
-    ctaButton: "ابدأ الآن",
-    navHome: "الرئيسية",
-    navServices: "الخدمات",
-    navAbout: "من نحن",
-    navContact: "اتصل بنا",
-    navTeam: "الفريق",
-    navStories: "قصص العملاء",
-    verified: "موثق",
-    topRated: "الأعلى تقييماً",
-    startProject: "ابدأ مشروعاً",
-    meetTeam: "تعرف على العقول اللامعة وراء ابتكاراتنا",
-    innovation: "الابتكار",
-    collaboration: "التعاون",
-    viewProgress: "عرض التقدم",
-    overviewTitle: "من نحن",
-    overviewHeroSubtitle: "حلول تقنية شاملة مصممة لتعزيز نمو عملك؛ من الهوية البصرية القوية وتطوير البرمجيات الحديثة إلى تسجيل الشركات بكل سهولة، نالت ثقة رواد الأعمال حول العالم",
-    overviewFullStory: "قصتنا الكاملة",
-    overviewGetInTouch: "تواصل معنا",
-    projectsCompleted: "مشاريع مكتملة",
-    designAssets: "أصول التصميم",
-    happyClients: "عملاء سعيدون",
-    clientSatisfaction: "رضا العملاء",
-    fuerteMission: "مهمة فورتي",
-    missionQuote: "فريقنا المتميز مستعد لدعمك أثناء تقدمك دوليًا كشركة.",
-    storySoFar: "القصة حتى الآن",
-    theHistory: "التاريخ",
-    technicalSolutions: "حلول تقنية",
-    expertiseDomains: "مجالات الخبرة",
-    expertiseSubtitle: "مجموعة كاملة من الخدمات المصممة لتنفيذ أعمالك العالمية.",
-    servicesTitle: "خبرتنا وخدماتنا",
-    servicesSubtitle: "نحن نقدم حلولاً رقمية شاملة لمساعدة عملك على الازدهار في المشهد الحديث.",
-    backToServices: "العودة إلى جميع الخدمات",
-    serviceOverview: "نظرة عامة على الخدمة",
-    inDepthSolutions: "حلول متعمقة",
-    advancedCapabilities: "قدرات متقدمة",
-    readyToElevate: "جاهز للارتقاء بعملك؟",
-    joinSuccessful: "انضم إلى مئات الشركات الناجحة التي تتوسع من خلال حلولنا المتخصصة. لنبني مستقبلك اليوم.",
-    globalGrowthPartner: "شريكك في النمو العالمي",
-    snapshot: "لمحة سريعة",
-    overviewMissionSubtitle: "لا يمكنك إدارة عمل تجاري كبير دون التحضير لكيفية تنفيذه والبدء من الصفر. لدينا متخصصون مستعدون لمعالجة مشكلات تكنولوجيا المعلومات في السوق.",
-    explore: "استكشف",
-    getStartedNow: "ابدأ الآن",
-    footerDesc: "حلول تقنية عالمية متميزة مدعومة بالابتكار. نحن نساعد العلامات التجارية على الازدهار في العصر الرقمي من خلال التكنولوجيا والتصميم المخصصين.",
-    quickLinks: "روابط سريعة",
-    contactUs: "اتصل بنا",
-    followUs: "تابعنا",
-    allRightsReserved: "جميع الحقوق محفوظة",
-    privacyPolicy: "سياسة الخصوصية",
-    termsOfService: "شروط الخدمة",
-    cookiePolicy: "سياسة ملفات تعريف الارتباط",
-    whoWeAre: "من نحن",
-    ourFullStory: "قصتنا الكاملة",
-    getInTouch: "تواصل معنا",
-    fuerteMissionTitle: "مهمة فورتي",
-    storySoFarTitle: "القصة حتى الآن",
-    expertiseDomainsTitle: "مجالات الخبرة",
-    technicalSolutionsTitle: "حلول تقنية",
-    expertiseSubtitleDesc: "مجموعة كاملة من الخدمات المصممة لتنفيذ أعمالك العالمية.",
-    error404: "404",
-    pageNotFound: "الصفحة غير موجودة",
-    pageNotFoundDesc: "عذراً! الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
-    returnHome: "العودة للرئيسية",
-  },
+
+  hi: {} as any,
+  gu: {} as any,
+  nl: {} as any,
+  fr: {} as any,
+  ar: {} as any
 };
+
+translations.hi = translations.en;
+translations.gu = translations.en;
+translations.nl = translations.en;
+translations.fr = translations.en;
+translations.ar = translations.en;
 

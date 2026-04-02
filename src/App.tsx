@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/landing/Navbar";
 import Hero from "./components/landing/Hero";
@@ -9,14 +9,16 @@ import Team from "./components/landing/Team";
 import Testimonials from "./components/landing/Testimonials";
 import CTASection from "./components/landing/CTASection";
 import Footer from "./components/landing/Footer";
-import ServiceDetail from "./pages/ServiceDetail";
-import ServicesPage from "./pages/ServicesPage";
-import TeamPage from "./pages/TeamPage";
-import CompanyOverview from "./pages/CompanyOverview";
-import CustomerStories from "./pages/CustomerStories";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
-// ─── ScrollToTop Helper ──────────────────────────────────────────────────────
+// --- Lazy Load Pages for performance ---
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
+const CompanyOverview = lazy(() => import("./pages/CompanyOverview"));
+const CustomerStories = lazy(() => import("./pages/CustomerStories"));
+
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -24,6 +26,7 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
+
 
 // ─── Shared Layout ───────────────────────────────────────────────────────────
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -56,15 +59,18 @@ const App = () => {
       <BrowserRouter>
         <ScrollToTop />
         <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:slug" element={<ServiceDetail />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/company-overview" element={<CompanyOverview />} />
-            <Route path="/customer-stories" element={<CustomerStories />} />
-          </Routes>
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-background"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/:slug" element={<ServiceDetail />} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="/company-overview" element={<CompanyOverview />} />
+              <Route path="/customer-stories" element={<CustomerStories />} />
+            </Routes>
+          </Suspense>
         </Layout>
+
       </BrowserRouter>
     </LanguageProvider>
   );

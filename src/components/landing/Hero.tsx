@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import heroImage from "@/assets/hero-image.jpg";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -10,6 +13,7 @@ const Hero = () => {
           src={heroImage}
           alt="Digital workspace"
           className="w-full h-full object-cover"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-foreground/70" />
       </div>
@@ -21,13 +25,12 @@ const Hero = () => {
         </FadeIn>
         <FadeIn delay={0.1}>
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight max-w-4xl text-primary-foreground">
-            Empowering Businesses with Innovative Digital Solutions
+            {t.heroTitle}
           </h1>
         </FadeIn>
         <FadeIn delay={0.2}>
           <p className="mt-8 text-lg md:text-xl text-primary-foreground/70 max-w-2xl leading-relaxed">
-            From Branding to Web Development, App Creation, SEO, and Marketing
-            We Turn Ideas into Results
+            {t.heroSubtitle}
           </p>
         </FadeIn>
         <FadeIn delay={0.3}>
@@ -38,7 +41,7 @@ const Hero = () => {
               whileTap={{ scale: 0.97 }}
               className="bg-primary-foreground text-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
             >
-              Get a Free Consultation
+              {t.getFreeConsultation}
             </motion.a>
             <motion.a
               href="#services"
@@ -46,7 +49,7 @@ const Hero = () => {
               whileTap={{ scale: 0.97 }}
               className="border border-primary-foreground/30 text-primary-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:bg-primary-foreground/10 transition-colors"
             >
-              Explore Our Services
+              {t.exploreServices}
             </motion.a>
           </div>
         </FadeIn>
@@ -60,7 +63,7 @@ const Hero = () => {
         transition={{ delay: 1, duration: 0.6 }}
       >
         <span className="text-xs uppercase tracking-widest text-primary-foreground/50">
-          Scroll
+          {t.scrollLabel}
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}

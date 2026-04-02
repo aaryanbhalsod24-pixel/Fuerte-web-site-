@@ -1,11 +1,23 @@
 import { motion } from "framer-motion";
-import Navbar from "@/components/landing/Navbar";
-import Footer from "@/components/landing/Footer";
 import FadeIn from "@/components/landing/FadeIn";
 import { teamMembers } from "@/data/siteData";
 import teamCeo from "@/assets/team-ceo.png";
 import teamCofounder from "@/assets/team-cofounder.png";
+import bharatPhoto from "@/assets/BharatKadavala.png";
+import dakshPhoto from "@/assets/DakshPaghdar.png";
+import shivaniPhoto from "@/assets/ShivaniPadhariya.jpeg";
+import krinaPhoto from "@/assets/KrinaRanpariya.png";
+import tirthPhoto from "@/assets/TirthAghara.jpeg";
+import bhaveshPhoto from "@/assets/BhaveshGorad.jpg";
+import vijayPhoto from "@/assets/VijayDevaliya.png";
+import siddhiPhoto from "@/assets/siddhiTanna.jpeg";
+import snehilPhoto from "@/assets/Snehil Singh.png";
 import { Mail, Linkedin, Twitter, Sparkles } from "lucide-react";
+
+
+
+
+
 import { useTranslation } from "@/contexts/LanguageContext";
 
 interface TeamMember {
@@ -20,6 +32,15 @@ interface TeamMember {
 const images: Record<string, string> = {
   "team-ceo": teamCeo,
   "team-cofounder": teamCofounder,
+  "bharat-k": bharatPhoto,
+  "daksh-p": dakshPhoto,
+  "shivani-p": shivaniPhoto,
+  "krina-r": krinaPhoto,
+  "tirth-a": tirthPhoto,
+  "bhavesh-g": bhaveshPhoto,
+  "vijay-d": vijayPhoto,
+  "siddhi-t": siddhiPhoto,
+  "snehil-s": snehilPhoto,
 };
 
 // Founders — displayed separately at the top
@@ -38,16 +59,15 @@ const teamCategories = [
         name: "Bhavesh Gorad",
         role: "Software Developer",
         quote: "Solving complex problems through elegant code.",
-        image: "placeholder",
+        image: "bhavesh-g",
         email: "bhavesh@fuertedevelopers.in",
         linkedin: "#",
       },
       {
         name: "Snehil Singh",
         role: "Software Developer",
-
         quote: "Crafting beautiful and performant user interfaces.",
-        image: "placeholder",
+        image: "snehil-s",
         email: "snehil@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -64,7 +84,7 @@ const teamCategories = [
         name: "Bharat Kadavala",
         role: "Software Engineer",
         quote: "Simplifying complexity with robust engineering.",
-        image: "placeholder",
+        image: "bharat-k",
         email: "bharat@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -81,34 +101,31 @@ const teamCategories = [
         name: "Vijay Devaliya",
         role: "Software Developer",
         quote: "Always exploring new horizons in technology.",
-        image: "placeholder",
+        image: "vijay-d",
         email: "vijay@fuertedevelopers.in",
         linkedin: "#",
       },
       {
-        name: "Shiavani Padhariya",
+        name: "Shivani Padhariya",
         role: "Software Developer",
-
         quote: "Design-led development for the best user experience.",
-        image: "placeholder",
-        email: "shiavani@fuertedevelopers.in",
+        image: "shivani-p",
+        email: "shivani@fuertedevelopers.in",
         linkedin: "#",
       },
       {
-        name: "Sidhi",
+        name: "Siddhi Tanna",
         role: "Software Developer",
-
         quote: "Building accessible and innovative digital products.",
-        image: "placeholder",
+        image: "siddhi-t",
         email: "sidhi@fuertedevelopers.in",
         linkedin: "#",
       },
       {
         name: "Tirth Aghara",
         role: "Software Developer",
-
         quote: "Building accessible and innovative digital products.",
-        image: "placeholder",
+        image: "tirth-a",
         email: "sidhi@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -121,7 +138,7 @@ const teamCategories = [
         name: "Krina Ranpariya",
         role: "Sales Executive",
         quote: "Building trust and connecting clients with their success.",
-        image: "placeholder",
+        image: "krina-r",
         email: "krina@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -149,9 +166,8 @@ const teamCategories = [
       {
         name: "Daksh Paghdar",
         role: "Graphic Designer",
-
         quote: "Adding life and motion to digital experiences.",
-        image: "placeholder",
+        image: "daksh-p",
         email: "daksh@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -245,11 +261,20 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
       className="group h-full flex flex-col bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-300 shadow-sm"
     >
       <div className="aspect-[4/3] relative overflow-hidden bg-muted/30">
-        <div className="w-full h-full flex items-center justify-center bg-secondary/20">
-          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold group-hover:scale-110 transition-transform">
-            {member.name.charAt(0)}
+        {images[member.image] ? (
+          <img
+            src={images[member.image]}
+            alt={member.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-secondary/20">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold group-hover:scale-110 transition-transform">
+              {member.name.charAt(0)}
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
           <a
             href="#"
@@ -287,8 +312,6 @@ const TeamPage = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased text-foreground">
-      <Navbar />
-
       <main className="pt-24 pb-20 overflow-hidden relative">
         {/* Background Decorative Blob */}
         <div className="absolute top-0 right-0 w-[40%] h-[30%] bg-primary/5 blur-[120px] rounded-full -z-10" />
