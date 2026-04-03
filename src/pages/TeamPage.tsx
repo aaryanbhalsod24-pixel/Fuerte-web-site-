@@ -222,21 +222,6 @@ const FounderCard = ({ member, i }: { member: TeamMember; i: number }) => (
           </div>
         )}
 
-        {/* Social Overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center gap-4">
-          <a
-            href={member.linkedin || "#"}
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white text-black transition-colors"
-          >
-            <Linkedin size={18} />
-          </a>
-          <a
-            href={`mailto:${member.email}`}
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white text-black transition-colors"
-          >
-            <Mail size={18} />
-          </a>
-        </div>
       </div>
 
       <div className="p-8 flex flex-col flex-1">
@@ -277,21 +262,6 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
             </div>
           </div>
         )}
-
-        <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-          <a
-            href="#"
-            className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black hover:bg-primary hover:text-white transition-all shadow-md"
-          >
-            <Linkedin size={14} />
-          </a>
-          <a
-            href={`mailto:${member.email}`}
-            className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black hover:bg-primary hover:text-white transition-all shadow-md"
-          >
-            <Mail size={14} />
-          </a>
-        </div>
       </div>
       <div className="p-5 flex flex-col flex-1">
         <h3 className="text-base font-black group-hover:text-primary transition-colors leading-tight">

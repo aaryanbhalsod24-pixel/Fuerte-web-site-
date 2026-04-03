@@ -172,6 +172,38 @@ const Navbar = () => {
                         <button onClick={() => toggleMobileDropdown(link.label)} style={{ width: 30, height: 30, borderRadius: 8, border: "1px solid hsl(var(--border))", background: mobileDropdown === link.label ? "hsl(var(--primary)/0.1)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transform: mobileDropdown === link.label ? "rotate(180deg)" : "rotate(0deg)", transition: "all .2s" }}><ChevronDown size={15} /></button>
                       )}
                     </div>
+                    {link.dropdown && mobileDropdown === link.label && (
+                      <div style={{ padding: "4px 0 12px 14px", display: "flex", flexDirection: "column", gap: 2 }}>
+                        {link.dropdown.map((sub) => {
+                          const translated = getDropdownTranslations(sub.label);
+                          return (
+                            <div key={sub.label}>
+                              <Link 
+                                to={sub.href} 
+                                onClick={() => setIsOpen(false)}
+                                style={{ display: "block", padding: "10px 12px", borderRadius: 10, fontSize: 13, fontWeight: 600, color: "hsl(var(--muted-foreground))", textDecoration: "none", transition: "all 0.2s" }}
+                              >
+                                {translated.label}
+                              </Link>
+                              {sub.subItems && (
+                                <div style={{ paddingLeft: 16, display: "flex", flexDirection: "column", gap: 1 }}>
+                                  {sub.subItems.map(si => (
+                                    <Link 
+                                      key={si.label} 
+                                      to={si.href} 
+                                      onClick={() => setIsOpen(false)}
+                                      style={{ display: "block", padding: "8px 12px", fontSize: 12, fontWeight: 500, color: "hsl(var(--muted-foreground)/0.7)", textDecoration: "none" }}
+                                    >
+                                      {getDropdownTranslations(si.label).label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               })}

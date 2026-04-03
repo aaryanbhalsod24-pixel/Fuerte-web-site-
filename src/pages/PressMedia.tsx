@@ -16,14 +16,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-// Brand logos (Trusted Brands)
-import bangalLogo from "@/assets/company-logo/bangal-logo.png";
-import girirajLogo from "@/assets/company-logo/giriraj-logo.png";
-import gopiLogo from "@/assets/company-logo/gopi-logo.png";
-import hazelLogo from "@/assets/company-logo/hazel-logo.png";
-import kasturiLogo from "@/assets/company-logo/kasturi-logo.jpg";
-import santoshLogo from "@/assets/company-logo/santosh-logo.png";
-
 const PressMedia = () => {
   const { t } = useTranslation();
 
@@ -77,15 +69,6 @@ const PressMedia = () => {
       color: "from-orange-500/20 to-yellow-500/20",
       accent: "text-orange-500",
     },
-  ];
-
-  const trustedBrands = [
-    { name: "TeamWork", logo: bangalLogo },
-    { name: "Pizza Studio", logo: girirajLogo },
-    { name: "Ford", logo: gopiLogo },
-    { name: "Innovative", logo: hazelLogo },
-    { name: "UMA", logo: kasturiLogo },
-    { name: "VIMOX", logo: santoshLogo },
   ];
 
   return (
@@ -190,37 +173,6 @@ const PressMedia = () => {
                     <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </motion.div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TRUSTED BRANDS ──────────────────────────────────────── */}
-      <section className="py-24 px-6 bg-secondary/10 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl md:text-5xl font-black tracking-tight mb-4">
-                Trusted by 1000+ Brands Worldwide
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto italic">
-                From startups to global enterprises, we've build digital fortresses for everyone.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {trustedBrands.map((brand, i) => (
-              <FadeIn key={brand.name} delay={i * 0.05}>
-                <div className="flex flex-col items-center gap-4 group">
-                  <div className="w-24 h-24 rounded-2xl bg-card border border-border/60 flex items-center justify-center p-4 grayscale group-hover:grayscale-0 group-hover:border-primary/40 group-hover:shadow-lg transition-all duration-500">
-                    <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain opacity-50 group-hover:opacity-100" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
-                    {brand.name}
-                  </span>
-                </div>
               </FadeIn>
             ))}
           </div>

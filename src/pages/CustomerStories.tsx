@@ -12,6 +12,15 @@ import {
 } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
 
+// Brand logos (Trusted Brands)
+import bangalLogo from "@/assets/company-logo/bangal-logo.png";
+import girirajLogo from "@/assets/company-logo/giriraj-logo.png";
+import gopiLogo from "@/assets/company-logo/gopi-logo.png";
+import hazelLogo from "@/assets/company-logo/hazel-logo.png";
+import kasturiLogo from "@/assets/company-logo/kasturi-logo.jpg";
+import santoshLogo from "@/assets/company-logo/santosh-logo.png";
+
+
 const CustomerStories = () => {
   const { t } = useTranslation();
 
@@ -20,7 +29,7 @@ const CustomerStories = () => {
       company: "Hazel Dryfruits",
       content:
         "Our pages are finally getting the attention they deserve. Thanks to the smart strategies.",
-      logo: "src/assets/company-logo/hazel-logo.png",
+      logo: "/src/assets/company-logo/hazel-logo.png",
       color: "bg-red-700",
       insta: "https://www.instagram.com/hazeldryfruits/",
     },
@@ -28,7 +37,7 @@ const CustomerStories = () => {
       company: "Bengal Sweet",
       content:
         "Our customers are engaging more than ever – the festive campaigns were a hit!",
-      logo: "src/assets/company-logo/bangal-logo.png",
+      logo: "/src/assets/company-logo/bangal-logo.png",
       color: "bg-amber-700",
       insta: "https://www.instagram.com/bengalsweets/",
     },
@@ -36,7 +45,7 @@ const CustomerStories = () => {
       company: "Santosh Saree",
       content:
         "Posting style is elegant and regular. Customers are responding more — we're seeing results!",
-      logo: "src/assets/company-logo/santosh-logo.png",
+      logo: "/src/assets/company-logo/santosh-logo.png",
       color: "bg-orange-700",
       insta: "https://www.instagram.com/santosh_rajkot/",
     },
@@ -44,7 +53,7 @@ const CustomerStories = () => {
       company: "Giriraj Jewellers",
       content:
         "We've seen a real difference since handing over our social media. The jewellery looks premium, engagement has improved, and every post reflects our brand beautifully. Professional, creative, and consistent — exactly what we needed for Giriraj Jewellers.",
-      logo: "src/assets/company-logo/giriraj-logo.png",
+      logo: "/src/assets/company-logo/giriraj-logo.png",
       color: "bg-yellow-800",
       insta: "https://www.instagram.com/shreegirirajjewellers/",
     },
@@ -52,7 +61,7 @@ const CustomerStories = () => {
       company: "Gopi Jewellers",
       content:
         "We've received so many compliments on our new social media look! The creatives are fresh, brand-aligned, and help us connect better with our customers. It's been a smooth and effective journey.",
-      logo: "src/assets/company-logo/gopi-logo.png",
+      logo: "/src/assets/company-logo/gopi-logo.png",
       color: "bg-pink-700",
       insta: "https://www.instagram.com/gopi_jeweller/",
     },
@@ -76,7 +85,7 @@ const CustomerStories = () => {
       company: "Shubh Jewellers",
       content:
         "Their work is perfect in all fields. Fuerte Developers has helped me a lot to grow my jewellery business.",
-      logo: "src/assets/company-logo/subh-logo.jpg",
+      logo: "/src/assets/company-logo/subh-logo.jpg",
       color: "bg-emerald-800",
       insta: "",
     },
@@ -84,7 +93,7 @@ const CustomerStories = () => {
       company: "Kasturi Cafe",
       content:
         "My business has been reaching all my targeted locations. Happy to be growing by spending less.",
-      logo: "src/assets/company-logo/kasturi-logo.jpg",
+      logo: "/src/assets/company-logo/kasturi-logo.jpg",
       color: "bg-stone-700",
       insta: "",
     },
@@ -92,7 +101,7 @@ const CustomerStories = () => {
       company: "Rajhans Engineers",
       content:
         "They have solved all my Facebook ads issues. Glad to recommend their digital marketing services.",
-      logo: "src/assets/company-logo/rajhans-logo.jpg",
+      logo: "/src/assets/company-logo/rajhans-logo.jpg",
 
       color: "bg-zinc-700",
       insta: "",
@@ -101,7 +110,7 @@ const CustomerStories = () => {
       company: "Tradingedge Academy",
       content:
         "Your work is really impressive. I would like to suggest others too.",
-      logo: "src/assets/company-logo/tradingedge-logo.jpg",
+      logo: "/src/assets/company-logo/tradingedge-logo.jpg",
 
       color: "bg-zinc-700",
       insta: "",
@@ -110,7 +119,7 @@ const CustomerStories = () => {
       company: "HOPE Oncology Clinic",
       content:
         "Had a great experience. Highly qualified and experienced staff. Would recommend everyone.",
-      logo: "src/assets/company-logo/hope-logo.jpg",
+      logo: "/src/assets/company-logo/hope-logo.jpg",
 
       color: "bg-cyan-700",
       insta: "",
@@ -119,7 +128,7 @@ const CustomerStories = () => {
       company: "Tizo Tiles",
       content:
         "Had no direction on how to go about my new website. It's been a great experience working with you.",
-      logo: "src/assets/company-logo/tizo-logo.jpg",
+      logo: "/src/assets/company-logo/tizo-logo.jpg",
       color: "bg-indigo-700",
       insta: "",
     },
@@ -127,7 +136,7 @@ const CustomerStories = () => {
       company: "Globe Industry",
       content:
         "They revamped sites like no other. Very smooth communication process of work.",
-      logo: "src/assets/company-logo/globe-logo.jpg",
+      logo: "/src/assets/company-logo/globe-logo.jpg",
       color: "bg-slate-700",
       insta: "",
     },
@@ -135,7 +144,7 @@ const CustomerStories = () => {
       company: "Inspire Corporation",
       content:
         "It's truly a one-stop solution. Very satisfied with their development services and suggestions.",
-      logo: "src/assets/company-logo/inspire-logo.jpg",
+      logo: "/src/assets/company-logo/inspire-logo.jpg",
 
       color: "bg-purple-700",
       insta: "",
@@ -145,7 +154,7 @@ const CustomerStories = () => {
       company: "Niva Ceramic",
       content:
         "Love their work for my ceramic business — my Instagram feed looks awesome!",
-      logo: "src/assets/company-logo/niva-logo.jpg",
+      logo: "/src/assets/company-logo/niva-logo.jpg",
 
       color: "bg-teal-700",
       insta: "",
@@ -154,7 +163,7 @@ const CustomerStories = () => {
       company: "I Khodal Investment",
       content:
         "One of the best decisions to choose you guys for my logo design.",
-      logo: "src/assets/company-logo/khodal-logo.jpg",
+      logo: "/src/assets/company-logo/khodal-logo.jpg",
 
       color: "bg-red-800",
       insta: "",
@@ -163,7 +172,7 @@ const CustomerStories = () => {
       company: "Pine Valley Peanuts",
       content:
         "Good to work with Fuerte for my business posts with great understanding.",
-      logo: "src/assets/company-logo/pine-logo.jpg",
+      logo: "/src/assets/company-logo/pine-logo.jpg",
 
       color: "bg-green-800",
       insta: "",
@@ -268,6 +277,15 @@ const CustomerStories = () => {
     { label: "Client Growth", value: "450%", icon: TrendingUp },
     { label: "Success Stories", value: "250+", icon: Star },
     { label: "Brand Reach", value: "1.2M", icon: Users },
+  ];
+
+  const trustedBrands = [
+    { name: "TeamWork", logo: bangalLogo },
+    { name: "Pizza Studio", logo: girirajLogo },
+    { name: "Ford", logo: gopiLogo },
+    { name: "Innovative", logo: hazelLogo },
+    { name: "UMA", logo: kasturiLogo },
+    { name: "VIMOX", logo: santoshLogo },
   ];
 
   return (
@@ -426,6 +444,37 @@ const CustomerStories = () => {
             ))}
           </div>
         </div>
+
+        {/* ─── TRUSTED BRANDS ──────────────────────────────────────── */}
+        <section className="py-24 px-6 bg-secondary/10 relative overflow-hidden mt-32">
+          <div className="max-w-7xl mx-auto relative z-10">
+            <FadeIn>
+              <div className="text-center mb-16">
+                <h2 className="font-display text-3xl md:text-5xl font-black tracking-tight mb-4">
+                  Trusted by 1000+ Brands Worldwide
+                </h2>
+                <p className="text-muted-foreground max-w-xl mx-auto italic">
+                  From startups to global enterprises, we've build digital fortresses for everyone.
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+              {trustedBrands.map((brand, i) => (
+                <FadeIn key={brand.name} delay={i * 0.05}>
+                  <div className="flex flex-col items-center gap-4 group">
+                    <div className="w-24 h-24 rounded-2xl bg-card border border-border/60 flex items-center justify-center p-4 grayscale group-hover:grayscale-0 group-hover:border-primary/40 group-hover:shadow-lg transition-all duration-500">
+                      <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain opacity-50 group-hover:opacity-100" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
+                      {brand.name}
+                    </span>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ── CTA ──────────────────────────────────────── */}
         <div className="max-w-6xl mx-auto px-6 mt-32">
