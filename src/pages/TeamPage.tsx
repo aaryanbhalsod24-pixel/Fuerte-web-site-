@@ -12,6 +12,8 @@ import bhaveshPhoto from "@/assets/BhaveshGorad.jpg";
 import vijayPhoto from "@/assets/VijayDevaliya.png";
 import siddhiPhoto from "@/assets/siddhiTanna.jpeg";
 import snehilPhoto from "@/assets/Snehil Singh.png";
+import brijPhoto from "@/assets/Brij Parekh.jpg";
+
 import { Mail, Linkedin, Twitter, Sparkles } from "lucide-react";
 
 
@@ -41,6 +43,7 @@ const images: Record<string, string> = {
   "vijay-d": vijayPhoto,
   "siddhi-t": siddhiPhoto,
   "snehil-s": snehilPhoto,
+  "brij-p": brijPhoto,
 };
 
 // Founders — displayed separately at the top
@@ -93,7 +96,7 @@ const teamCategories = [
         role: "Software Developer",
 
         quote: "Optimizing the heart of modern applications.",
-        image: "placeholder",
+        image: "brij-p",
         email: "brij@fuertedevelopers.in",
         linkedin: "#",
       },

@@ -145,9 +145,9 @@ export const navLinks = [
     ],
   },
 
-  { label: "Press & Media", href: "/#press" },
+  { label: "Press & Media", href: "/press-media" },
 
-  { label: "Blog", href: "/#blog" },
+  { label: "Blog", href: "/blog" },
 
   { label: "Contact", href: "/#contact" },
 ];

@@ -36,7 +36,7 @@ const CTASection = () => {
     name: "",
     email: "",
     phone: "",
-    service: "",
+    requirement: "",
     date: "",
     message: "",
   });
@@ -59,7 +59,7 @@ const CTASection = () => {
       name: "",
       email: "",
       phone: "",
-      service: "",
+      requirement: "",
       date: "",
       message: "",
     });
@@ -236,21 +236,16 @@ const CTASection = () => {
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <select
-                  value={form.service}
+                <input
+                  type="text"
+                  placeholder="Your Requirement"
+                  required
+                  value={form.requirement}
                   onChange={(e) =>
-                    setForm({ ...form, service: e.target.value })
+                    setForm({ ...form, requirement: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring text-muted-foreground"
-                >
-                  <option value="">Select a Service</option>
-                  <option>{t.serShopify}</option>
-                  <option>{t.serAppDev}</option>
-                  <option>SEO</option>
-                  <option>{t.serLocalSEO}</option>
-                  <option>{t.serSMM}</option>
-                  <option>{t.serAds}</option>
-                </select>
+                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                />
                 <input
                   type="datetime-local"
                   value={form.date}

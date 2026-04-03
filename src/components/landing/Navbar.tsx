@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import { navLinks } from "@/data/navigation";
 import { useTranslation } from "@/contexts/LanguageContext";
 import { Language } from "@/data/translations";
+import { useModal } from "@/contexts/ModalContext";
 
 const Navbar = () => {
   const { language, setLanguage, direction, t } = useTranslation();
+  const { openModal } = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileDropdown, setMobileDropdown] = useState(null);
@@ -204,10 +206,13 @@ const Navbar = () => {
             </div>
 
             <div style={{ padding: "16px 18px", borderTop: "1px solid hsl(var(--border))" }}>
-              <a href="#contact" onClick={() => setIsOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", padding: "13px 0", borderRadius: 12, background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", fontSize: 13, fontWeight: 800, textDecoration: "none" }}>
+              <button 
+                onClick={() => { setIsOpen(false); openModal(); }} 
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", padding: "13px 0", borderRadius: 12, background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", fontSize: 13, fontWeight: 800, border: "none", cursor: "pointer" }}
+              >
                 {t.startProject}
                 <ArrowRight size={15} />
-              </a>
+              </button>
             </div>
           </motion.div>
         </>
@@ -292,10 +297,13 @@ const Navbar = () => {
             {/* Hidden Google Translate Element to serve as the 'backend' */}
             <div id="google_translate_element"></div>
 
-            <a href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 20px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", borderRadius: 100, fontSize: 13, fontWeight: 800, textDecoration: "none", boxShadow: "0 4px 12px hsl(var(--primary)/0.3)" }}>
+            <button 
+              onClick={openModal} 
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 20px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", borderRadius: 100, fontSize: 13, fontWeight: 800, border: "none", cursor: "pointer", boxShadow: "0 4px 12px hsl(var(--primary)/0.3)" }}
+            >
               {t.startProject}
               <ArrowRight size={14} />
-            </a>
+            </button>
           </div>
 
           {/* Mobile Toggle */}
