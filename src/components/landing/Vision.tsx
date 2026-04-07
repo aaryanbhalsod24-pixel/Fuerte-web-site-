@@ -2,7 +2,6 @@ import FadeIn from "./FadeIn";
 import { useTranslation } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { stats } from "@/data/siteData";
-import visionImage from "@/assets/vision-image.jpg";
 
 const Vision = () => {
   const { t } = useTranslation();
@@ -59,7 +58,7 @@ const Vision = () => {
           <FadeIn direction="right">
             <div className="rounded-2xl overflow-hidden">
               <img
-                src={visionImage}
+                src="/assets/vision-image.jpg"
                 alt="Team working in modern office"
                 className="w-full h-[400px] object-cover"
               />

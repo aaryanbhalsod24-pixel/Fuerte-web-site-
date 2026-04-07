@@ -66,7 +66,7 @@ const CTASection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding border-t border-border">
+    <section className="section-padding border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-20">
           <FadeIn>
@@ -150,7 +150,7 @@ const CTASection = () => {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-16 items-start">
+          <div id="contact" className="grid md:grid-cols-2 gap-16 items-start scroll-mt-32">
             <FadeIn direction="left">
               <div>
                 <FadeIn delay={0.1}>

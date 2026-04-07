@@ -1,12 +1,10 @@
 import FadeIn from "./FadeIn";
 import { teamMembers } from "@/data/siteData";
-import teamCeo from "@/assets/team-ceo.png";
-import teamCofounder from "@/assets/team-cofounder.png";
 import { useTranslation } from "@/contexts/LanguageContext";
 
 const images: Record<string, string> = {
-  "team-ceo": teamCeo,
-  "team-cofounder": teamCofounder,
+  "team-ceo": "/assets/team-ceo.png",
+  "team-cofounder": "/assets/team-cofounder.png",
 };
 
 const Team = () => {

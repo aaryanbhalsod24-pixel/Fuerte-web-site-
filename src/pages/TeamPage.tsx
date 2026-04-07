@@ -1,25 +1,7 @@
 import { motion } from "framer-motion";
 import FadeIn from "@/components/landing/FadeIn";
 import { teamMembers } from "@/data/siteData";
-import teamCeo from "@/assets/team-ceo.png";
-import teamCofounder from "@/assets/team-cofounder.png";
-import bharatPhoto from "@/assets/BharatKadavala.png";
-import dakshPhoto from "@/assets/DakshPaghdar.png";
-import shivaniPhoto from "@/assets/ShivaniPadhariya.jpeg";
-import krinaPhoto from "@/assets/KrinaRanpariya.png";
-import tirthPhoto from "@/assets/TirthAghara.jpeg";
-import bhaveshPhoto from "@/assets/BhaveshGorad.jpg";
-import vijayPhoto from "@/assets/VijayDevaliya.png";
-import siddhiPhoto from "@/assets/siddhiTanna.jpeg";
-import snehilPhoto from "@/assets/Snehil Singh.png";
-import brijPhoto from "@/assets/Brij Parekh.jpg";
-
 import { Mail, Linkedin, Twitter, Sparkles } from "lucide-react";
-
-
-
-
-
 import { useTranslation } from "@/contexts/LanguageContext";
 
 interface TeamMember {
@@ -29,21 +11,26 @@ interface TeamMember {
   image: string;
   email: string;
   linkedin: string;
+  imageClass?: string;
 }
 
 const images: Record<string, string> = {
-  "team-ceo": teamCeo,
-  "team-cofounder": teamCofounder,
-  "bharat-k": bharatPhoto,
-  "daksh-p": dakshPhoto,
-  "shivani-p": shivaniPhoto,
-  "krina-r": krinaPhoto,
-  "tirth-a": tirthPhoto,
-  "bhavesh-g": bhaveshPhoto,
-  "vijay-d": vijayPhoto,
-  "siddhi-t": siddhiPhoto,
-  "snehil-s": snehilPhoto,
-  "brij-p": brijPhoto,
+  "team-ceo": "/assets/team-ceo.png",
+  "team-cofounder": "/assets/team-cofounder.png",
+  "bharat-k": "/assets/BharatKadavala.png",
+  "daksh-p": "/assets/DakshPaghdar.png",
+  "shivani-p": "/assets/ShivaniPadhariya.jpeg",
+  "krina-r": "/assets/KrinaRanpariya.png",
+  "tirth-a": "/assets/TirthAghara.jpeg",
+  "bhavesh-g": "/assets/BhaveshGorad.jpg",
+  "vijay-d": "/assets/VijayDevaliya.png",
+  "siddhi-t": "/assets/siddhiTanna.jpeg",
+  "snehil-s": "/assets/Snehil Singh.png",
+  "brij-p": "/assets/Brij Parekh.jpg",
+  "urvi-d": "/assets/urvidubal.png",
+  "shivani-new": "/assets/SHIVANI.png",
+  "ankit-g": "/assets/ankitgupta.jpg",
+  "rahul-k": "/assets/rahulkashyap.jpg",
 };
 
 // Founders — displayed separately at the top
@@ -112,7 +99,8 @@ const teamCategories = [
         name: "Shivani Padhariya",
         role: "Software Developer",
         quote: "Design-led development for the best user experience.",
-        image: "shivani-p",
+        image: "shivani-new",
+        imageClass: "object-top",
         email: "shivani@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -154,7 +142,8 @@ const teamCategories = [
         name: "Rahul Kashyap",
         role: "Video Editor",
         quote: "Telling brand stories through high-impact video.",
-        image: "placeholder",
+        image: "rahul-k",
+        imageClass: "object-top",
         email: "rahulk@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -183,7 +172,8 @@ const teamCategories = [
         name: "Ankit Gupta",
         role: "Digital Marketer",
         quote: "Strategizing for real-world growth and engagement.",
-        image: "placeholder",
+        image: "ankit-g",
+        imageClass: "object-top",
         email: "ankit@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -191,7 +181,7 @@ const teamCategories = [
         name: "Urvi Dubal",
         role: "Social Media Manager",
         quote: "Building brands and fostering community online.",
-        image: "placeholder",
+        image: "urvi-d",
         email: "urvi@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -253,7 +243,7 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
           <img
             src={images[member.image]}
             alt={member.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${member.imageClass ?? "object-center"}`}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-secondary/20">

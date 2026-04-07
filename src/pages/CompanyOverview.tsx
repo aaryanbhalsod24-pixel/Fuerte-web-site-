@@ -24,8 +24,6 @@ import {
   ChevronRight,
   TrendingUp,
 } from "lucide-react";
-import heroImg from "@/assets/company-overview-hero.png";
-import visionImage from "@/assets/vision-image.jpg";
 
 const CompanyOverview = () => {
   const { t } = useTranslation();
@@ -237,7 +235,7 @@ const CompanyOverview = () => {
                 <div className="absolute inset-x-0 -bottom-10 bg-primary/15 h-20 blur-3xl rounded-full group-hover:bg-primary/25 transition-all" />
                 <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_32px_80px_-16px_rgba(0,0,0,0.5)] relative">
                   <img
-                    src={heroImg}
+                    src="/assets/company-overview-hero.png"
                     alt="Fuerte Developers Global Vision"
                     className="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
@@ -298,7 +296,7 @@ const CompanyOverview = () => {
                 <div className="absolute -inset-3 bg-primary/15 blur-2xl rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl border border-white/5">
                   <img
-                    src={visionImage}
+                    src="/assets/vision-image.jpg"
                     alt="Mission Vision"
                     className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                   />

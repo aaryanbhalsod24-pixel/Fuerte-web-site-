@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
-import heroImage from "@/assets/hero-image.jpg";
 import { useTranslation } from "@/contexts/LanguageContext";
 
 const Hero = () => {
@@ -10,7 +9,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center section-padding pt-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImage}
+          src="/assets/hero-image.jpg"
           alt="Digital workspace"
           className="w-full h-full object-cover"
           fetchPriority="high"

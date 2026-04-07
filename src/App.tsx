@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/landing/Navbar";
 import Hero from "./components/landing/Hero";
@@ -13,21 +13,32 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { ModalProvider } from "./contexts/ModalContext";
 import ContactModal from "./components/ContactModal";
 
-// --- Lazy Load Pages for performance ---
-const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
-const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const TeamPage = lazy(() => import("./pages/TeamPage"));
-const CompanyOverview = lazy(() => import("./pages/CompanyOverview"));
-const CustomerStories = lazy(() => import("./pages/CustomerStories"));
-const PressMedia = lazy(() => import("./pages/PressMedia"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
+// --- Direct imports (no lazy loading = no spinner) ---
+import ServiceDetail from "./pages/ServiceDetail";
+import ServicesPage from "./pages/ServicesPage";
+import TeamPage from "./pages/TeamPage";
+import CompanyOverview from "./pages/CompanyOverview";
+import CustomerStories from "./pages/CustomerStories";
+import PressMedia from "./pages/PressMedia";
+import BlogPage from "./pages/BlogPage";
 
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      // Small timeout to ensure the element is rendered before scrolling
+      setTimeout(() => {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 };
 
@@ -65,8 +76,7 @@ const App = () => {
         <BrowserRouter>
           <ScrollToTop />
           <Layout>
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-background"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
-              <Routes>
+            <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/services/:slug" element={<ServiceDetail />} />
@@ -76,7 +86,6 @@ const App = () => {
                 <Route path="/press-media" element={<PressMedia />} />
                 <Route path="/blog" element={<BlogPage />} />
               </Routes>
-            </Suspense>
           </Layout>
         </BrowserRouter>
       </ModalProvider>
