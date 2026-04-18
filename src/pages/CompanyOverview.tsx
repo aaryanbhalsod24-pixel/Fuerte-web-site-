@@ -55,7 +55,7 @@ const CompanyOverview = () => {
       title: "ERP & CRM Design & Development",
       subtitle: "Enterprise Transformation",
       description:
-        "Fuerte Developers mastered CRM and ERP design, helping clients organise workflows, manage contacts, track processes effectively, and improve customer relationships.",
+        "Fuerte Developers Pvt. Ltd. mastered CRM and ERP design, helping clients organise workflows, manage contacts, track processes effectively, and improve customer relationships.",
       color: "from-violet-600 to-purple-700",
       accent: "#7c3aed",
     },
@@ -87,10 +87,10 @@ const CompanyOverview = () => {
       description:
         "Expanded into four new verticals, broadening Fuerte's reach across healthcare, lifestyle, retail, and international trade.",
       subItems: [
-        "Fuerte Healthcare Pvt Ltd.",
-        "Fuerte Krishna Pvt Ltd.",
-        "Fuerte Retail Pvt Ltd.",
-        "Fuerte Exim Pvt Ltd.",
+        "Fuerte Healthcare Pvt. Ltd.",
+        "Fuerte Krishna Pvt. Ltd.",
+        "Fuerte Retail Pvt. Ltd.",
+        "Fuerte Exim Pvt. Ltd.",
       ],
       color: "from-fuchsia-500 to-violet-600",
       accent: "#d946ef",
@@ -236,7 +236,7 @@ const CompanyOverview = () => {
                 <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_32px_80px_-16px_rgba(0,0,0,0.5)] relative">
                   <img
                     src="/assets/company-overview-hero.png"
-                    alt="Fuerte Developers Global Vision"
+                    alt="Fuerte Developers Pvt. Ltd. Global Vision"
                     className="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />

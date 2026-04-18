@@ -44,7 +44,7 @@ export const navLinks = [
       },
       {
         label: "Our Team",
-        description: "Meet the experts behind Fuerte Developers.",
+        description: "Meet the experts behind Fuerte Developers Pvt. Ltd.",
         href: "/team",
         icon: Users,
       },
@@ -149,7 +149,7 @@ export const navLinks = [
 
   { label: "Blog", href: "/blog" },
 
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks = {
@@ -157,7 +157,7 @@ export const footerLinks = {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/#vision" },
     { label: "Services", href: "/services" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Contact", href: "/contact" },
   ],
 
   socialLinks: [

@@ -17,20 +17,22 @@ interface TeamMember {
 const images: Record<string, string> = {
   "team-ceo": "/assets/team-ceo.png",
   "team-cofounder": "/assets/team-cofounder.png",
-  "bharat-k": "/assets/BharatKadavala.png",
-  "daksh-p": "/assets/DakshPaghdar.png",
-  "shivani-p": "/assets/ShivaniPadhariya.jpeg",
-  "krina-r": "/assets/KrinaRanpariya.png",
-  "tirth-a": "/assets/TirthAghara.jpeg",
+  "bharat-k": "/assets/BharatKadavala.jpg",
+  "daksh-p": "/assets/DakshPaghdar.jpg",
+  "shivani-p": "/assets/ShivaniPadhariya.jpg",
+  "krina-r": "/assets/KrinaRanpariya.jpg",
+  "tirth-a": "/assets/TirthAghara.jpg",
   "bhavesh-g": "/assets/BhaveshGorad.jpg",
-  "vijay-d": "/assets/VijayDevaliya.png",
-  "siddhi-t": "/assets/siddhiTanna.jpeg",
+  "vijay-d": "/assets/VijayDevaliya.jpg",
+  "siddhi-t": "/assets/siddhiTanna.jpg",
   "snehil-s": "/assets/Snehil Singh.png",
   "brij-p": "/assets/Brij Parekh.jpg",
-  "urvi-d": "/assets/urvidubal.png",
-  "shivani-new": "/assets/SHIVANI.png",
+  "urvi-d": "/assets/urvidubal.jpg",
+  "shivani-new": "/assets/ShivaniPadhariya.jpg",
   "ankit-g": "/assets/ankitgupta.jpg",
-  "rahul-k": "/assets/rahulkashyap.jpg",
+  "rahul-k": "/assets/RahulKashyap.jpg",
+  "rahul-p": "/assets/RahulPal.jpg",
+  "aayush": "/assets/Aayush.jpg",
 };
 
 // Founders — displayed separately at the top
@@ -66,7 +68,7 @@ const teamCategories = [
         role: "Software Developer",
 
         quote: "Building end-to-end solutions that scale.",
-        image: "placeholder",
+        image: "rahul-p",
         email: "rahul@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -151,7 +153,7 @@ const teamCategories = [
         name: "Aayush",
         role: "Graphic Designer",
         quote: "Translating vision into striking visuals.",
-        image: "placeholder",
+        image: "aayush",
         email: "aayush@fuertedevelopers.in",
         linkedin: "#",
       },
@@ -238,7 +240,7 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
       whileHover={{ y: -5 }}
       className="group h-full flex flex-col bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-300 shadow-sm"
     >
-      <div className="aspect-[4/3] relative overflow-hidden bg-muted/30">
+      <div className="aspect-[4/3] relative overflow-hidden bg-muted/30" style={{ height: "300px" }}>
         {images[member.image] ? (
           <img
             src={images[member.image]}
@@ -327,7 +329,7 @@ const TeamPage = () => {
                   </div>
                 </FadeIn>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                   {category.members.map((member, i) => (
                     <MemberCard
                       key={member.name}
@@ -361,7 +363,7 @@ const TeamPage = () => {
                 </h2>
                 <div className="space-y-8 text-muted-foreground text-lg md:text-xl font-medium leading-relaxed opacity-85">
                   <p>
-                    At Fuerte Developers, we believe that the best work happens
+                    At Fuerte Developers Pvt. Ltd., we believe that the best work happens
                     when diverse perspectives come together. Our culture is
                     built on transparency, continuous learning, and a relentless
                     focus on quality.

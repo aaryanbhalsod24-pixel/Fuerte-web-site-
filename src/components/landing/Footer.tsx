@@ -430,10 +430,10 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-col-brand">
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-                <img src="/favicon.ico" alt="Fuerte Developers" style={{ width: 46, height: 46, borderRadius: 12, border: "2px solid hsl(var(--primary)/0.3)", boxShadow: "0 4px 16px hsl(var(--primary)/0.2)" }} />
+                <img src="/favicon.ico" alt="Fuerte Developers Pvt. Ltd." style={{ width: 46, height: 46, borderRadius: 12, border: "2px solid hsl(var(--primary)/0.3)", boxShadow: "0 4px 16px hsl(var(--primary)/0.2)" }} />
                 <div>
                   <div style={{ fontWeight: 900, fontSize: 16, lineHeight: 1.2 }}>Fuerte</div>
-                  <div style={{ fontWeight: 900, fontSize: 16, color: "hsl(var(--primary))", lineHeight: 1.2 }}>Developers</div>
+                  <div style={{ fontWeight: 900, fontSize: 16, color: "hsl(var(--primary))", lineHeight: 1.2 }}>Developers Pvt. Ltd.</div>
                 </div>
               </div>
               <p style={{ fontSize: 13, color: "hsl(var(--muted-foreground))", lineHeight: 1.7, marginBottom: 22, maxWidth: 360 }}>
@@ -497,7 +497,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-inner">
             <p style={{ fontSize: 12, color: "hsl(var(--muted-foreground))", margin: 0 }}>
-              © {new Date().getFullYear()} <span style={{ color: "hsl(var(--primary))", fontWeight: 800 }}>FUERTE DEVELOPERS</span> | {t.allRightsReserved}.
+              © {new Date().getFullYear()} <span style={{ color: "hsl(var(--primary))", fontWeight: 800 }}>FUERTE DEVELOPERS PVT. LTD.</span> | {t.allRightsReserved}.
             </p>
             <div className="footer-policy-links">
               {[

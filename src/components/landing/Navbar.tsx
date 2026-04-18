@@ -62,7 +62,7 @@ const Navbar = () => {
       case "Aapka Parking": return { label: t.subParking };
       default: return { label };
     }
-  };  const languages: { code: Language; label: string; flag: string }[] = [
+  }; const languages: { code: Language; label: string; flag: string }[] = [
     { code: "en", label: "English", flag: "🇺🇸" },
     { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
     { code: "gu", label: "ગુજરાતી", flag: "🇮🇳" },
@@ -151,7 +151,7 @@ const Navbar = () => {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 18px", borderBottom: "1px solid hsl(var(--border))", flexShrink: 0 }}>
-              <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 32, width: "auto", objectFit: "contain" }} />
+              <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 60, width: "auto", objectFit: "contain" }} />
               <button onClick={() => setIsOpen(false)} style={{ width: 32, height: 32, borderRadius: 8, border: "1px solid hsl(var(--border))", background: "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "hsl(var(--foreground))", flexShrink: 0 }}>
                 <X size={16} />
               </button>
@@ -178,8 +178,8 @@ const Navbar = () => {
                           const translated = getDropdownTranslations(sub.label);
                           return (
                             <div key={sub.label}>
-                              <Link 
-                                to={sub.href} 
+                              <Link
+                                to={sub.href}
                                 onClick={() => setIsOpen(false)}
                                 style={{ display: "block", padding: "10px 12px", borderRadius: 10, fontSize: 13, fontWeight: 600, color: "hsl(var(--muted-foreground))", textDecoration: "none", transition: "all 0.2s" }}
                               >
@@ -188,9 +188,9 @@ const Navbar = () => {
                               {sub.subItems && (
                                 <div style={{ paddingLeft: 16, display: "flex", flexDirection: "column", gap: 1 }}>
                                   {sub.subItems.map(si => (
-                                    <Link 
-                                      key={si.label} 
-                                      to={si.href} 
+                                    <Link
+                                      key={si.label}
+                                      to={si.href}
                                       onClick={() => setIsOpen(false)}
                                       style={{ display: "block", padding: "8px 12px", fontSize: 12, fontWeight: 500, color: "hsl(var(--muted-foreground)/0.7)", textDecoration: "none" }}
                                     >
@@ -209,7 +209,7 @@ const Navbar = () => {
               })}
 
               <div style={{ marginTop: 20, padding: "12px 6px", borderTop: "1px solid hsl(var(--border))" }}>
-                <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>{t.selectLanguage}</p>
+                {/* Commenting out Language Selector as requested
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {languages.map((lang) => (
                     <button
@@ -234,12 +234,13 @@ const Navbar = () => {
                     </button>
                   ))}
                 </div>
+                */}
               </div>
             </div>
 
             <div style={{ padding: "16px 18px", borderTop: "1px solid hsl(var(--border))" }}>
-              <button 
-                onClick={() => { setIsOpen(false); openModal(); }} 
+              <button
+                onClick={() => { setIsOpen(false); openModal(); }}
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", padding: "13px 0", borderRadius: 12, background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", fontSize: 13, fontWeight: 800, border: "none", cursor: "pointer" }}
               >
                 {t.startProject}
@@ -258,24 +259,24 @@ const Navbar = () => {
       <nav
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, transition: "all .3s ease",
-          background: scrolled ? "hsl(var(--background)/0.97)" : "hsl(var(--background)/0.85)",
-          backdropFilter: "blur(20px)", borderBottom: scrolled ? "1px solid hsl(var(--border))" : "1px solid transparent",
+          background: "hsl(var(--background))",
+          backdropFilter: "blur(20px)", borderBottom: "1px solid hsl(var(--border))",
           padding: "0 20px"
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", height: 80, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           <Link to="/" style={{ height: "100%", display: "flex", alignItems: "center" }}>
-            <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 40, width: "auto" }} />
+            <video src="/Logo_animation_fuerte_developers_6836436ffe.mp4" autoPlay loop muted playsInline preload="metadata" style={{ height: 60, width: "auto", objectFit: "contain" }} />
           </Link>
 
           <div className="nav-desktop-links" style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, justifyContent: "center" }}>
             {navLinks.map((link) => (
-              <DesktopNavItem 
-                key={link.label} 
-                link={link} 
+              <DesktopNavItem
+                key={link.label}
+                link={link}
                 label={getNavTranslations(link.label)}
-                active={activeDropdown === link.label} 
-                onEnter={() => handleMouseEnter(link.label)} 
+                active={activeDropdown === link.label}
+                onEnter={() => handleMouseEnter(link.label)}
                 onLeave={handleMouseLeave}
                 getDropdownTranslations={getDropdownTranslations}
               />
@@ -283,6 +284,7 @@ const Navbar = () => {
           </div>
 
           <div className="nav-desktop-cta" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {/* Commenting out Language Selector as requested
             <div style={{ position: "relative" }} ref={langMenuRef}>
               <button
                 onClick={() => setShowLangMenu(!showLangMenu)}
@@ -326,11 +328,12 @@ const Navbar = () => {
                 )}
               </AnimatePresence>
             </div>
+            */}
             {/* Hidden Google Translate Element to serve as the 'backend' */}
-            <div id="google_translate_element"></div>
+            {/* <div id="google_translate_element"></div> */}
 
-            <button 
-              onClick={openModal} 
+            <button
+              onClick={openModal}
               style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 20px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", borderRadius: 100, fontSize: 13, fontWeight: 800, border: "none", cursor: "pointer", boxShadow: "0 4px 12px hsl(var(--primary)/0.3)" }}
             >
               {t.startProject}
@@ -508,10 +511,10 @@ function DesktopNavItem({ link, label, active, onEnter, onLeave, getDropdownTran
                   })) : undefined;
 
                   return (
-                    <DropdownItem 
-                      key={sub.label} 
-                      sub={{ ...sub, label: translated.label, description: translated.desc, subItems }} 
-                      parentLabel={link.label} 
+                    <DropdownItem
+                      key={sub.label}
+                      sub={{ ...sub, label: translated.label, description: translated.desc, subItems }}
+                      parentLabel={link.label}
                     />
                   );
 

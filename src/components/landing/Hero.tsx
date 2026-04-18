@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import { useTranslation } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
+
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -19,7 +21,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <FadeIn>
           <p className="text-sm uppercase tracking-[0.2em] text-primary-foreground/60 mb-6">
-            Fuerte Developers Pvt Ltd
+            Fuerte Developers Pvt. Ltd.
           </p>
         </FadeIn>
         <FadeIn delay={0.1}>
@@ -34,14 +36,12 @@ const Hero = () => {
         </FadeIn>
         <FadeIn delay={0.3}>
           <div className="mt-10 flex flex-wrap gap-4">
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+            <Link
+              to="/contact"
               className="bg-primary-foreground text-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
             >
               {t.getFreeConsultation}
-            </motion.a>
+            </Link>
             <motion.a
               href="#services"
               whileHover={{ scale: 1.03 }}

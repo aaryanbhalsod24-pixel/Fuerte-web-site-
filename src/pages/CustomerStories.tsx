@@ -76,7 +76,7 @@ const CustomerStories = () => {
     {
       company: "Shubh Jewellers",
       content:
-        "Their work is perfect in all fields. Fuerte Developers has helped me a lot to grow my jewellery business.",
+        "Their work is perfect in all fields. Fuerte Developers Pvt. Ltd. has helped me a lot to grow my jewellery business.",
       logo: "/assets/company-logo/subh-logo.jpg",
       color: "bg-emerald-800",
       insta: "",
@@ -172,7 +172,7 @@ const CustomerStories = () => {
     {
       company: "Mardiya Foods",
       content:
-        "I got the best PHP training from Fuerte Developers. They explained all concepts really well.",
+        "I got the best PHP training from Fuerte Developers Pvt. Ltd.. They explained all concepts really well.",
       logo: "MF",
       color: "bg-orange-800",
       insta: "",
@@ -180,7 +180,7 @@ const CustomerStories = () => {
     {
       company: "Jignesh Bhai",
       content:
-        "Fuerte Developers made me a business image with the best quality solution. Thank you.",
+        "Fuerte Developers Pvt. Ltd. made me a business image with the best quality solution. Thank you.",
       logo: "JB",
       color: "bg-sky-700",
       insta: "",
@@ -188,7 +188,7 @@ const CustomerStories = () => {
     {
       company: "Little Hobby Center",
       content:
-        "Giving my work to Fuerte Developers has brought great success. Thank you.",
+        "Giving my work to Fuerte Developers Pvt. Ltd. has brought great success. Thank you.",
       logo: "LH",
       color: "bg-rose-700",
       insta: "",
@@ -196,14 +196,14 @@ const CustomerStories = () => {
     {
       company: "Yash Ranpara",
       content:
-        "I would recommend Fuerte Developers for any graphic design project you will be having.",
+        "I would recommend Fuerte Developers Pvt. Ltd. for any graphic design project you will be having.",
       logo: "YR",
       color: "bg-violet-700",
       insta: "",
     },
     {
       company: "Patel Jewellers",
-      content: "Get the best graphic design services from Fuerte Developers.",
+      content: "Get the best graphic design services from Fuerte Developers Pvt. Ltd..",
       logo: "PJ",
       color: "bg-yellow-900",
       insta: "",
@@ -211,7 +211,7 @@ const CustomerStories = () => {
     {
       company: "Artemis Interior",
       content:
-        "I received an attractive flyer from Fuerte Developers. Very happy with the result.",
+        "I received an attractive flyer from Fuerte Developers Pvt. Ltd.. Very happy with the result.",
       logo: "AI",
       color: "bg-emerald-700",
       insta: "",
@@ -227,7 +227,7 @@ const CustomerStories = () => {
     {
       company: "Royal Star",
       content:
-        "Thank you Fuerte Developers for creating such an amazing image for my business.",
+        "Thank you Fuerte Developers Pvt. Ltd. for creating such an amazing image for my business.",
       logo: "RS",
       color: "bg-neutral-800",
       insta: "",
@@ -235,7 +235,7 @@ const CustomerStories = () => {
     {
       company: "Stock Vidhya",
       content:
-        "Fuerte Developers has the best quality images with a number of options according to your needs.",
+        "Fuerte Developers Pvt. Ltd. has the best quality images with a number of options according to your needs.",
       logo: "SV",
       color: "bg-indigo-600",
       insta: "",
@@ -250,7 +250,7 @@ const CustomerStories = () => {
     {
       company: "Stock Vidhya",
       content:
-        "FUERTE DEVELOPERS has the best quality images with number of option in according to your needs.",
+        "FUERTE DEVELOPERS PVT. LTD. has the best quality images with number of option in according to your needs.",
       logo: "SV",
       color: "bg-fuchsia-700",
       insta: "",

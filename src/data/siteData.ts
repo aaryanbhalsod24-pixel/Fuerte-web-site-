@@ -29,7 +29,7 @@ export const testimonials = [
   {
     name: "Rahul Sharma",
     company: "TechVista Solutions",
-    quote: "Fuerte Developers transformed our online presence completely. Their team delivered a stunning Shopify store that increased our sales by 150% within three months.",
+    quote: "Fuerte Developers Pvt. Ltd. transformed our online presence completely. Their team delivered a stunning Shopify store that increased our sales by 150% within three months.",
   },
   {
     name: "Priya Mehta",
