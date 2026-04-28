@@ -1,0 +1,98 @@
+[ Admin Panel Pages & Features List ]
+
+Niche diye gaye sare modules admin panel me hone chahiye taki puri website dynamic ho sake:
+
+1. Dashboard (Mukhya Jankari)
+   - Site statistics overview (Total Leads, Total Blogs, Total Products)
+   - Recent Activities
+
+2. Site Settings (Global Settings)
+   - Logo Upload (Header, Footer, and Mobile Menu)
+   - Favicon Upload
+   - Site Name & Tagline
+   - Contact Info (Phone Number, Primary Email, Office Address)
+   - Social Media Links (Facebook, Instagram, LinkedIn, X, YouTube, etc.)
+   - Footer Copyright Text
+
+3. Navigation Management (Menu Editor)
+   - Navbar Links (Add/Edit/Delete/Reorder)
+   - Dropdown Menu Management (About Dropdown, Products Dropdown, Services Dropdown)
+   - Footer Links Management (Quick Links)
+
+4. Home Page Content Management
+   - Hero Section (Main Heading, Sub-heading, CTA Button Text & Link, Background Image/Video)
+   - Stats Management (Clients Count, Experience Years, Projects Completed, etc.)
+   - "Featured In" / Media Partners Logos
+
+5. Services Management (CRUD)
+   - Service Title
+   - Short Description (for listing)
+   - Long Description (for detail page - Rich Text Editor)
+   - Service Icon (Lucide Icons or SVG upload)
+   - Featured Image
+   - SEO Meta Tags (Title, Description) for each service
+
+6. Products Management (CRUD)
+   - Product Name
+   - Product Category
+   - Description & Key Features
+   - External Links (Demo Link, Website Link)
+   - Screenshots / Image Gallery
+   - Sub-items management (e.g., Billing Sphere -> Delivery App)
+
+7. About Us (Company Overview)
+   - Vision & Mission text update
+   - History / Milestones Management
+   - Core Values & Features section
+
+8. Team Management (CRUD)
+   - Member Name
+   - Designation / Role
+   - Profile Image
+   - Quote or Short Bio
+   - Social Media links for members
+
+9. Customer Stories & Testimonials (CRUD)
+   - Client Name
+   - Brand/Company Name
+   - Review/Story Text
+   - Client Photo
+   - Rating (1-5 Stars)
+
+10. Blog Management (CRUD)
+    - Blog Title
+    - Blog Category
+    - Content (Full Rich Text Support)
+    - Featured Image
+    - Author Name & Bio
+    - Publish Date
+    - SEO Settings (Meta Title, Description, Keywords)
+
+11. Press & Media Management
+    - Press Release Title
+    - Source Name (e.g., India News)
+    - Date of Publication
+    - Short Description
+    - External Link to the Article
+    - Media/PR Contact Details
+
+12. Lead & Enquiry Management (Contact Form)
+    - View all messages from "Contact Us" page
+    - Lead Status (New, Contacted, Closed)
+    - Export Leads data
+
+13. SEO & Analytics
+    - Global Meta Tags Controller
+    - Open Graph (OG) Tags for social media preview
+    - Google Analytics / Tag Manager Code integration
+
+14. CTA (Call To Action) Management
+    - Manage "Get Free Consultation" / "Contact Us" banners content across the site
+
+15. Admin Profile & Security
+    - Change Admin Password
+    - Update Admin Email / Profile
+    - Multi-admin support (if needed)
+
+--------------------------------------------------
+In sabhi modules ke hone se aapki website ka 1-1 element admin panel se change ho payega.
