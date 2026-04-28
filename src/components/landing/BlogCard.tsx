@@ -13,7 +13,7 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, description, date, image, link }) => {
   const { t } = useTranslation();
-
+const isExternal = link.startsWith("http");
   return (
     <motion.div
       whileHover={{ y: -10 }}
@@ -48,8 +48,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, date, image, li
         <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
           <a
             href={link}
-            target="_blank"
-            rel="noopener noreferrer"
+           target={isExternal ? "_blank" : "_self"}
+rel={isExternal ? "noopener noreferrer" : undefined}
+
             className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary group/link"
           >
             {t.readMore}

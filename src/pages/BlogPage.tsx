@@ -28,6 +28,7 @@ type ApiBlog = {
   category: string;
   tags?: string;
   publishDate: string;
+  customUrl?: string;
 };
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
@@ -49,7 +50,7 @@ const BlogPage = () => {
             description: blog.shortDescription,
             date: blog.publishDate,
             image: blog.featuredImage,
-            link: `/blog/${blog.slug}`,
+            link: blog.customUrl || `/blog/${blog.slug}`,
           }));
 
           setBlogs(mappedBlogs);
@@ -156,10 +157,12 @@ const BlogPage = () => {
               <div className="absolute inset-0 bg-primary/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
               <h2 className="font-display text-4xl md:text-5xl font-black mb-8 leading-tight">
-                Never Miss an <br /> <span className="text-primary italic">Update</span>
+                Never Miss an <br />{" "}
+                <span className="text-primary italic">Update</span>
               </h2>
               <p className="max-w-xl mx-auto text-muted-foreground text-lg mb-12 opacity-80 leading-relaxed">
-                Stay ahead of the curve with our weekly newsletter featuring the latest in tech, branding, and digital growth.
+                Stay ahead of the curve with our weekly newsletter featuring
+                the latest in tech, branding, and digital growth.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
@@ -184,18 +187,12 @@ const BlogPage = () => {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-
         .animate-spin-slow {
           animation: spin 8s linear infinite;
         }
-
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
