@@ -1,26 +1,37 @@
+import { useState, useEffect } from "react";
 import FadeIn from "./FadeIn";
-import { testimonials } from "@/data/siteData";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
+
+interface ApiTestimonial {
+  _id: string;
+  name: string;
+  company: string;
+  quote: string;
+  rating: number;
+  photo: string;
+}
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050/api";
 
 const Testimonials = () => {
   const { t } = useTranslation();
+  const [testimonials, setTestimonials] = useState<ApiTestimonial[]>([]);
 
-  // Helper to get translated testimonial data
-  const getTestimonialTranslations = (name: string) => {
-    switch (name) {
-      case "Rahul Sharma":
-        return { name: t.test1Name, company: t.test1Company, quote: t.test1Quote };
-      case "Priya Mehta":
-        return { name: t.test2Name, company: t.test2Company, quote: t.test2Quote };
-      case "Amit Patel":
-        return { name: t.test3Name, company: t.test3Company, quote: t.test3Quote };
-      case "Sneha Reddy":
-        return { name: t.test4Name, company: t.test4Company, quote: t.test4Quote };
-      default:
-        return { name, company: "", quote: "" };
-    }
-  };
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const res = await fetch(`${API_URL}/testimonials`);
+        const json = await res.json();
+        if (json.success) setTestimonials(json.data);
+      } catch {
+        setTestimonials([]);
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
+  if (testimonials.length === 0) return null;
 
   return (
     <section id="testimonials" className="section-padding border-t border-border">
@@ -40,23 +51,36 @@ const Testimonials = () => {
           </p>
         </FadeIn>
         <div className="grid md:grid-cols-2 gap-6">
-          {testimonials.map((test, i) => {
-            const { name, company, quote } = getTestimonialTranslations(test.name);
-            return (
-              <FadeIn key={test.name} delay={i * 0.1}>
-                <div className="border border-border rounded-2xl p-8 hover:bg-secondary transition-colors duration-300 h-full flex flex-col">
-                  <Quote size={24} className="text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground text-sm leading-relaxed italic flex-1">
-                    "{quote}"
-                  </p>
-                  <div className="mt-6 pt-4 border-t border-border">
-                    <p className="font-semibold text-sm">{name}</p>
-                    <p className="text-xs text-muted-foreground">{company}</p>
+          {testimonials.map((test, i) => (
+            <FadeIn key={test._id} delay={i * 0.1}>
+              <div className="border border-border rounded-2xl p-8 hover:bg-secondary transition-colors duration-300 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-4">
+                  <Quote size={24} className="text-muted-foreground" />
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <Star
+                        key={n}
+                        size={14}
+                        className={n <= test.rating ? "fill-primary text-primary" : "text-border"}
+                      />
+                    ))}
                   </div>
                 </div>
-              </FadeIn>
-            );
-          })}
+                <p className="text-muted-foreground text-sm leading-relaxed italic flex-1">
+                  "{test.quote}"
+                </p>
+                <div className="mt-6 pt-4 border-t border-border flex items-center gap-3">
+                  {test.photo && (
+                    <img src={test.photo} alt={test.name} className="h-10 w-10 rounded-full object-cover" />
+                  )}
+                  <div>
+                    <p className="font-semibold text-sm">{test.name}</p>
+                    <p className="text-xs text-muted-foreground">{test.company}</p>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>

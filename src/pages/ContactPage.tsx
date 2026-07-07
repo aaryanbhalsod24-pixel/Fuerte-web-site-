@@ -3,6 +3,9 @@ import FadeIn from "@/components/landing/FadeIn";
 import { toast } from "@/hooks/use-toast";
 import { useTranslation } from "@/contexts/LanguageContext";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050/api";
+const CONTACT_SOURCE = "fuertedevelopers.com";
+
 const ContactPage = () => {
   const { t } = useTranslation();
   const [form, setForm] = useState({
@@ -13,21 +16,48 @@ const ContactPage = () => {
     date: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: t.appointmentTitle,
-      description: t.appointmentDescription,
-    });
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      requirement: "",
-      date: "",
-      message: "",
-    });
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          requirement: form.requirement,
+          preferredDate: form.date,
+          message: form.message,
+          source: CONTACT_SOURCE,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast({
+          title: t.appointmentTitle,
+          description: t.appointmentDescription,
+        });
+        setForm({ name: "", email: "", phone: "", requirement: "", date: "", message: "" });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: json.message || "Please try again in a moment.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Could not reach the server. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -147,9 +177,10 @@ const ContactPage = () => {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-black text-white py-3 rounded-full text-sm font-medium hover:bg-gray-900 transition-colors"
+                  disabled={submitting}
+                  className="w-full bg-black text-white py-3 rounded-full text-sm font-medium hover:bg-gray-900 transition-colors disabled:opacity-60"
                 >
-                  {t.bookAppointment}
+                  {submitting ? "Sending..." : t.bookAppointment}
                 </button>
               </form>
             </FadeIn>

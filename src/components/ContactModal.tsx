@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, User, Phone, Mail, Calendar, MapPin, Building, BookOpen, MessageSquare } from "lucide-react";
 import { useModal } from "@/contexts/ModalContext";
 import { useTranslation } from "@/contexts/LanguageContext";
+import { toast } from "@/hooks/use-toast";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050/api";
+const PROJECT_REQUEST_SOURCE = "fuertedevelopers.com";
 
 const ContactModal = () => {
   const { isModalOpen, closeModal } = useModal();
@@ -25,28 +29,48 @@ const ContactModal = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    console.log("Form Submitted:", formData);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert("Project request submitted successfully!");
-      closeModal();
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        date: "",
-        address: "",
-        city: "",
-        requirement: "",
-        description: "",
+    try {
+      const res = await fetch(`${API_URL}/project-requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, source: PROJECT_REQUEST_SOURCE }),
       });
-    }, 1500);
+      const json = await res.json();
+      if (json.success) {
+        toast({
+          title: "Request submitted!",
+          description: "We've received your project details and will get back to you shortly.",
+        });
+        closeModal();
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          date: "",
+          address: "",
+          city: "",
+          requirement: "",
+          description: "",
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: json.message || "Please try again in a moment.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Could not reach the server. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

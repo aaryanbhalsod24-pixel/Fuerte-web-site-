@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import FadeIn from "@/components/landing/FadeIn";
 import { teamMembers } from "@/data/siteData";
@@ -8,32 +9,35 @@ interface TeamMember {
   name: string;
   role: string;
   quote: string;
-  image: string;
+  image?: string;
+  photo?: string;
   email: string;
   linkedin: string;
   imageClass?: string;
 }
 
+interface ApiTeamMember {
+  _id: string;
+  name: string;
+  role: string;
+  quote: string;
+  category: string;
+  photo: string;
+  email: string;
+  linkedin: string;
+}
+
+interface TeamCategory {
+  title: string;
+  members: TeamMember[];
+}
+
 const images: Record<string, string> = {
   "team-ceo": "/assets/team-ceo.png",
   "team-cofounder": "/assets/team-cofounder.png",
-  "bharat-k": "/assets/BharatKadavala.jpg",
-  "daksh-p": "/assets/DakshPaghdar.jpg",
-  "shivani-p": "/assets/ShivaniPadhariya.jpg",
-  "krina-r": "/assets/KrinaRanpariya.jpg",
-  "tirth-a": "/assets/TirthAghara.jpg",
-  "bhavesh-g": "/assets/BhaveshGorad.jpg",
-  "vijay-d": "/assets/VijayDevaliya.jpg",
-  "siddhi-t": "/assets/siddhiTanna.jpg",
-  "snehil-s": "/assets/Snehil Singh.png",
-  "brij-p": "/assets/Brij Parekh.jpg",
-  "urvi-d": "/assets/urvidubal.jpg",
-  "shivani-new": "/assets/ShivaniPadhariya.jpg",
-  "ankit-g": "/assets/ankitgupta.jpg",
-  "rahul-k": "/assets/RahulKashyap.jpg",
-  "rahul-p": "/assets/RahulPal.jpg",
-  "aayush": "/assets/Aayush.jpg",
 };
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050/api";
 
 // Founders — displayed separately at the top
 const founders: TeamMember[] = teamMembers.map((m) => ({
@@ -41,155 +45,6 @@ const founders: TeamMember[] = teamMembers.map((m) => ({
   email: "hello@fuertedevelopers.in",
   linkedin: "#",
 }));
-
-// Employees — categorized
-const teamCategories = [
-  {
-    title: "Tech Team",
-    members: [
-      {
-        name: "Bhavesh Gorad",
-        role: "Software Developer",
-        quote: "Solving complex problems through elegant code.",
-        image: "bhavesh-g",
-        email: "bhavesh@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Snehil Singh",
-        role: "Software Developer",
-        quote: "Crafting beautiful and performant user interfaces.",
-        image: "snehil-s",
-        email: "snehil@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Rahul Pal",
-        role: "Software Developer",
-
-        quote: "Building end-to-end solutions that scale.",
-        image: "rahul-p",
-        email: "rahul@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Bharat Kadavala",
-        role: "Software Engineer",
-        quote: "Simplifying complexity with robust engineering.",
-        image: "bharat-k",
-        email: "bharat@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Brij Parekh",
-        role: "Software Developer",
-
-        quote: "Optimizing the heart of modern applications.",
-        image: "brij-p",
-        email: "brij@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Vijay Devaliya",
-        role: "Software Developer",
-        quote: "Always exploring new horizons in technology.",
-        image: "vijay-d",
-        email: "vijay@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Shivani Padhariya",
-        role: "Software Developer",
-        quote: "Design-led development for the best user experience.",
-        image: "shivani-new",
-        imageClass: "object-top",
-        email: "shivani@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Siddhi Tanna",
-        role: "Software Developer",
-        quote: "Building accessible and innovative digital products.",
-        image: "siddhi-t",
-        email: "sidhi@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Tirth Aghara",
-        role: "Software Developer",
-        quote: "Building accessible and innovative digital products.",
-        image: "tirth-a",
-        email: "sidhi@fuertedevelopers.in",
-        linkedin: "#",
-      },
-    ],
-  },
-  {
-    title: "Sales & Strategy",
-    members: [
-      {
-        name: "Krina Ranpariya",
-        role: "Sales Executive",
-        quote: "Building trust and connecting clients with their success.",
-        image: "krina-r",
-        email: "krina@fuertedevelopers.in",
-        linkedin: "#",
-      },
-    ],
-  },
-  {
-    title: "Creative & Visual Media",
-    members: [
-      {
-        name: "Rahul Kashyap",
-        role: "Video Editor",
-        quote: "Telling brand stories through high-impact video.",
-        image: "rahul-k",
-        imageClass: "object-top",
-        email: "rahulk@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Aayush",
-        role: "Graphic Designer",
-        quote: "Translating vision into striking visuals.",
-        image: "aayush",
-        email: "aayush@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Daksh Paghdar",
-        role: "Graphic Designer",
-        quote: "Adding life and motion to digital experiences.",
-        image: "daksh-p",
-        email: "daksh@fuertedevelopers.in",
-        linkedin: "#",
-      },
-    ],
-  },
-  {
-    title: "Digital Marketing",
-    members: [
-      {
-        name: "Ankit Gupta",
-        role: "Digital Marketer",
-        quote: "Strategizing for real-world growth and engagement.",
-        image: "ankit-g",
-        imageClass: "object-top",
-        email: "ankit@fuertedevelopers.in",
-        linkedin: "#",
-      },
-      {
-        name: "Urvi Dubal",
-        role: "Social Media Manager",
-        quote: "Building brands and fostering community online.",
-        image: "urvi-d",
-        email: "urvi@fuertedevelopers.in",
-        linkedin: "#",
-      },
-    ],
-  },
-];
 
 // Reusable card component for founders
 const FounderCard = ({ member, i }: { member: TeamMember; i: number }) => (
@@ -200,9 +55,9 @@ const FounderCard = ({ member, i }: { member: TeamMember; i: number }) => (
       className="group h-full flex flex-col bg-card border border-border rounded-[2.5rem] overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300"
     >
       <div className="aspect-[5/4] relative overflow-hidden bg-muted">
-        {images[member.image] ? (
+        {images[member.image ?? ""] ? (
           <img
-            src={images[member.image]}
+            src={images[member.image ?? ""]}
             alt={member.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
@@ -241,9 +96,9 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
       className="group h-full flex flex-col bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-300 shadow-sm"
     >
       <div className="aspect-[4/3] relative overflow-hidden bg-muted/30" style={{ height: "300px" }}>
-        {images[member.image] ? (
+        {member.photo ? (
           <img
-            src={images[member.image]}
+            src={member.photo}
             alt={member.name}
             className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${member.imageClass ?? "object-center"}`}
           />
@@ -274,6 +129,48 @@ const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
 
 const TeamPage = () => {
   const { t } = useTranslation();
+  const [teamCategories, setTeamCategories] = useState<TeamCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const [categoriesRes, membersRes] = await Promise.all([
+          fetch(`${API_URL}/team-categories`),
+          fetch(`${API_URL}/team`),
+        ]);
+        const categoriesJson = await categoriesRes.json();
+        const membersJson = await membersRes.json();
+
+        if (membersJson.success) {
+          const members: ApiTeamMember[] = membersJson.data;
+          const categoryNames: string[] = categoriesJson.success
+            ? categoriesJson.data.map((c: { name: string }) => c.name)
+            : Array.from(new Set(members.map((m) => m.category)));
+
+          const grouped: TeamCategory[] = categoryNames.map((title) => ({
+            title,
+            members: members
+              .filter((m) => m.category === title)
+              .map((m) => ({
+                name: m.name,
+                role: m.role,
+                quote: m.quote,
+                photo: m.photo,
+                email: m.email || `${m.name.toLowerCase().replace(/\s+/g, "")}@fuertedevelopers.in`,
+                linkedin: m.linkedin || "#",
+              })),
+          })).filter((c) => c.members.length > 0);
+          setTeamCategories(grouped);
+        }
+      } catch {
+        setTeamCategories([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeam();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased text-foreground">
@@ -316,38 +213,34 @@ const TeamPage = () => {
         </section>
 
         {/* Employee Categories */}
-        <div className="space-y-40">
-          {teamCategories.map((category, catIndex) => (
-            <section key={category.title} className="px-6">
-              <div className="max-w-7xl mx-auto">
-                <FadeIn>
-                  <div className="flex items-center gap-4 mb-12">
-                    <h2 className="font-display text-3xl md:text-4xl font-black tracking-tight">
-                      {category.title}
-                    </h2>
-                    <div className="h-[2px] flex-1 bg-gradient-to-r from-primary/20 to-transparent rounded-full" />
-                  </div>
-                </FadeIn>
+        {!loading && (
+          <div className="space-y-40">
+            {teamCategories.map((category, catIndex) => (
+              <section key={category.title} className="px-6">
+                <div className="max-w-7xl mx-auto">
+                  <FadeIn>
+                    <div className="flex items-center gap-4 mb-12">
+                      <h2 className="font-display text-3xl md:text-4xl font-black tracking-tight">
+                        {category.title}
+                      </h2>
+                      <div className="h-[2px] flex-1 bg-gradient-to-r from-primary/20 to-transparent rounded-full" />
+                    </div>
+                  </FadeIn>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                  {category.members.map((member, i) => (
-                    <MemberCard
-                      key={member.name}
-                      member={
-                        {
-                          ...member,
-                          linkedin: "#",
-                          email: `${member.name.toLowerCase().replace(/\s+/g, "")}@fuertedevelopers.in`,
-                        } as TeamMember
-                      }
-                      i={i + catIndex * 4}
-                    />
-                  ))}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    {category.members.map((member, i) => (
+                      <MemberCard
+                        key={member.name}
+                        member={member}
+                        i={i + catIndex * 4}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
-          ))}
-        </div>
+              </section>
+            ))}
+          </div>
+        )}
 
         {/* Culture / Mission Section */}
         <section className="mt-40 py-24 relative overflow-hidden">
