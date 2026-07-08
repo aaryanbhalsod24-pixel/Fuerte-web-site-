@@ -2,6 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
+import { Skeleton } from "@/components/ui/skeleton";
+
+export const BlogCardSkeleton: React.FC = () => (
+  <div className="relative bg-card border border-border/50 rounded-[2rem] overflow-hidden flex flex-col h-full">
+    <Skeleton className="aspect-[16/10] w-full rounded-none" />
+    <div className="p-8 flex flex-col flex-1">
+      <Skeleton className="h-3 w-24 mb-4" />
+      <Skeleton className="h-6 w-full mb-2" />
+      <Skeleton className="h-6 w-2/3 mb-4" />
+      <Skeleton className="h-4 w-full mb-2" />
+      <Skeleton className="h-4 w-full mb-2" />
+      <Skeleton className="h-4 w-3/4 mb-8" />
+      <div className="mt-auto pt-4 border-t border-border/40">
+        <Skeleton className="h-4 w-24" />
+      </div>
+    </div>
+  </div>
+);
 
 interface BlogCardProps {
   title: string;

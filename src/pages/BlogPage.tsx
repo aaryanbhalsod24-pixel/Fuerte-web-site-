@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import FadeIn from "@/components/landing/FadeIn";
 import { useTranslation } from "@/contexts/LanguageContext";
-import BlogCard from "@/components/landing/BlogCard";
+import BlogCard, { BlogCardSkeleton } from "@/components/landing/BlogCard";
 import { getBlogs } from "@/data/blogData";
 import {
   Sparkles,
   Search,
   ArrowDownCircle,
   TrendingUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 type BlogItem = {
@@ -32,19 +34,41 @@ type ApiBlog = {
 };
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
+const PAGE_SIZE = 10;
 
 const BlogPage = () => {
   const { t } = useTranslation();
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
+  const [searchInput, setSearchInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [usingFallback, setUsingFallback] = useState(false);
+
+  // Debounce search input, then reset to page 1
+  useEffect(() => {
+    const handle = setTimeout(() => {
+      setSearchTerm(searchInput);
+      setPage(1);
+    }, 400);
+    return () => clearTimeout(handle);
+  }, [searchInput]);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const res = await fetch(`${API_URL}/blogs`);
-        const json = await res.json();
+    let cancelled = false;
 
-        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams({ page: String(page), limit: String(PAGE_SIZE) });
+        if (searchTerm) params.set("search", searchTerm);
+
+        const res = await fetch(`${API_URL}/blogs/published?${params}`);
+        const json = await res.json();
+        if (cancelled) return;
+
+        if (json.success && Array.isArray(json.data) && (json.data.length > 0 || searchTerm || page > 1)) {
           const mappedBlogs: BlogItem[] = json.data.map((blog: ApiBlog) => ({
             title: blog.title,
             description: blog.shortDescription,
@@ -54,24 +78,38 @@ const BlogPage = () => {
           }));
 
           setBlogs(mappedBlogs);
-          return;
+          setTotalPages(json.pagination?.totalPages || 1);
+          setUsingFallback(false);
+        } else {
+          setBlogs(getBlogs(t));
+          setTotalPages(1);
+          setUsingFallback(true);
         }
-
-        setBlogs(getBlogs(t));
       } catch (error) {
         console.error("Failed to fetch blogs:", error);
-        setBlogs(getBlogs(t));
+        if (!cancelled) {
+          setBlogs(getBlogs(t));
+          setTotalPages(1);
+          setUsingFallback(true);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchBlogs();
-  }, [t]);
+    return () => {
+      cancelled = true;
+    };
+  }, [t, page, searchTerm]);
 
-  const filteredBlogs = blogs.filter(
-    (blog) =>
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBlogs = usingFallback
+    ? blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.description.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : blogs;
 
   return (
     <div className="pt-24 min-h-screen bg-background overflow-hidden">
@@ -105,8 +143,8 @@ const BlogPage = () => {
                 <input
                   type="text"
                   placeholder="Search articles..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
                   className="w-full pl-12 pr-6 py-4 rounded-2xl bg-secondary/30 border border-border/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all font-medium backdrop-blur-sm"
                 />
               </div>
@@ -135,16 +173,44 @@ const BlogPage = () => {
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {filteredBlogs.map((blog, i) => (
-              <FadeIn key={i} delay={i * 0.08}>
-                <BlogCard {...blog} />
-              </FadeIn>
-            ))}
+            {loading
+              ? Array.from({ length: PAGE_SIZE }).map((_, i) => <BlogCardSkeleton key={i} />)
+              : filteredBlogs.map((blog, i) => (
+                  <FadeIn key={i} delay={i * 0.08}>
+                    <BlogCard {...blog} />
+                  </FadeIn>
+                ))}
           </div>
 
-          {filteredBlogs.length === 0 && (
+          {!loading && filteredBlogs.length === 0 && (
             <div className="text-center py-20 opacity-50">
               <p>No articles found matching your search.</p>
+            </div>
+          )}
+
+          {!loading && !usingFallback && totalPages > 1 && (
+            <div className="flex items-center justify-center gap-4 mt-16">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="w-11 h-11 flex items-center justify-center rounded-xl border border-border/50 hover:border-primary/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                aria-label="Previous page"
+              >
+                <ChevronLeft size={18} />
+              </button>
+
+              <span className="text-sm font-semibold text-muted-foreground">
+                Page {page} of {totalPages}
+              </span>
+
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="w-11 h-11 flex items-center justify-center rounded-xl border border-border/50 hover:border-primary/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                aria-label="Next page"
+              >
+                <ChevronRight size={18} />
+              </button>
             </div>
           )}
         </div>
