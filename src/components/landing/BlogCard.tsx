@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -31,12 +32,13 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, description, date, image, link }) => {
   const { t } = useTranslation();
-const isExternal = link.startsWith("http");
-  return (
+  const isExternal = link.startsWith("http");
+
+  const card = (
     <motion.div
       whileHover={{ y: -10 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-2xl hover:border-primary/30 transition-all duration-500"
+      className="group relative bg-card border border-border/50 rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-2xl hover:border-primary/30 transition-all duration-500 cursor-pointer"
     >
       {/* Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -64,16 +66,10 @@ const isExternal = link.startsWith("http");
         </p>
 
         <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
-          <a
-            href={link}
-           target={isExternal ? "_blank" : "_self"}
-rel={isExternal ? "noopener noreferrer" : undefined}
-
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary group/link"
-          >
+          <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary">
             {t.readMore}
-            <ArrowRight size={14} className="group-hover/link:translate-x-1.5 transition-transform" />
-          </a>
+            <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
+          </span>
 
           <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500">
             <ArrowRight size={16} />
@@ -84,6 +80,20 @@ rel={isExternal ? "noopener noreferrer" : undefined}
       {/* Ghost background highlight */}
       <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-primary/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
     </motion.div>
+  );
+
+  if (isExternal) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block h-full">
+        {card}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={link} className="block h-full">
+      {card}
+    </Link>
   );
 };
 

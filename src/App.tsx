@@ -21,6 +21,7 @@ import CompanyOverview from "./pages/CompanyOverview";
 import CustomerStories from "./pages/CustomerStories";
 import PressMedia from "./pages/PressMedia";
 import BlogPage from "./pages/BlogPage";
+import BlogDetail from "./pages/BlogDetail";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
@@ -87,6 +88,7 @@ const App = () => {
                 <Route path="/customer-stories" element={<CustomerStories />} />
                 <Route path="/press-media" element={<PressMedia />} />
                 <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogDetail />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
