@@ -33,7 +33,7 @@ type ApiBlog = {
 };
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 // Builds a compact page list like [1, 2, "...", 8, 9], keeping the current
 // page's neighbors visible and collapsing far-away runs into an ellipsis.
