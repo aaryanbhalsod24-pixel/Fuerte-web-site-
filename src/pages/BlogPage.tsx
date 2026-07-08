@@ -8,7 +8,6 @@ import {
   Search,
   ArrowDownCircle,
   TrendingUp,
-  ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
@@ -35,6 +34,34 @@ type ApiBlog = {
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
 const PAGE_SIZE = 10;
+
+// Builds a compact page list like [1, 2, "...", 8, 9], keeping the current
+// page's neighbors visible and collapsing far-away runs into an ellipsis.
+const getPageNumbers = (current: number, total: number): (number | "...")[] => {
+  const boundaryCount = 2;
+  const siblingCount = 1;
+  const pageSet = new Set<number>();
+
+  for (let i = 1; i <= boundaryCount; i++) pageSet.add(i);
+  for (let i = total - boundaryCount + 1; i <= total; i++) pageSet.add(i);
+  for (let i = current - siblingCount; i <= current + siblingCount; i++) pageSet.add(i);
+
+  const pages = [...pageSet].filter((p) => p >= 1 && p <= total).sort((a, b) => a - b);
+
+  const result: (number | "...")[] = [];
+  pages.forEach((p, idx) => {
+    if (idx === 0) {
+      result.push(p);
+      return;
+    }
+    const prev = pages[idx - 1];
+    if (p - prev === 2) result.push(prev + 1);
+    else if (p - prev > 2) result.push("...");
+    result.push(p);
+  });
+
+  return result;
+};
 
 const BlogPage = () => {
   const { t } = useTranslation();
@@ -189,28 +216,41 @@ const BlogPage = () => {
           )}
 
           {!loading && !usingFallback && totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 mt-16">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="w-11 h-11 flex items-center justify-center rounded-xl border border-border/50 hover:border-primary/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
-                aria-label="Previous page"
-              >
-                <ChevronLeft size={18} />
-              </button>
+            <div className="flex items-center justify-center flex-wrap gap-2 mt-16">
+              {getPageNumbers(page, totalPages).map((p, idx) =>
+                p === "..." ? (
+                  <span
+                    key={`dots-${idx}`}
+                    className="px-1 text-muted-foreground/50 font-bold select-none"
+                  >
+                    ...
+                  </span>
+                ) : (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    aria-label={`Page ${p}`}
+                    aria-current={p === page ? "page" : undefined}
+                    className={`w-10 h-10 flex items-center justify-center rounded-lg font-bold text-sm transition-colors ${
+                      p === page
+                        ? "bg-primary text-white"
+                        : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
 
-              <span className="text-sm font-semibold text-muted-foreground">
-                Page {page} of {totalPages}
-              </span>
-
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                className="w-11 h-11 flex items-center justify-center rounded-xl border border-border/50 hover:border-primary/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
-                aria-label="Next page"
-              >
-                <ChevronRight size={18} />
-              </button>
+              {page < totalPages && (
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  className="ml-3 flex items-center gap-1 font-bold text-sm text-foreground hover:text-primary transition-colors"
+                >
+                  Next Post
+                  <ChevronRight size={16} />
+                </button>
+              )}
             </div>
           )}
         </div>
