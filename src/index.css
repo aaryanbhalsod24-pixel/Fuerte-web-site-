@@ -317,3 +317,8 @@
   border-top: 1px solid hsl(var(--border));
   margin: 2rem 0;
 }
+
+/* Ensure TipTap color inline styles are respected inside .blog-content */
+.blog-content span[style] * {
+  color: inherit !important;
+}
