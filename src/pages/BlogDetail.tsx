@@ -82,7 +82,6 @@ const BlogDetail = () => {
     );
   }
 
-  const tags = (blog.tags || "").split(",").map((t) => t.trim()).filter(Boolean);
   const relatedPosts = related.filter((p) => p._id !== blog._id).slice(0, 3);
 
   return (
@@ -134,10 +133,16 @@ const BlogDetail = () => {
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             {blog.fullContent ? (
-              <div
-                className="blog-content text-base md:text-lg text-muted-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: blog.fullContent }}
-              />
+              /<[a-z][\s\S]*>/i.test(blog.fullContent) ? (
+                <div
+                  className="blog-content text-base md:text-lg text-muted-foreground leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: blog.fullContent }}
+                />
+              ) : (
+                <div className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {blog.fullContent}
+                </div>
+              )
             ) : (
               <div className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
                 {blog.shortDescription}
@@ -145,21 +150,7 @@ const BlogDetail = () => {
             )}
           </FadeIn>
 
-          {tags.length > 0 && (
-            <div className="flex flex-wrap items-center gap-2 mt-12 pt-8 border-t border-border/40">
-              <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground mr-2">
-                Tags
-              </span>
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          {/* Tags section removed */}
         </div>
       </section>
 
