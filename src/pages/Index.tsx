@@ -19,7 +19,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Fuerte Developers | Real Estate & Property Development</title>
-        <meta property="og:title" content="Fuerte Developers – Building Your Dreams" />
+        <meta property="og:title" content="Fuerte Developers Pvt. Ltd.| Best Advertising & Digital Marketing Agency In India" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={baseUrl} />
         <meta property="og:image" content={`${baseUrl}/preview.png`} />
@@ -27,7 +27,7 @@ const Index = () => {
         <meta property="og:image:height" content="630" />
         <meta
           property="og:description"
-          content="Fuerte Developers – Premium real estate development company offering residential and commercial properties with quality and trust."
+          content="Fuerte Developers Pvt. Ltd. — India's trusted digital marketing agency offering SEO, social media and web development services. Grow your brand with data-driven strategies. Get a free consultation today!"
         />
         <meta property="og:site_name" content="Fuerte Developers" />
         <meta property="og:locale" content="en_IN" />
