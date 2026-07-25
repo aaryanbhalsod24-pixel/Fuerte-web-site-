@@ -133,9 +133,16 @@ const BlogDetail = () => {
       <section className="pb-20 px-6">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
-            <div className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-              {blog.fullContent || blog.shortDescription}
-            </div>
+            {blog.fullContent ? (
+              <div
+                className="blog-content text-base md:text-lg text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: blog.fullContent }}
+              />
+            ) : (
+              <div className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                {blog.shortDescription}
+              </div>
+            )}
           </FadeIn>
 
           {tags.length > 0 && (
