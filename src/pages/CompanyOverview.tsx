@@ -3,6 +3,7 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FadeIn from "@/components/landing/FadeIn";
 import { useTranslation } from "@/contexts/LanguageContext";
+import { useModal } from "@/contexts/ModalContext";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   Target,
@@ -23,10 +24,14 @@ import {
   Milestone,
   ChevronRight,
   TrendingUp,
+  Share2,
+  Bot,
+  ShoppingCart,
 } from "lucide-react";
 
 const CompanyOverview = () => {
   const { t } = useTranslation();
+  const { openModal } = useModal();
   const journeyRef = useRef(null);
 
   // Local scroll progress for the Journey section
@@ -44,7 +49,7 @@ const CompanyOverview = () => {
   const stats = [
     { value: "97%", label: t.projectsCompleted, icon: Award },
     { value: "500+", label: t.designAssets, icon: Rocket },
-    { value: "1,000+", label: t.happyClients, icon: Users2 },
+    { value: "10,000+", label: t.happyClients, icon: Users2 },
     { value: "98%", label: t.clientSatisfaction, icon: Sparkles },
   ];
 
@@ -133,49 +138,49 @@ const CompanyOverview = () => {
     {
       title: "Branding",
       description:
-        "Build lasting brand identity through catalog design, store design, visiting cards, and fully custom creative services.",
+        "We craft a unique brand identity that reflects your vision and values. From logo to messaging, we help your business stand out and stay memorable.",
       icon: Palette,
     },
     {
-      title: "Digital Marketing",
+      title: "Business Consultation",
       description:
-        "Drive consumer engagement and worldwide visibility through targeted Google Ads and Social Media campaigns.",
-      icon: Megaphone,
-    },
-    {
-      title: "Graphic Design",
-      description:
-        "Impactful visual communication that aligns with your core values and helps you reach business objectives affordably.",
-      icon: Globe2,
-    },
-    {
-      title: "Web Development",
-      description:
-        "Stunning websites built on the right platforms to differentiate your brand and achieve your business goals.",
-      icon: Monitor,
-    },
-    {
-      title: "SEO",
-      description:
-        "360° SEO — on-page, off-page, and technical — for organic, long-lasting search engine visibility.",
-      icon: Search,
-    },
-    {
-      title: "App Development",
-      description:
-        "Android & iOS apps that create a digital identity with smooth, intuitive consumer experiences.",
-      icon: Smartphone,
+        "Get expert guidance to navigate challenges and make smarter business decisions. We help you build a clear roadmap for sustainable growth.",
+      icon: Briefcase,
     },
     {
       title: "Company Registration",
       description:
-        "Legal forms, trademarking, licensing, and streamlined business formation to get you started the right way.",
+        "We handle the entire legal registration process so you can start your business hassle-free. Fast, compliant, and fully guided from start to finish.",
       icon: FileCheck,
     },
     {
-      title: "Business Consulting",
+      title: "Shopify Store Development",
       description:
-        "Experienced strategists to market your brand efficiently and grow your capabilities through unified solutions.",
+        "We build custom Shopify stores designed to convert visitors into customers. Clean design, smooth functionality, and built to scale with your business.",
+      icon: ShoppingCart,
+    },
+    {
+      title: "Customized Software Development",
+      description:
+        "We design and develop software tailored to your exact business requirements. Scalable, secure, and built to solve your specific challenges.",
+      icon: Smartphone,
+    },
+    {
+      title: "Social Media Marketing (SMM)",
+      description:
+        "We create engaging content and strategies that grow your brand's online presence. Connect with your audience and build lasting customer relationships.",
+      icon: Share2,
+    },
+    {
+      title: "AI Search Engine Marketing",
+      description:
+        "We use AI-driven strategies to improve your visibility on search engines. Reach the right audience at the right time with smarter targeting.",
+      icon: Bot,
+    },
+    {
+      title: "Performance Marketing (Google / Meta)",
+      description:
+        "We run data-driven ad campaigns across Google and Meta platforms. Every rupee spent is optimized to maximize your return on investment.",
       icon: TrendingUp,
     },
   ];
@@ -220,12 +225,12 @@ const CompanyOverview = () => {
                       className="group-hover:rotate-12 transition-transform"
                     />
                   </a>
-                  <a
-                    href="/#contact"
+                  <button
+                    onClick={openModal}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 border border-border/60 backdrop-blur-md rounded-xl font-bold text-sm hover:bg-white/10 hover:-translate-y-0.5 transition-all active:scale-95"
                   >
                     {t.getInTouch}
-                  </a>
+                  </button>
                 </div>
               </div>
             </FadeIn>
@@ -235,7 +240,7 @@ const CompanyOverview = () => {
                 <div className="absolute inset-x-0 -bottom-10 bg-primary/15 h-20 blur-3xl rounded-full group-hover:bg-primary/25 transition-all" />
                 <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_32px_80px_-16px_rgba(0,0,0,0.5)] relative">
                   <img
-                    src="/assets/company-overview-hero.png"
+                    src="/assets/team-office.jpg"
                     alt="Fuerte Developers Pvt. Ltd. Global Vision"
                     className="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
@@ -296,7 +301,7 @@ const CompanyOverview = () => {
                 <div className="absolute -inset-3 bg-primary/15 blur-2xl rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl border border-white/5">
                   <img
-                    src="/assets/vision-image.jpg"
+                    src="/assets/team-office.jpg"
                     alt="Mission Vision"
                     className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                   />

@@ -58,7 +58,7 @@ const Vision = () => {
           <FadeIn direction="right">
             <div className="rounded-2xl overflow-hidden">
               <img
-                src="/assets/vision-image.jpg"
+                src="/assets/team-office.jpg"
                 alt="Team working in modern office"
                 className="w-full h-[400px] object-cover"
               />

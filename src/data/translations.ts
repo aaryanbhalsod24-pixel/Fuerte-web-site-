@@ -105,16 +105,28 @@ export interface Translation {
   servicesLabel: string;
   servicesTitleMain: string;
   servicesDescMain: string;
+  serBranding: string;
+  serBrandingDesc: string;
+  serBusConsult: string;
+  serBusConsultDesc: string;
+  serCoReg: string;
+  serCoRegDesc: string;
   serShopify: string;
   serShopifyDesc: string;
-  serAppDev: string;
-  serAppDevDesc: string;
+  serSoftDev: string;
+  serSoftDevDesc: string;
+  serSMM: string;
+  serSMMDesc: string;
+  serAISEM: string;
+  serAISEMDesc: string;
+  serPerfMark: string;
+  serPerfMarkDesc: string;
   serSEO: string;
   serSEODesc: string;
   serLocalSEO: string;
   serLocalSEODesc: string;
-  serSMM: string;
-  serSMMDesc: string;
+  serAppDev: string;
+  serAppDevDesc: string;
   serAds: string;
   serAdsDesc: string;
 
@@ -377,16 +389,28 @@ export const translations: Record<Language, Translation> = {
     prodHRMSDesc: "Workforce management and productivity tracking systems.",
     prodParking: "Smart Parking",
     prodParkingDesc: "Intuitive parking management and reservation solutions.",
+    serBranding: "Branding",
+    serBrandingDesc: "We craft a unique brand identity that reflects your vision and values. From logo to messaging, we help your business stand out and stay memorable.",
+    serBusConsult: "Business Consultation",
+    serBusConsultDesc: "Get expert guidance to navigate challenges and make smarter business decisions. We help you build a clear roadmap for sustainable growth.",
+    serCoReg: "Company Registration",
+    serCoRegDesc: "We handle the entire legal registration process so you can start your business hassle-free. Fast, compliant, and fully guided from start to finish.",
     serShopify: "Shopify Store Development",
-    serShopifyDesc: "Shopify Store Development focuses on creating an online store where businesses can sell their products and services easily.",
-    serAppDev: "Customize App Development",
-    serAppDevDesc: "Custom App Development is the process of building applications according to specific business requirements.",
+    serShopifyDesc: "We build custom Shopify stores designed to convert visitors into customers. Clean design, smooth functionality, and built to scale with your business.",
+    serSoftDev: "Customized Software Development",
+    serSoftDevDesc: "We design and develop software tailored to your exact business requirements. Scalable, secure, and built to solve your specific challenges.",
+    serSMM: "Social Media Marketing (SMM)",
+    serSMMDesc: "We create engaging content and strategies that grow your brand's online presence. Connect with your audience and build lasting customer relationships.",
+    serAISEM: "AI Search Engine Marketing",
+    serAISEMDesc: "We use AI-driven strategies to improve your visibility on search engines. Reach the right audience at the right time with smarter targeting.",
+    serPerfMark: "Performance Marketing (Google / Meta)",
+    serPerfMarkDesc: "We run data-driven ad campaigns across Google and Meta platforms. Every rupee spent is optimized to maximize your return on investment.",
     serSEO: "On/Off Page SEO",
     serSEODesc: "Search Engine Optimization helps websites rank higher on search engines like Google.",
     serLocalSEO: "Local SEO",
     serLocalSEODesc: "Local SEO helps businesses appear in location-based search results and attract nearby customers.",
-    serSMM: "Social Media Marketing",
-    serSMMDesc: "Social Media Marketing helps businesses promote their products and services through social media platforms.",
+    serAppDev: "Customize App Development",
+    serAppDevDesc: "Custom App Development is the process of building applications according to specific business requirements.",
     serAds: "Google / Meta Ads",
     serAdsDesc: "Google Ads and Meta Ads help businesses reach targeted audiences through paid advertising campaigns.",
     teamCEO: "Aditya Prakash",

@@ -2,6 +2,7 @@ import React from "react";
 import FadeIn from "@/components/landing/FadeIn";
 import { useTranslation } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import { useModal } from "@/contexts/ModalContext";
 import {
   Newspaper,
   Calendar,
@@ -18,6 +19,7 @@ import {
 
 const PressMedia = () => {
   const { t } = useTranslation();
+  const { openModal } = useModal();
 
   const mediaPartners = [
     "JOIST",
@@ -203,13 +205,13 @@ const PressMedia = () => {
                     <Mail size={18} />
                     {t.mediaContactEmail}
                   </a>
-                  <a
-                    href="/#contact"
+                  <button
+                    onClick={openModal}
                     className="flex items-center gap-2.5 px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-sm hover:bg-white/10 hover:-translate-y-1 transition-all"
                   >
                     {t.getInTouch}
                     <ExternalLink size={16} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

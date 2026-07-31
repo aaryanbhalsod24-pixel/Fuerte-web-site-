@@ -6,34 +6,34 @@ import { useTranslation } from "@/contexts/LanguageContext";
 // ─── Instagram posts (@fuerte_developers) ────────────────────────────────────
 const INSTA_POSTS = [
   {
-    url: "https://www.instagram.com/p/DWgkr73jYGy/",
+    url: "https://www.instagram.com/p/DbayhiJD48l/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DWgkr73jYGy/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/DbayhiJD48l/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
   {
-    url: "https://www.instagram.com/p/DWTqel3jZzp/",
+    url: "https://www.instagram.com/p/DbTFE5qjten/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DWTqel3jZzp/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/DbTFE5qjten/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
   {
-    url: "https://www.instagram.com/p/DWRHHWYjz_J/",
+    url: "https://www.instagram.com/p/DbLZZLODerm/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DWRHHWYjz_J/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/DbLZZLODerm/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
   {
-    url: "https://www.instagram.com/p/DVyPNGzAN-i/",
+    url: "https://www.instagram.com/p/DbGVbG1Mzhg/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DVyPNGzAN-i/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/DbGVbG1Mzhg/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
   {
-    url: "https://www.instagram.com/p/DVs7putDHL3/",
+    url: "https://www.instagram.com/p/Da18LsFjmDi/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DVs7putDHL3/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/Da18LsFjmDi/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
   {
-    url: "https://www.instagram.com/p/DVqD5rxDsV7/",
+    url: "https://www.instagram.com/p/DaxljyNCo6G/",
     thumb:
-      "https://wsrv.nl/?url=instagram.com/p/DVqD5rxDsV7/media/?size=m&w=400&h=400&fit=cover&output=jpg",
+      "https://wsrv.nl/?url=instagram.com/p/DaxljyNCo6G/media/?size=m&w=400&h=400&fit=cover&output=jpg",
   },
 ];
 
@@ -370,6 +370,7 @@ export default function Footer() {
 
         .footer-col-brand,
         .footer-col-links,
+        .footer-col-blog,
         .footer-col-contact,
         .footer-col-insta {
           grid-column: 1 / -1;
@@ -382,19 +383,21 @@ export default function Footer() {
           }
           .footer-col-brand { grid-column: 1 / -1; }
           .footer-col-links { grid-column: 1 / 2; }
-          .footer-col-contact { grid-column: 2 / 3; }
-          .footer-col-insta { grid-column: 1 / -1; }
+          .footer-col-blog { grid-column: 2 / 3; }
+          .footer-col-contact { grid-column: 1 / 2; }
+          .footer-col-insta { grid-column: 2 / -1; }
         }
 
         @media (min-width: 1024px) {
           .footer-grid {
-            grid-template-columns: 1.4fr 1fr 1.3fr 1.5fr;
-            gap: 40px;
+            grid-template-columns: 1.3fr 0.9fr 0.9fr 1.2fr 1.5fr;
+            gap: 30px;
           }
           .footer-col-brand { grid-column: 1 / 2; }
           .footer-col-links { grid-column: 2 / 3; }
-          .footer-col-contact { grid-column: 3 / 4; }
-          .footer-col-insta { grid-column: 4 / 5; }
+          .footer-col-blog { grid-column: 3 / 4; }
+          .footer-col-contact { grid-column: 4 / 5; }
+          .footer-col-insta { grid-column: 5 / 6; }
         }
 
         .footer-bottom {
@@ -454,6 +457,18 @@ export default function Footer() {
                     <FLink href={l.href}>{getTranslatedLabel(l.label)}</FLink>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            <div className="footer-col-blog">
+              <SLabel>{t.blogLabel}</SLabel>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+                <li>
+                  <FLink href="/blog">{t.blogTitle || "Our Blog"}</FLink>
+                </li>
+                <li>
+                  <FLink href="/blog">{t.viewAllPosts || "All Posts"}</FLink>
+                </li>
               </ul>
             </div>
 

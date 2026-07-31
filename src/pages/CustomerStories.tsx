@@ -11,10 +11,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
+import { useModal } from "@/contexts/ModalContext";
 
 // Brand logos (Trusted Brands)
 const CustomerStories = () => {
   const { t } = useTranslation();
+  const { openModal } = useModal();
 
   const testimonials = [
     {
@@ -266,18 +268,28 @@ const CustomerStories = () => {
   ];
 
   const highlights = [
-    { label: "Client Growth", value: "450%", icon: TrendingUp },
+    { label: "Client Growth", value: "150%", icon: TrendingUp },
     { label: "Success Stories", value: "250+", icon: Star },
-    { label: "Brand Reach", value: "1.2M", icon: Users },
+    { label: "Brand Reach", value: "15M", icon: Users },
   ];
 
   const trustedBrands = [
     { name: "TeamWork", logo: "/assets/company-logo/bangal-logo.png" },
     { name: "Pizza Studio", logo: "/assets/company-logo/giriraj-logo.png" },
+    { name: "Globe", logo: "/assets/company-logo/globe-logo.jpg" },
     { name: "Ford", logo: "/assets/company-logo/gopi-logo.png" },
     { name: "Innovative", logo: "/assets/company-logo/hazel-logo.png" },
+    { name: "Hope", logo: "/assets/company-logo/hope-logo.jpg" },
+    { name: "Inspire", logo: "/assets/company-logo/inspire-logo.jpg" },
     { name: "UMA", logo: "/assets/company-logo/kasturi-logo.jpg" },
+    { name: "Khodal", logo: "/assets/company-logo/khodal-logo.jpg" },
+    { name: "Niva", logo: "/assets/company-logo/niva-logo.jpg" },
+    { name: "Pine", logo: "/assets/company-logo/pine-logo.jpg" },
+    { name: "Rajhans", logo: "/assets/company-logo/rajhans-logo.jpg" },
     { name: "VIMOX", logo: "/assets/company-logo/santosh-logo.png" },
+    { name: "Subh", logo: "/assets/company-logo/subh-logo.jpg" },
+    { name: "Tizo", logo: "/assets/company-logo/tizo-logo.jpg" },
+    { name: "Trading Edge", logo: "/assets/company-logo/tradingedge-logo.jpg" },
   ];
 
   return (
@@ -313,9 +325,9 @@ const CustomerStories = () => {
         {/* ── Highlights ───────────────────────────────── */}
         <div className="max-w-5xl mx-auto px-6 mb-32 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { label: t.clientGrowth, value: "450%", icon: TrendingUp },
+            { label: t.clientGrowth, value: "150%", icon: TrendingUp },
             { label: t.successStories, value: "250+", icon: Star },
-            { label: t.brandReach, value: "1.2M", icon: Users },
+            { label: t.brandReach, value: "15M", icon: Users },
           ].map((h, i) => (
             <div
               key={h.label}
@@ -443,7 +455,7 @@ const CustomerStories = () => {
             <FadeIn>
               <div className="text-center mb-16">
                 <h2 className="font-display text-3xl md:text-5xl font-black tracking-tight mb-4">
-                  Trusted by 1000+ Brands Worldwide
+                  Trusted by 10,000+ Brands Worldwide
                 </h2>
                 <p className="text-muted-foreground max-w-xl mx-auto italic">
                   From startups to global enterprises, we've build digital fortresses for everyone.
@@ -451,19 +463,39 @@ const CustomerStories = () => {
               </div>
             </FadeIn>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-              {trustedBrands.map((brand, i) => (
-                <FadeIn key={brand.name} delay={i * 0.05}>
-                  <div className="flex flex-col items-center gap-4 group">
-                    <div className="w-24 h-24 rounded-2xl bg-card border border-border/60 flex items-center justify-center p-4 grayscale group-hover:grayscale-0 group-hover:border-primary/40 group-hover:shadow-lg transition-all duration-500">
-                      <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain opacity-50 group-hover:opacity-100" />
+            <div className="relative w-full overflow-hidden py-4 mask-gradient">
+              <style>{`
+                @keyframes marquee {
+                  0% { transform: translateX(-50%); }
+                  100% { transform: translateX(0); }
+                }
+                .marquee-track {
+                  display: flex;
+                  width: max-content;
+                  gap: 32px;
+                  animation: marquee 35s linear infinite;
+                }
+                .marquee-track:hover {
+                  animation-play-state: paused;
+                }
+                .mask-gradient {
+                  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                }
+              `}</style>
+              <div className="marquee-track">
+                {/* Render the brands array twice to allow smooth looping */}
+                {[...trustedBrands, ...trustedBrands].map((brand, i) => (
+                  <div key={`${brand.name}-${i}`} className="inline-flex flex-col items-center gap-4 group select-none shrink-0" style={{ width: 120 }}>
+                    <div className="w-24 h-24 rounded-2xl bg-card border border-border/60 flex items-center justify-center p-4 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(147,51,234,0.25)] group-hover:border-primary/40 transition-all duration-500">
+                      <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain pointer-events-none" />
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all">
                       {brand.name}
                     </span>
                   </div>
-                </FadeIn>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -486,13 +518,13 @@ const CustomerStories = () => {
                 {t.ctaTitle}
               </h2>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/#contact"
+                <button
+                  onClick={openModal}
                   className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-2xl font-black text-lg hover:scale-105 hover:shadow-[0_20px_40px_rgba(255,255,255,0.1)] active:scale-95 transition-all"
                 >
                   {t.ctaButton}
                   <ArrowRight size={20} />
-                </a>
+                </button>
               </div>
             </div>
           </div>

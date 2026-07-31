@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
+import MediaPress from "@/components/landing/MediaPress";
 import Vision from "@/components/landing/Vision";
 import Products from "@/components/landing/Products";
-import Services from "@/components/landing/Services";
 import Team from "@/components/landing/Team";
-import Testimonials from "@/components/landing/Testimonials";
+import GoogleReviews from "@/components/landing/GoogleReviews";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
 
@@ -43,11 +43,11 @@ const Index = () => {
 
       <Navbar />
       <Hero />
+      <MediaPress />
       <Vision />
       <Products />
-      <Services />
       <Team />
-      <Testimonials />
+      <GoogleReviews />
       <CTASection />
       <Footer />
     </div>

@@ -130,18 +130,6 @@ export const navLinks = [
         href: "/services/local-seo",
         icon: MapPin,
       },
-      {
-        label: "Social Media",
-        description: "Engagement through strategic campaigns.",
-        href: "/services/social-media-marketing",
-        icon: Share2,
-      },
-      {
-        label: "Google / Meta Ads",
-        description: "Targeted paid advertising results.",
-        href: "/services/google-meta-ads",
-        icon: MousePointerClick,
-      },
     ],
   },
 
@@ -157,6 +145,7 @@ export const footerLinks = {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/#vision" },
     { label: "Services", href: "/services" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
 

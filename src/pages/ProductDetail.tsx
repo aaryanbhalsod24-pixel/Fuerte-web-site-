@@ -4,10 +4,12 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useModal } from "@/contexts/ModalContext";
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
+  const { openModal } = useModal();
 
   if (!product) {
     return (
@@ -104,12 +106,12 @@ const ProductDetail = () => {
               </div>
 
               <div className="pt-6">
-                <a
-                  href="/#contact"
+                <button
+                  onClick={openModal}
                   className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
                 >
                   Request Demo
-                </a>
+                </button>
               </div>
             </motion.div>
 

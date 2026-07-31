@@ -3,10 +3,12 @@ import { services } from "@/data/services";
 import Footer from "@/components/landing/Footer";
 import { ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useModal } from "@/contexts/ModalContext";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const service = services.find((s) => s.slug === slug);
+  const { openModal } = useModal();
 
   if (!service) {
     return (
@@ -61,8 +63,8 @@ const ServiceDetail = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-4 pt-1">
-                  <a
-                    href="/#contact"
+                  <button
+                    onClick={openModal}
                     className="inline-flex items-center justify-center px-7 py-3.5 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all group"
                   >
                     Get Started Now
@@ -70,7 +72,7 @@ const ServiceDetail = () => {
                       size={16}
                       className="ml-2 group-hover:translate-x-1 transition-transform"
                     />
-                  </a>
+                  </button>
                 </div>
               </motion.div>
 
@@ -193,12 +195,12 @@ const ServiceDetail = () => {
                 specialized solutions. Let's build your future today.
               </p>
               <div className="flex flex-wrap justify-center gap-4 pt-1">
-                <a
-                  href="/#contact"
+                <button
+                  onClick={openModal}
                   className="px-9 py-3.5 bg-background text-primary rounded-full font-bold text-base hover:scale-105 transition-transform shadow-md"
                 >
                   Get Started
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>
