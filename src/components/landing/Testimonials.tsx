@@ -1,74 +1,40 @@
-import { useState, useEffect } from "react";
 import FadeIn from "./FadeIn";
 import { Quote, Star } from "lucide-react";
 import { useTranslation } from "@/contexts/LanguageContext";
 
-interface ApiTestimonial {
-  _id: string;
-  name: string;
-  company: string;
-  quote: string;
-  rating: number;
-  photo: string;
-}
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050/api";
-
 const Testimonials = () => {
   const { t } = useTranslation();
-  const [testimonials, setTestimonials] = useState<ApiTestimonial[]>([]);
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await fetch(`${API_URL}/testimonials`);
-        const json = await res.json();
-        if (json.success && json.data && json.data.length > 0) {
-          setTestimonials(json.data);
-          return;
-        }
-      } catch {
-        // ignore and fallback
-      }
-      setTestimonials([
-        {
-          _id: "static-1",
-          name: t.test1Name,
-          company: t.test1Company,
-          quote: t.test1Quote,
-          rating: 5,
-          photo: "",
-        },
-        {
-          _id: "static-2",
-          name: t.test2Name,
-          company: t.test2Company,
-          quote: t.test2Quote,
-          rating: 5,
-          photo: "",
-        },
-        {
-          _id: "static-3",
-          name: t.test3Name,
-          company: t.test3Company,
-          quote: t.test3Quote,
-          rating: 5,
-          photo: "",
-        },
-        {
-          _id: "static-4",
-          name: t.test4Name,
-          company: t.test4Company,
-          quote: t.test4Quote,
-          rating: 5,
-          photo: "",
-        },
-      ]);
-    };
-    fetchTestimonials();
-  }, [t]);
-
-  if (testimonials.length === 0) return null;
+  const testimonials = [
+    {
+      id: "static-1",
+      name: t.test1Name,
+      company: t.test1Company,
+      quote: t.test1Quote,
+      rating: 5,
+    },
+    {
+      id: "static-2",
+      name: t.test2Name,
+      company: t.test2Company,
+      quote: t.test2Quote,
+      rating: 5,
+    },
+    {
+      id: "static-3",
+      name: t.test3Name,
+      company: t.test3Company,
+      quote: t.test3Quote,
+      rating: 5,
+    },
+    {
+      id: "static-4",
+      name: t.test4Name,
+      company: t.test4Company,
+      quote: t.test4Quote,
+      rating: 5,
+    },
+  ];
 
   return (
     <section id="testimonials" className="section-padding border-t border-border">
@@ -89,7 +55,7 @@ const Testimonials = () => {
         </FadeIn>
         <div className="grid md:grid-cols-2 gap-6">
           {testimonials.map((test, i) => (
-            <FadeIn key={test._id} delay={i * 0.1}>
+            <FadeIn key={test.id} delay={i * 0.1}>
               <div className="border border-border rounded-2xl p-8 hover:bg-secondary transition-colors duration-300 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <Quote size={24} className="text-muted-foreground" />
@@ -107,9 +73,6 @@ const Testimonials = () => {
                   "{test.quote}"
                 </p>
                 <div className="mt-6 pt-4 border-t border-border flex items-center gap-3">
-                  {test.photo && (
-                    <img src={test.photo} alt={test.name} className="h-10 w-10 rounded-full object-cover" />
-                  )}
                   <div>
                     <p className="font-semibold text-sm">{test.name}</p>
                     <p className="text-xs text-muted-foreground">{test.company}</p>
