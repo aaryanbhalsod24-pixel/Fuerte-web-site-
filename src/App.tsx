@@ -5,6 +5,7 @@ import Hero from "./components/landing/Hero";
 import Vision from "./components/landing/Vision";
 import Products from "./components/landing/Products";
 import Team from "./components/landing/Team";
+import ShowcasePartners from "./components/landing/ShowcasePartners";
 import Testimonials from "./components/landing/Testimonials";
 import CTASection from "./components/landing/CTASection";
 import Footer from "./components/landing/Footer";
@@ -61,6 +62,7 @@ const Home = () => {
   return (
     <>
       <Hero />
+      <ShowcasePartners />
       <Vision />
       <Products />
       <Team />
