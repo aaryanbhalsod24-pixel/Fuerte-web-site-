@@ -85,13 +85,13 @@ const ShowcasePartners = () => {
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
                   <div
                     key={`${partner.name}-${i}`}
-                    className="flex-shrink-0 w-[140px] sm:w-[190px] md:w-[220px] h-[80px] sm:h-[100px] md:h-[120px] flex items-center justify-center bg-white rounded-xl border border-border/10 hover:shadow-lg transition-shadow duration-300"
+                    className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center bg-white rounded-xl border border-border/10 hover:shadow-lg transition-shadow duration-300"
                   >
                     <a href={partner.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
                       <img
                         src={partner.logo}
                         alt="partner logo"
-                        className="h-[65px] sm:h-[80px] md:h-[100px] w-auto object-contain select-none pointer-events-none"
+                        className="h-[70px] sm:h-[90px] md:h-[110px] w-auto object-contain select-none pointer-events-none"
                       />
                     </a>
                   </div>
@@ -115,13 +115,13 @@ const ShowcasePartners = () => {
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
-                    className="flex-shrink-0 w-[140px] sm:w-[190px] md:w-[220px] h-[80px] sm:h-[100px] md:h-[120px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300"
+                    className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300"
                   >
                     <a href={brand.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
                       <img
                         src={brand.logo}
                         alt="partner logo"
-                        className="h-[65px] sm:h-[80px] md:h-[100px] w-auto object-contain select-none pointer-events-none"
+                        className="h-[70px] sm:h-[90px] md:h-[110px] w-auto object-contain select-none pointer-events-none"
                       />
                     </a>
                   </div>
