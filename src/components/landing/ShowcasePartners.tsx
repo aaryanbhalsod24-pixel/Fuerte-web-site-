@@ -92,7 +92,7 @@ const ShowcasePartners = () => {
                     key={`${partner.name}-${i}`}
                     className="flex-shrink-0 w-[110px] sm:w-[150px] md:w-[180px] h-[65px] sm:h-[85px] md:h-[100px] flex items-center justify-center bg-white rounded-xl border border-border/10 hover:shadow-lg transition-shadow duration-300"
                   >
-                    <a href={partner.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full p-2">
+                    <a href={partner.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
                       <img
                         src={partner.logo}
                         alt="partner logo"
@@ -119,7 +119,7 @@ const ShowcasePartners = () => {
                     key={`${brand.name}-${i}`}
                     className="flex-shrink-0 w-[110px] sm:w-[150px] md:w-[180px] h-[65px] sm:h-[85px] md:h-[100px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300"
                   >
-                    <a href={brand.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full p-2">
+                    <a href={brand.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
                       <img
                         src={brand.logo}
                         alt="partner logo"
