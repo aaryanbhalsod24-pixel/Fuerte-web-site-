@@ -259,14 +259,14 @@ const BlogPage = () => {
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <div className="relative rounded-[3rem] overflow-hidden bg-gradient-to-br from-primary/10 to-purple-500/10 border border-primary/20 p-12 md:p-20 text-center group">
-              <div className="absolute inset-0 bg-primary/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+            <div className="relative rounded-[3rem] overflow-hidden bg-[#000000] border border-white/10 p-12 md:p-20 text-center group">
+              <div className="absolute inset-0 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
-              <h2 className="font-display text-4xl md:text-5xl font-black mb-8 leading-tight">
+              <h2 className="font-display text-4xl md:text-5xl font-black mb-8 leading-tight text-white">
                 Never Miss an <br />{" "}
-                <span className="text-primary italic">Update</span>
+                <span className="text-blue-400 italic">Update</span>
               </h2>
-              <p className="max-w-xl mx-auto text-muted-foreground text-lg mb-12 opacity-80 leading-relaxed">
+              <p className="max-w-xl mx-auto text-white/70 text-lg mb-12 leading-relaxed">
                 Stay ahead of the curve with our weekly newsletter featuring
                 the latest in tech, branding, and digital growth.
               </p>
@@ -275,9 +275,9 @@ const BlogPage = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-6 py-4 rounded-2xl bg-background border border-border/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all font-medium"
+                  className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 transition-all font-medium"
                 />
-                <button className="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-2xl font-bold text-sm shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all active:scale-95 whitespace-nowrap">
+                <button className="w-full sm:w-auto px-8 py-4 bg-white text-black hover:bg-white/90 rounded-2xl font-bold text-sm shadow-xl shadow-white/5 hover:-translate-y-1 transition-all active:scale-95 whitespace-nowrap">
                   Subscribe Now
                 </button>
               </div>
