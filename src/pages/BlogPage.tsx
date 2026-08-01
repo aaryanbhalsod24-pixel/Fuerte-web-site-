@@ -259,7 +259,7 @@ const BlogPage = () => {
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <div className="relative rounded-[3rem] overflow-hidden bg-[#1A1A1A] border border-white/10 p-12 md:p-20 text-center group">
+            <div className="relative rounded-[3rem] overflow-hidden bg-[#2F2F3F] border border-white/10 p-12 md:p-20 text-center group">
               <div className="absolute inset-0 bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
               <h2 className="font-display text-4xl md:text-5xl font-black mb-8 leading-tight text-white">
