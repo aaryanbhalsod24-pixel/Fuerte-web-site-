@@ -370,7 +370,6 @@ export default function Footer() {
 
         .footer-col-brand,
         .footer-col-links,
-        .footer-col-blog,
         .footer-col-contact,
         .footer-col-insta {
           grid-column: 1 / -1;
@@ -383,21 +382,19 @@ export default function Footer() {
           }
           .footer-col-brand { grid-column: 1 / -1; }
           .footer-col-links { grid-column: 1 / 2; }
-          .footer-col-blog { grid-column: 2 / 3; }
-          .footer-col-contact { grid-column: 1 / 2; }
-          .footer-col-insta { grid-column: 2 / -1; }
+          .footer-col-contact { grid-column: 2 / 3; }
+          .footer-col-insta { grid-column: 1 / -1; }
         }
 
         @media (min-width: 1024px) {
           .footer-grid {
-            grid-template-columns: 1.3fr 0.9fr 0.9fr 1.2fr 1.5fr;
+            grid-template-columns: 1.3fr 1fr 1.2fr 1.5fr;
             gap: 30px;
           }
           .footer-col-brand { grid-column: 1 / 2; }
           .footer-col-links { grid-column: 2 / 3; }
-          .footer-col-blog { grid-column: 3 / 4; }
-          .footer-col-contact { grid-column: 4 / 5; }
-          .footer-col-insta { grid-column: 5 / 6; }
+          .footer-col-contact { grid-column: 3 / 4; }
+          .footer-col-insta { grid-column: 4 / 5; }
         }
 
         .footer-bottom {
@@ -460,17 +457,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="footer-col-blog">
-              <SLabel>{t.blogLabel}</SLabel>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                <li>
-                  <FLink href="/blog">{t.blogTitle || "Our Blog"}</FLink>
-                </li>
-                <li>
-                  <FLink href="/blog">{t.viewAllPosts || "All Posts"}</FLink>
-                </li>
-              </ul>
-            </div>
+
 
             <div className="footer-col-contact">
               <SLabel>{t.contactUs}</SLabel>
