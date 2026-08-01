@@ -47,23 +47,17 @@ const ShowcasePartners = () => {
   return (
     <section className="pt-2 pb-4 border-t border-border bg-background relative overflow-hidden">
       <style>{`
-        @keyframes marquee-ltr {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        @keyframes marquee-rtl {
+        @keyframes marquee-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .marquee-track-ltr {
           display: flex;
-          width: max-content;
-          animation: marquee-ltr 30s linear infinite;
+          animation: marquee-scroll 30s linear infinite;
         }
         .marquee-track-rtl {
           display: flex;
-          width: max-content;
-          animation: marquee-rtl 120s linear infinite;
+          animation: marquee-scroll 120s linear infinite;
         }
         .marquee-track-ltr:hover,
         .marquee-track-rtl:hover {
@@ -84,7 +78,10 @@ const ShowcasePartners = () => {
               TRUSTED BY PRESS & MEDIA PARTNER
             </p>
             <div className="relative w-full overflow-hidden py-4 mask-gradient">
-              <div className="marquee-track-ltr flex gap-2 sm:gap-4">
+              <div
+                className="marquee-track-ltr flex items-center gap-2 sm:gap-4"
+                style={{ width: "max-content", willChange: "transform" }}
+              >
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
                   <div
                     key={`${partner.name}-${i}`}
@@ -111,7 +108,10 @@ const ShowcasePartners = () => {
               TRUSTED BY LEADING BRANDS AND STARTUPS
             </p>
             <div className="relative w-full overflow-hidden py-4 mask-gradient">
-              <div className="marquee-track-rtl flex gap-2 sm:gap-4">
+              <div
+                className="marquee-track-rtl flex items-center gap-2 sm:gap-4"
+                style={{ width: "max-content", willChange: "transform" }}
+              >
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
