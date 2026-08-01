@@ -115,7 +115,7 @@ const ShowcasePartners = () => {
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
-                    className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300"
+                    className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-primary/30 transition-all duration-300"
                   >
                     <a href={brand.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
                       <img
