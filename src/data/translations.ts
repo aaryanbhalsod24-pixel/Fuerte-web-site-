@@ -153,6 +153,7 @@ export interface Translation {
   test2Quote: string;
   test3Name: string;
   test3Company: string;
+  test3Quote: string;
   test4Name: string;
   test4Company: string;
   test4Quote: string;
@@ -419,17 +420,18 @@ export const translations: Record<Language, Translation> = {
     teamCoFounder: "Pooja Gangwani",
     teamCoFounderRole: "Co-Founder",
     teamCoFounderQuote: "Ensuring every project delivers value, quality, and client satisfaction.",
-    test1Name: "Rahul Sharma",
-    test1Company: "TechVista Solutions",
-    test1Quote: "Fuerte Developers Pvt. Ltd. transformed our online presence completely. Their team delivered a stunning Shopify store that increased our sales by 150% within three months.",
-    test2Name: "Priya Mehta",
-    test2Company: "GreenLeaf Organics",
-    test2Quote: "The CRM system they built for us streamlined our entire sales process. Exceptional quality and outstanding support throughout the project.",
-    test3Name: "Amit Patel",
-    test3Company: "QuickServe Logistics",
-    test4Name: "Sneha Reddy",
-    test4Company: "Wellness Hub Spa",
-    test4Quote: "The spa management system is exactly what we needed. Booking, scheduling, and customer management — all in one beautiful platform.",
+    test1Name: "Vishal Kavaiya",
+    test1Company: "3 years ago",
+    test1Quote: "Fuerte developers have been providing services for the past few years for our Graphic Design Posts. Overall, it's been a positive experience. Also, our company looks forward to receiving their services in the future.",
+    test2Name: "Nevil Soni",
+    test2Company: "4 years ago",
+    test2Quote: "I am really Thankful to Fuerte Developers Who have Provided me best Graphic Designing Services for Jewelry Business and they well maintained my social accounts too.",
+    test3Name: "Preyasi Rajora",
+    test3Company: "5 years ago",
+    test3Quote: "Had great experience. Highly qualified and experienced staff. Would recommend everyone to get their professional help, when in need. They aren't leaving you dissatisfied.",
+    test4Name: "Aksa Sama",
+    test4Company: "3 years ago",
+    test4Quote: "Great experience. Thank you so much for a chance. I had learnt a lot and all of the members were very supportive and cooperative. Thank you for providing me with such an opportunity.",
     statProjects: "Projects Completed",
     statClients: "Happy Clients",
     statYears: "Years Experience",

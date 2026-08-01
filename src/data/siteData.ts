@@ -27,23 +27,23 @@ export const teamMembers = [
 
 export const testimonials = [
   {
-    name: "Rahul Sharma",
-    company: "TechVista Solutions",
-    quote: "Fuerte Developers Pvt. Ltd. transformed our online presence completely. Their team delivered a stunning Shopify store that increased our sales by 150% within three months.",
+    name: "Vishal Kavaiya",
+    company: "3 years ago",
+    quote: "Fuerte developers have been providing services for the past few years for our Graphic Design Posts. Overall, it's been a positive experience. Also, our company looks forward to receiving their services in the future.",
   },
   {
-    name: "Priya Mehta",
-    company: "GreenLeaf Organics",
-    quote: "The CRM system they built for us streamlined our entire sales process. Exceptional quality and outstanding support throughout the project.",
+    name: "Nevil Soni",
+    company: "4 years ago",
+    quote: "I am really Thankful to Fuerte Developers Who have Provided me best Graphic Designing Services for Jewelry Business and they well maintained my social accounts too.",
   },
   {
-    name: "Amit Patel",
-    company: "QuickServe Logistics",
-    quote: "Their delivery management app revolutionized our operations. Real-time tracking and route optimization saved us hours every day.",
+    name: "Preyasi Rajora",
+    company: "5 years ago",
+    quote: "Had great experience. Highly qualified and experienced staff. Would recommend everyone to get their professional help, when in need. They aren't leaving you dissatisfied.",
   },
   {
-    name: "Sneha Reddy",
-    company: "Wellness Hub Spa",
-    quote: "The spa management system is exactly what we needed. Booking, scheduling, and customer management — all in one beautiful platform.",
+    name: "Aksa Sama",
+    company: "3 years ago",
+    quote: "Great experience. Thank you so much for a chance. I had learnt a lot and all of the members were very supportive and cooperative. Thank you for providing me with such an opportunity.",
   },
 ];

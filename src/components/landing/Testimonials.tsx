@@ -23,13 +23,50 @@ const Testimonials = () => {
       try {
         const res = await fetch(`${API_URL}/testimonials`);
         const json = await res.json();
-        if (json.success) setTestimonials(json.data);
+        if (json.success && json.data && json.data.length > 0) {
+          setTestimonials(json.data);
+          return;
+        }
       } catch {
-        setTestimonials([]);
+        // ignore and fallback
       }
+      setTestimonials([
+        {
+          _id: "static-1",
+          name: t.test1Name,
+          company: t.test1Company,
+          quote: t.test1Quote,
+          rating: 5,
+          photo: "",
+        },
+        {
+          _id: "static-2",
+          name: t.test2Name,
+          company: t.test2Company,
+          quote: t.test2Quote,
+          rating: 5,
+          photo: "",
+        },
+        {
+          _id: "static-3",
+          name: t.test3Name,
+          company: t.test3Company,
+          quote: t.test3Quote,
+          rating: 5,
+          photo: "",
+        },
+        {
+          _id: "static-4",
+          name: t.test4Name,
+          company: t.test4Company,
+          quote: t.test4Quote,
+          rating: 5,
+          photo: "",
+        },
+      ]);
     };
     fetchTestimonials();
-  }, []);
+  }, [t]);
 
   if (testimonials.length === 0) return null;
 
