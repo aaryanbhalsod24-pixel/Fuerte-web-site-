@@ -89,7 +89,7 @@ const ShowcasePartners = () => {
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
                   <div
                     key={`${partner.name}-${i}`}
-                    className="w-36 h-20 bg-white rounded-xl border border-border/10 flex items-center justify-center p-4 hover:shadow-lg transition-shadow duration-300 select-none shrink-0"
+                    className="w-40 h-20 bg-white rounded-xl border border-border/10 flex items-center justify-center p-4 hover:shadow-lg transition-shadow duration-300 select-none shrink-0"
                   >
                     <img
                       src={partner.logo}
@@ -114,7 +114,7 @@ const ShowcasePartners = () => {
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
-                    className="w-36 h-20 rounded-xl bg-card border border-border/40 flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300 select-none shrink-0"
+                    className="w-40 h-20 rounded-xl bg-card border border-border/40 flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300 select-none shrink-0"
                   >
                     <img
                       src={brand.logo}
