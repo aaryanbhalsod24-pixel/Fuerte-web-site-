@@ -269,7 +269,7 @@ const CustomerStories = () => {
 
   const highlights = [
     { label: "Client Growth", value: "150%", icon: TrendingUp },
-    { label: "Success Stories", value: "250+", icon: Star },
+    { label: "Success Stories", value: "10,000", icon: Star },
     { label: "Brand Reach", value: "15M", icon: Users },
   ];
 
@@ -326,7 +326,7 @@ const CustomerStories = () => {
         <div className="max-w-5xl mx-auto px-6 mb-32 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { label: t.clientGrowth, value: "150%", icon: TrendingUp },
-            { label: t.successStories, value: "250+", icon: Star },
+            { label: t.successStories, value: "10,000", icon: Star },
             { label: t.brandReach, value: "15M", icon: Users },
           ].map((h, i) => (
             <div
