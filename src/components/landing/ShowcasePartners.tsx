@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import FadeIn from "./FadeIn";
 
 const pressPartners = [
@@ -44,6 +45,18 @@ const brandPartners = Array.from({ length: 62 }, (_, i) => {
 });
 
 const ShowcasePartners = () => {
+  const [pausedPress, setPausedPress] = useState(false);
+  const [pausedBrands, setPausedBrands] = useState(false);
+
+  useEffect(() => {
+    const handleBlur = () => {
+      setPausedPress(false);
+      setPausedBrands(false);
+    };
+    window.addEventListener("blur", handleBlur);
+    return () => window.removeEventListener("blur", handleBlur);
+  }, []);
+
   return (
     <section className="pt-2 pb-4 border-t border-border bg-background relative overflow-hidden">
       <style>{`
@@ -58,10 +71,6 @@ const ShowcasePartners = () => {
         .marquee-track-rtl {
           display: flex;
           animation: marquee-scroll 120s linear infinite;
-        }
-        .marquee-track-ltr:hover,
-        .marquee-track-rtl:hover {
-          animation-play-state: paused;
         }
         .mask-gradient {
           mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -80,14 +89,26 @@ const ShowcasePartners = () => {
             <div className="relative w-full overflow-hidden py-4 mask-gradient">
               <div
                 className="marquee-track-ltr flex items-center gap-2 sm:gap-4"
-                style={{ width: "max-content", willChange: "transform" }}
+                style={{
+                  width: "max-content",
+                  willChange: "transform",
+                  animationPlayState: pausedPress ? "paused" : "running"
+                }}
+                onMouseEnter={() => setPausedPress(true)}
+                onMouseLeave={() => setPausedPress(false)}
               >
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
                   <div
                     key={`${partner.name}-${i}`}
                     className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center bg-white rounded-xl border border-border/10 hover:shadow-lg transition-shadow duration-300"
                   >
-                    <a href={partner.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
+                    <a
+                      href={partner.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-full h-full"
+                      onClick={() => setPausedPress(false)}
+                    >
                       <img
                         src={partner.logo}
                         alt="partner logo"
@@ -110,14 +131,26 @@ const ShowcasePartners = () => {
             <div className="relative w-full overflow-hidden py-4 mask-gradient">
               <div
                 className="marquee-track-rtl flex items-center gap-2 sm:gap-4"
-                style={{ width: "max-content", willChange: "transform" }}
+                style={{
+                  width: "max-content",
+                  willChange: "transform",
+                  animationPlayState: pausedBrands ? "paused" : "running"
+                }}
+                onMouseEnter={() => setPausedBrands(true)}
+                onMouseLeave={() => setPausedBrands(false)}
               >
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
                     className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[240px] h-[90px] sm:h-[110px] md:h-[130px] flex items-center justify-center rounded-xl bg-card border border-border/40 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:border-primary/30 transition-all duration-300"
                   >
-                    <a href={brand.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full h-full">
+                    <a
+                      href={brand.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-full h-full"
+                      onClick={() => setPausedBrands(false)}
+                    >
                       <img
                         src={brand.logo}
                         alt="partner logo"
