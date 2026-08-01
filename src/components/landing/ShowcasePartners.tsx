@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import FadeIn from "./FadeIn";
 
 const pressPartners = [
@@ -48,6 +48,9 @@ const ShowcasePartners = () => {
   const [pausedPress, setPausedPress] = useState(false);
   const [pausedBrands, setPausedBrands] = useState(false);
 
+  const justClickedPress = useRef(false);
+  const justClickedBrands = useRef(false);
+
   useEffect(() => {
     const handleBlur = () => {
       setPausedPress(false);
@@ -56,6 +59,22 @@ const ShowcasePartners = () => {
     window.addEventListener("blur", handleBlur);
     return () => window.removeEventListener("blur", handleBlur);
   }, []);
+
+  const handlePressClick = () => {
+    justClickedPress.current = true;
+    setPausedPress(false);
+    setTimeout(() => {
+      justClickedPress.current = false;
+    }, 1500);
+  };
+
+  const handleBrandsClick = () => {
+    justClickedBrands.current = true;
+    setPausedBrands(false);
+    setTimeout(() => {
+      justClickedBrands.current = false;
+    }, 1500);
+  };
 
   return (
     <section className="pt-2 pb-4 border-t border-border bg-background relative overflow-hidden">
@@ -94,7 +113,11 @@ const ShowcasePartners = () => {
                   willChange: "transform",
                   animationPlayState: pausedPress ? "paused" : "running"
                 }}
-                onMouseEnter={() => setPausedPress(true)}
+                onMouseEnter={() => {
+                  if (!justClickedPress.current) {
+                    setPausedPress(true);
+                  }
+                }}
                 onMouseLeave={() => setPausedPress(false)}
               >
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
@@ -107,7 +130,7 @@ const ShowcasePartners = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center w-full h-full"
-                      onClick={() => setPausedPress(false)}
+                      onClick={handlePressClick}
                     >
                       <img
                         src={partner.logo}
@@ -136,7 +159,11 @@ const ShowcasePartners = () => {
                   willChange: "transform",
                   animationPlayState: pausedBrands ? "paused" : "running"
                 }}
-                onMouseEnter={() => setPausedBrands(true)}
+                onMouseEnter={() => {
+                  if (!justClickedBrands.current) {
+                    setPausedBrands(true);
+                  }
+                }}
                 onMouseLeave={() => setPausedBrands(false)}
               >
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
@@ -149,7 +176,7 @@ const ShowcasePartners = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center w-full h-full"
-                      onClick={() => setPausedBrands(false)}
+                      onClick={handleBrandsClick}
                     >
                       <img
                         src={brand.logo}
