@@ -33,10 +33,10 @@ const Index = () => {
         <meta property="og:locale" content="en_IN" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Fuerte Developers – Building Your Dreams" />
+        <meta name="twitter:title" content="Fuerte Developers Pvt. Ltd.| Best Advertising & Digital Marketing Agency In India" />
         <meta
           name="twitter:description"
-          content="Premium real estate development company offering residential and commercial properties."
+          content="Fuerte Developers Pvt. Ltd. — India's trusted digital marketing agency offering SEO, social media and web development services. Grow your brand with data-driven strategies. Get a free consultation today!"
         />
         <meta name="twitter:image" content={`${baseUrl}/preview.png`} />
       </Helmet>
