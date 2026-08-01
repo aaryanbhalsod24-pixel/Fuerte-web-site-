@@ -89,12 +89,12 @@ const ShowcasePartners = () => {
                 {[...pressPartners, ...pressPartners].map((partner, i) => (
                   <div
                     key={`${partner.name}-${i}`}
-                    className="w-40 h-20 bg-white rounded-xl border border-border/10 flex items-center justify-center p-4 hover:shadow-lg transition-shadow duration-300 select-none shrink-0"
+                    className="w-[110px] h-[65px] sm:w-[150px] sm:h-[85px] md:w-[180px] md:h-[100px] bg-white rounded-xl border border-border/10 flex items-center justify-center p-2 hover:shadow-lg transition-shadow duration-300 select-none shrink-0"
                   >
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full object-contain pointer-events-none"
+                      className="h-[50px] sm:h-[65px] md:h-[80px] w-auto object-contain select-none pointer-events-none"
                     />
                   </div>
                 ))}
@@ -114,12 +114,12 @@ const ShowcasePartners = () => {
                 {[...brandPartners, ...brandPartners].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
-                    className="w-40 h-20 rounded-xl bg-card border border-border/40 flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300 select-none shrink-0"
+                    className="w-[110px] h-[65px] sm:w-[150px] sm:h-[85px] md:w-[180px] md:h-[100px] rounded-xl bg-card border border-border/40 flex items-center justify-center p-2 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:border-primary/30 transition-all duration-300 select-none shrink-0"
                   >
                     <img
                       src={brand.logo}
                       alt={brand.name}
-                      className="max-w-full max-h-full object-contain pointer-events-none"
+                      className="h-[50px] sm:h-[65px] md:h-[80px] w-auto object-contain select-none pointer-events-none"
                     />
                   </div>
                 ))}
